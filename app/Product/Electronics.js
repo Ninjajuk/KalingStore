@@ -26,6 +26,7 @@ const Electronics = () => {
       title: 'Workspace',
       description: 'Create your ideal workspace with our curated selection.',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
+      // https://tailwindui.com/img/ecommerce-images/category-page-07-product-02.jpg
     },
   ];
 
@@ -34,7 +35,7 @@ const Electronics = () => {
       <h1 className="text-2xl md:text-4xl font-bold mb-8 text-blue-800">
         Electronics
       </h1>
-{/* 
+      {/* 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="col-span-1 md:col-span-2">
           <CategoryCard {...categories[0]} />
@@ -47,17 +48,38 @@ const Electronics = () => {
         </div>
       </div> */}
 
-
-
-      <div className="flex flex-col md:flex-row gap-4 w-full h-[600px]">
-        <div className="w-1/2 h-full ">
-          <div className=" bg-green-400 h-full rounded-md shadow-md">
-          1
+      <div className="flex flex-col md:flex-row gap-4 w-full h-[400px]">
+        <div className="md:w-1/2 h-full flex flex-col items-center justify-center relative">
+          <div className="  w-full h-full rounded-md shadow-md overflow-hidden ">
+            <img
+              className="w-full h-full object-cover object-center rounded-md shadow-md "
+              src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg"
+              alt=""
+            />
           </div>
+          <p className='absolute top-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2 text-2xl font-bold text-gray-800'>Electronics</p>
         </div>
-        <div className="flex flex-col w-1/2 h-full gap-4 ">
-          <div className="col-span-2 bg-yellow-400  h-1/2 rounded-md shadow-md">2</div>
-          <div className="col-span-2 bg-gray-400  h-1/2 rounded-md shadow-md">3</div>
+        <div className="flex flex-col md:w-1/2 h-full gap-4 ">
+          <div className="col-span-2 bg-yellow-400  md:h-1/2 rounded-md shadow-md relative">
+            <div className="  w-full h-full rounded-md shadow-md overflow-hidden ">
+              <img
+                className="w-full h-full object-cover  object-center rounded-md shadow-md "
+                src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg"
+                alt=""
+              />
+            </div>
+            <p className='absolute top-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2  text-2xl font-bold text-gray-800'>Trending products</p>
+          </div>
+          <div className="col-span-2 bg-gray-400  md:h-1/2 rounded-md shadow-md relative">
+          <div className="  w-full h-full rounded-md shadow-md overflow-hidden ">
+              <img
+                className="w-full h-full object-cover  object-center rounded-md shadow-md "
+                src="https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-04.jpg"
+                alt=""
+              />
+            </div>
+            <p className='absolute top-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2  text-2xl font-bold text-yellow-500'>Accessories</p>
+          </div>
         </div>
       </div>
     </div>

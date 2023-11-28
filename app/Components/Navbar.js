@@ -71,12 +71,12 @@ const Navbar = ({ siebaropen }, open) => {
           </button>
           {/* Logo (visible in desktop view) */}
           <div className="hidden md:block">
-            <p href="/" className="px-4 text-white font-semibold text-lg">
+            <p href="/" className="px-2 text-white font-semibold text-lg font-sans">
               Yingkiong Store
             </p>
           </div>
 
-          <div className="hidden md:flex space-x-4 px-4">
+          <div className="hidden md:flex  px-2">
             {navigationLeft.map((link) => (
               <a
                 key={link.name}
@@ -84,7 +84,7 @@ const Navbar = ({ siebaropen }, open) => {
                 onClick={() => handleLinkClick(link.href)} // Add onClick event handler
                 className={classNames(
                   link.href === activeLink // Check if link.href matches activeLink
-                    ? "bg-gray-900 text-white"
+                    ? "bg-gray-900 text-white font-sans"
                     : "text-gray-300 hover:bg-gray-700 hover:text-white",
                   "rounded-md px-4 py-2 text-sm font-medium"
                 )}

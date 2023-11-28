@@ -161,6 +161,9 @@ const products = [
 //   };
 //   const discountedPrice = calculateDiscountPriceProducts(data);
 
+const filterProductsData=['All','Electronics','Vegetables','Meats']
+
+
     return (
       <div className="bg-white">
              <Bunks/>
@@ -168,9 +171,15 @@ const products = [
              <Electronics/>
              <FruitsVegetables/>
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+          <div className="overflow-x-auto bg-gray-400">
+            <ul className="flex items-center justify-center">
+              {filterProductsData.map((item)=>
+              <li className=" px-4 py-2  hover:bg-gray-600 cursor-pointer rounded-md shadow-md">{item}</li>)}
+            </ul>
+
+          </div>
      
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
-  
           <div className="mt-6 grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
             {data.map((product) => (
               <div key={product.id} className="group relative  px-2 py-2 shadow-md rounded-md">

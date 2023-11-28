@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+node_modules
+
 # Logs
 logs
 *.log
@@ -166,4 +167,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
->>>>>>> b548920729c2ca54ec45b9157f72c21abce111a8
+
+*.seed
+*.pid.lock
+
