@@ -56,7 +56,7 @@ const Navbar = ({ siebaropen }, open) => {
 
   return (
     <>
-      <nav className="bg-purple-600  ">
+      <nav className="bg-purple-600  sticky top-0 z-10">
         <div className=" flex justify-between items-center py-4">
           {/* Menu Toggle (visible in mobile view) */}
           <button
@@ -149,6 +149,7 @@ const Navbar = ({ siebaropen }, open) => {
               </button>
               <button
                 className="text-white flex items-center text-md px-4 relative"
+                // onClick={()=>NavigateBefore('/cart')}
               >
                 <span className="px-1">Cart</span>
                 <span className="px-1"><FaCartPlus/></span>
