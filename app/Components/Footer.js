@@ -67,8 +67,8 @@ const Footer = () => {
                       <ul>
                         <li className="mb-8">
                           <span>
-                            Plot No. 46 Zone - 2 M.P Nagar
-                            <br _ngcontent-serverapp-c9="" /> Bhopal - 462011
+                            Bentuk Village Near Baptism Church
+                            <br _ngcontent-serverapp-c9="" /> Arunachal Pradesh 
                           </span>
                         </li>
                         <li className="flex items-center ">
@@ -86,7 +86,7 @@ const Footer = () => {
                             _ngcontent-serverapp-c9=""
                             class="footer-text font-14 ms-1 mr_sp ps-1"
                           >
-                            8827664612
+                            7629826114
                           </span>
                         </li>
                         <li className="flex items-center">
@@ -102,7 +102,7 @@ const Footer = () => {
                             _ngcontent-serverapp-c9=""
                             class="footer-text font-14 ms-1 mr_sp ps-1"
                           >
-                            infobhopal@nextias.com
+                            kaalnaam123@gmail.com
                           </span>
                         </li>
                       </ul>

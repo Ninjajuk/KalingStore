@@ -72,7 +72,7 @@ const Navbar = ({ siebaropen }, open) => {
           {/* Logo (visible in desktop view) */}
           <div className="hidden md:block">
             <p href="/" className="px-4 text-white font-semibold text-lg">
-              KalingStore
+              Yingkiong Store
             </p>
           </div>
 

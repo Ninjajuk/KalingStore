@@ -5,7 +5,7 @@ import { FaAngleLeft,FaAngleRight } from "react-icons/fa";
 const Bunks=()=>{
 
   const images=[
-    'https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-05.jpg',
+    'https://www.bigbasket.com/media/uploads/banner_images/hp_bcd_m_bcd_250923_400.jpg?tr=w-1920,q=80',
     'https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-06.jpg',
     'https://tailwindui.com/img/ecommerce-images/category-page-07-product-05.jpg',
 
@@ -53,35 +53,41 @@ const Bunks=()=>{
         setAddons(!addons)
     }
 
+    const imageslider=[
+        'https://www.bigbasket.com/media/uploads/banner_images/hp_bcd_m_bcd_250923_400.jpg?tr=w-1920,q=80',
+        'https://www.bigbasket.com/media/uploads/banner_images/hp_m_health_suppliment_250923_400.jpg?tr=w-1920,q=80',
+        'https://www.bigbasket.com/media/uploads/banner_images/hp_m_petstore_250923_400.jpg?tr=w-1920,q=80',
+        'https://cdnstatic.nextias.com/ibt_banner_images/4275570Optional%20foudation%20course%20banner%20%2817%29.jpg'
+        ]
+
     return (
       <>
-        <section className="w-full bg-[#cee3d9] px-[65px] py-[60px]">
-          <div className=" max-w-[1200px] mx-auto flex flex-col">
-            <h2 className="text-center text-3xl font-semibold">Our Awesome Products</h2>
-                <div className="relative max-w-full  h-[550px] overflow-hidden transition-opacity duration-500 ease-in-out">
-                  <img
-                    src={images[currentImageIndex]}
-                    className=" w-full h-full object-cover "
-                    // style={{ height: "100%", objectFit: "cover" }}
-                  />
-                  {/* Left arrow icon */}
-                  <div
-                    onClick={handlePrevImage}
-                    className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-400 hover:bg-gray-600 ml-4 cursor-pointer transition-background-color duration-300"
-                  >
-                    <FaAngleLeft className="w-8 h-8" />
-                  </div>
 
-                  {/* Right arrow icon */}
-                  <div
-                    onClick={handleNextImage}
-                    className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-400 hover:bg-gray-600 mr-4 cursor-pointer transition-background-color duration-300"
-                  >
-                    <FaAngleRight className="w-8 h-8" />
-                  </div>
-                </div>
-     
-       
+
+        <section className="w-full bg-[#cee3d9] ">
+          <div className="  ">
+            <div className="relative w-full  md:h-[550px] ">
+              <img
+                src={imageslider[currentImageIndex]}
+                className="h-full w-full object-fit "
+                style={{ height: "100%", }}
+              />
+              {/* Left arrow icon */}
+              <div
+                onClick={handlePrevImage}
+                className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-400 hover:bg-gray-600 ml-4 cursor-pointer transition-background-color duration-300"
+              >
+                <FaAngleLeft className="w-8 h-8" />
+              </div>
+
+              {/* Right arrow icon */}
+              <div
+                onClick={handleNextImage}
+                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-400 hover:bg-gray-600 mr-4 cursor-pointer transition-background-color duration-300"
+              >
+                <FaAngleRight className="w-8 h-8" />
+              </div>
+            </div>
           </div>
         </section>
 
