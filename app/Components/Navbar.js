@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { FaCartPlus,FaUser } from "react-icons/fa";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import LoginModal from "./Modal/LoginModal";
+import SignUpModal from "./Modal/SignUpModal";
 
 const Navbar = ({ siebaropen }, open) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,7 +18,7 @@ const Navbar = ({ siebaropen }, open) => {
   };
 
   const navigationLeft = [
-    { name: "Home", href: "/dashboard", current: false },
+    { name: "Home", href: "/", current: false },
     { name: "Shop", href: "team", current: false },
     { name: "About us", href: "about-us", current: false },
 
@@ -30,6 +32,27 @@ const Navbar = ({ siebaropen }, open) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSignupModalOpen, setSignupModalOpen] = useState(false);
+
+  const openLoginModal = () => {
+    setIsModalOpen(true);
+  };
+  const openSignupModal = () => {
+    setSignupModalOpen(true);
+
+  };
+
+  const closeLoginModal = () => {
+    setIsModalOpen(false);
+    setSignupModalOpen(false)
+  };
+  const closeSignUpModal = () => {
+    setSignupModalOpen(false);
+    setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -93,16 +116,16 @@ const Navbar = ({ siebaropen }, open) => {
             <span className="w-8 h-8 text-white text-lg relative">
               <FaCartPlus />
               <span className="absolute top-0 right-0  -mt-5 -mr-3 bg-red-500 text-white rounded-full text-sm px-1 py-0.5">
-                    {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
-                    10
-                  </span>
+                {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
+                10
+              </span>
             </span>
           </div>
           {/* User PRofile */}
 
           {/* Navigation Links (visible in desktop view) */}
           <div className="hidden md:flex space-x-4 px-4 ">
-            {navigationLinks.map((link) => (
+            {/* {navigationLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -113,15 +136,50 @@ const Navbar = ({ siebaropen }, open) => {
                 <span className="px-1">{link.icon}</span>
               </a>
             ))}
-               <span className="absolute top-0 right-5 mt-1  bg-red-500 text-white rounded-full text-xxs px-2 py-0.5">
-                    {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
-                    10
-                  </span>
+            <span className="absolute top-0 right-5 mt-1  bg-red-500 text-white rounded-full text-xxs px-2 py-0.5">
+              {cart && Array.isArray(cart) ? cart.length : 0}
+              10
+            </span> */}
+              <button
+                className="text-white flex items-center text-md px-4 relative"
+                onClick={openLoginModal}
+              >
+                <span className="px-1">Login</span>
+                <span className="px-1"><FaUser/></span>
+              </button>
+              <button
+                className="text-white flex items-center text-md px-4 relative"
+              >
+                <span className="px-1">Cart</span>
+                <span className="px-1"><FaCartPlus/></span>
+              </button>
+        
+            <span className="absolute top-0 right-5 mt-1  bg-red-500 text-white rounded-full text-xxs px-2 py-0.5">
+              {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
+              10
+            </span>
+  
           </div>
-
-          
         </div>
       </nav>
+      {isModalOpen ? (
+          <LoginModal
+            // updateFormData={updateFormData}
+            isOpen={isModalOpen}
+            onClose={closeLoginModal}
+            onClick={openSignupModal}
+           
+          />
+        ):null}
+                {isSignupModalOpen ? (
+          <SignUpModal
+            // updateFormData={updateFormData}
+            isOpen={isModalOpen}
+            onClose={closeSignUpModal}
+            onClick={openLoginModal}
+      
+          />
+        ):null}
     </>
   );
 };
