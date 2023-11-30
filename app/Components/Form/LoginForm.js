@@ -31,7 +31,7 @@ const LoginForm = () => {
       router.push("/dashboard");
     } else {
       // Redirect to the UserPage
-      router.push("/user-page");
+      router.push("/user");
     }
 
   };
