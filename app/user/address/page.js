@@ -1,9 +1,9 @@
 
 'use client'
 import { useState } from "react";
+// import statesData from "./states.json"; // Path to your states.json file
 
-
-export const AddnewAddressForm = ({ handleCancel }) => {
+const AddnewAddressForm = ({ handleCancel }) => {
 
   const [selectedState, setSelectedState] = useState("");
   const initialFormDetails = {
@@ -60,7 +60,7 @@ export const AddnewAddressForm = ({ handleCancel }) => {
     <>
       <>
         <form
-          className="max-h-full overflow-y-auto bg-white px-5 py-12 "
+          className="max-h-full overflow-y-auto bg-white px-5 py-12 rounded-md shadow-md"
           // noValidate
         //   onSubmit={handleSubmit}
         >
@@ -73,7 +73,7 @@ export const AddnewAddressForm = ({ handleCancel }) => {
                 Use a permanent address where you can receive mail.
               </p>
 
-              <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-4">
                   <label
                     htmlFor="name"
@@ -106,7 +106,7 @@ export const AddnewAddressForm = ({ handleCancel }) => {
                   >
                     Email address
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <input
                       id="email"
                       name="email"
@@ -131,7 +131,7 @@ export const AddnewAddressForm = ({ handleCancel }) => {
                   >
                     Full address
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <textarea
                       id="fullAddress"
                       name="fullAddress"
@@ -155,7 +155,7 @@ export const AddnewAddressForm = ({ handleCancel }) => {
                   >
                     Phone
                   </label>
-                  <div className="mt-2">
+                  <div className="mt-1">
                     <input
                       id="phone"
                       name="phone"
@@ -299,3 +299,5 @@ export const AddnewAddressForm = ({ handleCancel }) => {
     </>
   );
 };
+
+export default AddnewAddressForm;

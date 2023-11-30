@@ -30,7 +30,7 @@ const PersonalInfoCard = ({ onUpdate, onDelete }) => {
   const { name, phone, email, gender, address, memberRole, image } = data;
 
   return (
-    <div className="w-full md:max-w-3xl mx-auto bg-white rounded-md shadow-md">
+    <div className="w-full   bg-white ">
       <div className="max-w-full md:flex">
         <div className="md:w-1/2 h-1/2 flex justify-center items-center">
           <div className="p-2">
