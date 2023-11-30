@@ -8,13 +8,10 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row  w-full py-2">
             <div className="md:w-2/5  flex flex-col px-2 py-4">
               <div className="mb-4" >
-                <h1 className='text-4xl font-bold'>Kaling Store</h1>
+                <h1 className='text-4xl font-bold text-sky-600'>Yingkiong Store</h1>
               </div>
               <div className="mb-4">
-                <p>
-                  Next generation institute for the preparation of UPSC Civil
-                  Services Examination{" "}
-                </p>
+                <p>Yingkiong Store was born out of a love for our product and a commitment to what makes our brand unique</p>
               </div>
               <div className="flex "></div>
             </div>

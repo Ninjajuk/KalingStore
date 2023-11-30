@@ -25,12 +25,12 @@ const AboutUs = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <Card
           title="Our Story"
-          content="Founded in 2024, Yingkiong Store was born out of a love for [your product or industry] and a commitment to [what makes your brand unique]. What started as a small idea has now grown into a [adjective, e.g., thriving] community of [your customer base] who share our passion."
+          content="Founded in 2024, Yingkiong Store was born out of a love for our product and a commitment to what makes our brand unique. What started as a small idea has now grown into a  thriving community of our customer base who share our passion."
         />
 
         <Card
           title="Our Mission"
-          content="At Yingkiong Store, our mission is to [state your mission clearly]. We believe in [your core beliefs or values], and every product we offer is a reflection of that commitment. We strive to [additional mission details] in every aspect of our business."
+          content="At Yingkiong Store, our mission is to our product better. We believe in  core beliefs, and every product we offer is a reflection of that commitment. We strive to excel in every aspect of our business."
         />
 
         {/* Add additional cards for other sections as needed */}

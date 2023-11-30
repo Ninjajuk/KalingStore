@@ -5,6 +5,7 @@ import { FaCartPlus,FaUser } from "react-icons/fa";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import LoginModal from "./Modal/LoginModal";
 import SignUpModal from "./Modal/SignUpModal";
+import ShoppingCart from "../cart/page";
 
 const Navbar = ({ siebaropen }, open) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,6 +55,11 @@ const Navbar = ({ siebaropen }, open) => {
     setIsModalOpen(false);
   };
 
+
+  const[isCartOpen,setIsCartOpen]=useState(false)
+  function handlecartOpen(){
+    setIsCartOpen(!isCartOpen)
+  }
   return (
     <>
       <nav className="bg-purple-600  sticky top-0 z-10">
@@ -149,7 +155,7 @@ const Navbar = ({ siebaropen }, open) => {
               </button>
               <button
                 className="text-white flex items-center text-md px-4 relative"
-                // onClick={()=>NavigateBefore('/cart')}
+                onClick={handlecartOpen}
               >
                 <span className="px-1">Cart</span>
                 <span className="px-1"><FaCartPlus/></span>
@@ -181,6 +187,7 @@ const Navbar = ({ siebaropen }, open) => {
       
           />
         ):null}
+    {isCartOpen ?<ShoppingCart isCartOpen={isCartOpen} handlecartOpen={handlecartOpen}/>:null}
     </>
   );
 };
