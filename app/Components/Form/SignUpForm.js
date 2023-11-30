@@ -1,13 +1,17 @@
+
+'use client'
 import React, { useState } from "react";
 // import { SnackbarProvider, useSnackbar } from "notistack";
-
+import { useRouter } from 'next/navigation'
 const initailUserState = {
   name: "",
   email: "",
   phone: "",
   password: ""
 };
-const SignUpForm = ({onClick}) => {
+const SignUpForm = () => {
+
+  const router = useRouter()
   const [user, setUser] = useState(initailUserState);
 //   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -50,17 +54,19 @@ const SignUpForm = ({onClick}) => {
   };
   return (
     <>
-      <div className="flex justify-center items-center min-h-lg">
-        <div className="w-full flex flex-col md:flex-row rounded-md h-full">
-          <div className=" md:block md:w-1/2">
+      <section className="w-full mx-auto">
+      <div className="max-w-[1200px ] flex justify-center items-center py-4">
+        <div className="w-full flex flex-col md:flex-row h-[500px]">
+          <div className="  md:w-1/2 max-h-full overflow-hidden rounded-md shadow-md">
             <img
               src="https://cdnstatic.nextias.com/assets/images/login-signp-pop-up.png"
               alt="Your Image"
               className="w-full h-full object-cover"
             />
           </div>
+          <div className="bg-white p-6 rounded-md  shadow-md w-full md:w-1/2 ">
           <form
-            className="bg-white p-4 rounded-lg shadow-md w-full md:w-1/2"
+            className="bg-white p-4  w-full "
             onSubmit={handleRegister}
           >
             <h2 className="text-2xl font-semibold mb-2">Register</h2>
@@ -139,11 +145,15 @@ const SignUpForm = ({onClick}) => {
               <div className="border-t border-gray-400 flex-grow"></div>
             </div>
             <div className="flex mt-4 text-center gap-4">
-       <p className="text-center">Already have an account? <span><button onClick={onClick} className="text-blue-600">Log In</button></span></p>
+       <p className="text-center">Already have an account? <span><button onClick={()=>router.push('/login')} className="text-blue-600">Log In</button></span></p>
             </div>
           </form>
+          </div>
+     
         </div>
       </div>
+      </section>
+ 
     </>
   );
 };

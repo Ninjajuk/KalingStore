@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import TotalPriceSummary from './TotalPriceSummary';
 import { MdDelete } from "react-icons/md";
+import { useRouter } from 'next/navigation'
 const CheckoutPage = () => {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -243,8 +245,10 @@ const CheckoutPage = () => {
             </div>
           ))}
           <TotalPriceSummary/>
-          <div className='py-4'>    <button
+          <div className='py-4'>    
+          <button
             type="submit"
+            onClick={() => router.push('/ordersuccess')}
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 "
           >
             Confirm Order

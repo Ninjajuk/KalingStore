@@ -32,7 +32,7 @@ const SignUpModal = ({ isOpen, onClose,onClick,  }) => {
     <div style={modalStyles} className="overflow-y-auto">
       <div style={modalContentStyles} className="relative">
         {/* <h2 className="text-2xl font-semibold mb-4">Income Form</h2> */}
-        <SignUpForm onClick={onClick}/>
+        {/* <SignUpForm onClick={onClick}/> */}
         <button
           className="bg-gray-400  hover:bg-gray-600  font-semibold text-white   absolute top-0 right-0 h-8 w-8 rounded-full flex items-center justify-center"
           onClick={onClose}

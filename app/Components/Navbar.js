@@ -6,8 +6,10 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import LoginModal from "./Modal/LoginModal";
 import SignUpModal from "./Modal/SignUpModal";
 import ShoppingCart from "../cart/page";
+import { useRouter } from 'next/navigation'
 
 const Navbar = ({ siebaropen }, open) => {
+  const loginrouter = useRouter()
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("/dashboard"); // Initialize with the default active link
   const handleLinkClick = (href) => {
@@ -20,13 +22,13 @@ const Navbar = ({ siebaropen }, open) => {
 
   const navigationLeft = [
     { name: "Home", href: "/", current: false },
-    { name: "Shop", href: "team", current: false },
-    { name: "About us", href: "about-us", current: false },
+    { name: "Shop", href: "/shop", current: false },
+    { name: "About us", href: "/about-us", current: false },
 
   ];
   const navigationLinks = [
-    { name: "Login", href: "login", current: false,icon:<FaUser/>  },
-    { name: "Cart", href: "/dashboard", current: true,icon:<FaCartPlus/> },
+    { name: "Login", href: "/login", current: false,icon:<FaUser/>  },
+    { name: "Cart", href: "/cart", current: true,icon:<FaCartPlus/> },
   ];
 
 
@@ -35,25 +37,25 @@ const Navbar = ({ siebaropen }, open) => {
   }
 
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSignupModalOpen, setSignupModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isSignupModalOpen, setSignupModalOpen] = useState(false);
 
-  const openLoginModal = () => {
-    setIsModalOpen(true);
-  };
-  const openSignupModal = () => {
-    setSignupModalOpen(true);
+  // const openLoginModal = () => {
+  //   setIsModalOpen(true);
+  // };
+  // const openSignupModal = () => {
+  //   setSignupModalOpen(true);
 
-  };
+  // };
 
-  const closeLoginModal = () => {
-    setIsModalOpen(false);
-    setSignupModalOpen(false)
-  };
-  const closeSignUpModal = () => {
-    setSignupModalOpen(false);
-    setIsModalOpen(false);
-  };
+  // const closeLoginModal = () => {
+  //   setIsModalOpen(false);
+  //   setSignupModalOpen(false)
+  // };
+  // const closeSignUpModal = () => {
+  //   setSignupModalOpen(false);
+  //   setIsModalOpen(false);
+  // };
 
 
   const[isCartOpen,setIsCartOpen]=useState(false)
@@ -118,14 +120,15 @@ const Navbar = ({ siebaropen }, open) => {
               alt=""
             />
           </div> */}
-          <div className="md:hidden px-4">
-            <span className="w-8 h-8 text-white text-lg relative">
-              <FaCartPlus />
-              <span className="absolute top-0 right-0  -mt-5 -mr-3 bg-red-500 text-white rounded-full text-sm px-1 py-0.5">
+          <div className="md:hidden px-4 relative">
+            <button  onClick={setIsCartOpen} className="w-8 h-8 text-white text-lg ">
+              <span><FaCartPlus /></span>
+              
+              <span className="absolute top-1 right-0  -mt-3 mr-3 bg-red-500 text-white rounded-full text-sm px-1 py-0.5">
                 {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
                 10
               </span>
-            </span>
+            </button>
           </div>
           {/* User PRofile */}
 
@@ -148,7 +151,8 @@ const Navbar = ({ siebaropen }, open) => {
             </span> */}
               <button
                 className="text-white flex items-center text-md px-4 relative"
-                onClick={openLoginModal}
+                // onClick={openLoginModal}
+                onClick={()=>loginrouter.push('/login')}
               >
                 <span className="px-1">Login</span>
                 <span className="px-1"><FaUser/></span>
@@ -169,7 +173,7 @@ const Navbar = ({ siebaropen }, open) => {
           </div>
         </div>
       </nav>
-      {isModalOpen ? (
+      {/* {isModalOpen ? (
           <LoginModal
             // updateFormData={updateFormData}
             isOpen={isModalOpen}
@@ -186,7 +190,7 @@ const Navbar = ({ siebaropen }, open) => {
             onClick={openLoginModal}
       
           />
-        ):null}
+        ):null} */}
     {isCartOpen ?<ShoppingCart isCartOpen={isCartOpen} handlecartOpen={handlecartOpen}/>:null}
     </>
   );

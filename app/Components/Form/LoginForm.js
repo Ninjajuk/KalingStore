@@ -1,21 +1,39 @@
+
+'use client'
 import React, { useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-// import { useNavigate } from "react-router-dom";
+
+import { useRouter } from 'next/navigation'
 
 
-const LoginForm = ({onClick}) => {
+const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-//   const navigate = useNavigate();
+  const router = useRouter()
+
+
   const handleLogin = (e) => {
     e.preventDefault();
-    // Add your login logic here
-    console.log("Logging in with email:", email, "and password:", password);
-    console.log("Remember Me:", rememberMe);
-    // navigate("/dashboard");
+
+    // console.log("Logging in with email:", email, "and password:", password);
+    // console.log("Remember Me:", rememberMe);
+    console.log(email,password);
+    setEmail('')
+    setPassword('')
+
+
+    // Check if the email is equal to "biosamsuddin@gmail.com"
+    if (email === "biosamsuddin@gmail.com") {
+      // Redirect to the dashboard
+      router.push("/dashboard");
+    } else {
+      // Redirect to the UserPage
+      router.push("/user-page");
+    }
+
   };
 
   const handleRegister = () => {
@@ -33,100 +51,102 @@ const LoginForm = ({onClick}) => {
   };
 
   return (
-    <div className="  flex justify-center items-center min-h-lg ">
-      <div className="w-full flex flex-col md:flex-row  ">
-        <div className=" md:block md:w-1/2 overflow-hidden rounded-md"style={{backgroundImage:'https://cdnstatic.nextias.com/assets/images/login-signp-pop-up.png'}}>
-          <img
-            src="https://cdnstatic.nextias.com/assets/images/login-signp-pop-up.png"
-            alt="Your Image"
-            className="w-full h-full object-cover  "
-            // style={{ maxWidth: "100%", height: "auto" }}
-          />
-        </div>
-        <form
-          className="bg-white p-6 rounded-md  shadow-md w-full md:w-1/2 "
-          onSubmit={handleLogin}
-        >
-          <h2 className="text-2xl font-semibold mb-6">
-            Sign in to your account
-          </h2>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-600">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-400"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+    <section className="w-full mx-auto">
+      <div className="max-w-[1200px ] flex justify-center items-center py-4">
+        <div className="w-full flex flex-col md:flex-row h-[460px]">
+          <div
+            className=" md:block md:w-1/2 max-h-full overflow-hidden rounded-md"
+            style={{
+              backgroundImage:
+                "https://cdnstatic.nextias.com/assets/images/login-signp-pop-up.png",
+            }}
+          >
+            <img
+              src="https://cdnstatic.nextias.com/assets/images/login-signp-pop-up.png"
+              alt="Your Image"
+              className="w-full h-full object-cover object-center "
+
+              // style={{ maxWidth: "100%", height: "auto" }}
             />
           </div>
-          <div className="mb-4 relative">
-            <label htmlFor="password" className="block text-gray-600">
-              Password
-            </label>
-            <div className="w-full border border-gray-300 rounded px-6 py-2 focus:outline-none focus:border-blue-400">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                className="w-full outline-none"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+          <div className="bg-white p-6 rounded-md  shadow-md w-full md:w-1/2 ">
+            <form
+              className="bg-white p-6 rounded-md  shadow-md w-full  "
+              // onSubmit={handleLogin}
+            >
+              <h2 className="text-2xl font-semibold mb-6">
+                Sign in to your account
+              </h2>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-gray-600">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-400"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-4 relative">
+                <label htmlFor="password" className="block text-gray-600">
+                  Password
+                </label>
+                <div className="w-full border border-gray-300 rounded px-6 py-2 focus:outline-none focus:border-blue-400">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    className="w-full outline-none"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-5 top-8 focus:outline-none"
+                    onClick={toggleShowPassword}
+                  >
+                    {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                  </button>
+                </div>
+              </div>
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <input
+                    type="checkbox"
+                    id="rememberMe"
+                    className="mr-2"
+                    checked={rememberMe}
+                    onChange={toggleRememberMe}
+                  />
+                  <label htmlFor="rememberMe" className="text-gray-600">
+                    Remember Me
+                  </label>
+                </div>
+                <button
+                  type="button"
+                  className="text-blue-500 hover:underline"
+                  onClick={() => {
+                    console.log("Forgot Password clicked");
+                  }}
+                >
+                  Forgot Password
+                </button>
+              </div>
               <button
-                type="button"
-                className="absolute right-5 top-8 focus:outline-none"
-                onClick={toggleShowPassword}
+                type="submit"
+                onClick={handleLogin}
+                className="w-full bg-purple-700 text-white rounded-lg py-2 hover:bg-purple-800 transition duration-300 border-[#ed3237]"
               >
-                {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                Login
               </button>
-            </div>
-          </div>
-          <div className="mb-4 flex items-center justify-between">
-            <div>
-              <input
-                type="checkbox"
-                id="rememberMe"
-                className="mr-2"
-                checked={rememberMe}
-                onChange={toggleRememberMe}
-              />
-              <label htmlFor="rememberMe" className="text-gray-600">
-                Remember Me
-              </label>
-            </div>
-            <button
-              type="button"
-              className="text-blue-500 hover:underline"
-              onClick={() => {
-                console.log("Forgot Password clicked");
-              }}
-            >
-              Forgot Password
-            </button>
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-purple-700 text-white rounded-lg py-2 hover:bg-purple-800 transition duration-300 border-[#ed3237]"
-          >
-            Login
-          </button>
-          <div className="flex justify-between mt-4">
-            <p>Don't have an account</p>
-            <button
-      onClick={onClick}
-              className="text-blue-500 hover:underline"
-            >
-              Register
-            </button>
-          </div>
 
-          <div className="mt-4 flex justify-between items-center">
+              {/* or continue with */}
+              {/* <div className="mt-4 flex justify-between items-center">
             <div className="border-t border-gray-400 flex-grow"></div>
             <p className="mx-2 text-gray-500">Or continue with</p>
             <div className="border-t border-gray-400 flex-grow"></div>
@@ -145,10 +165,19 @@ const LoginForm = ({onClick}) => {
             >
               Github
             </button>
+          </div> */}
+              {/* or continue with */}
+            </form>
+            <div className="flex justify-between mt-4">
+              <p>Don't have an account</p>
+              <a href="/register" className="text-blue-500 hover:underline">
+                Register
+              </a>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
