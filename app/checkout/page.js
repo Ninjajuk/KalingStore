@@ -61,7 +61,7 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="container mx-auto  ">
+    <div className="container mx-auto  md:px-[8rem]">
             <h2 className="text-2xl md:text-4xl font-bold my-4 px-4 md:text-center text-gray-600">Shipped to below Address</h2>
       <div className="flex flex-col md:flex-row gap-4 my-4 px-4">
         <div className="w-full md:w-2/3 p-4 bg-gray-100 rounded-md shadow-md">

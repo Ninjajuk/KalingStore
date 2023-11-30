@@ -31,7 +31,7 @@ const Electronics = () => {
   ];
 
   return (
-    <div className="container mx-auto p-8 bg-gray-100 rounded-md">
+    <div className="container mx-auto md:px-[8rem] bg-gray-100 rounded-md py-4">
       <h1 className="text-2xl md:text-4xl font-bold mb-8 text-blue-800">
         Electronics
       </h1>
@@ -48,9 +48,9 @@ const Electronics = () => {
         </div>
       </div> */}
 
-      <div className="flex flex-col md:flex-row gap-4 w-full h-[400px]">
+      <div className="flex flex-col md:flex-row gap-8 w-full md:h-[500px] ">
         <div className="md:w-1/2 h-full flex flex-col items-center justify-center relative">
-          <div className="  w-full h-full rounded-md shadow-md overflow-hidden ">
+          <div className="  w-full h-full rounded-md shadow-md overflow-hidden hover:scale-105 transition duration-700 ease-in-out">
             <img
               className="w-full h-full object-cover object-center rounded-md shadow-md "
               src="https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg"
@@ -60,7 +60,7 @@ const Electronics = () => {
           <p className='absolute top-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2 text-2xl font-bold text-gray-800'>Electronics</p>
         </div>
         <div className="flex flex-col md:w-1/2 h-full gap-4 ">
-          <div className="col-span-2 bg-yellow-400  md:h-1/2 rounded-md shadow-md relative">
+          <div className="col-span-2 bg-yellow-400  md:h-1/2 rounded-md shadow-md relative hover:scale-105 transition duration-700 ease-in-out">
             <div className="  w-full h-full rounded-md shadow-md overflow-hidden ">
               <img
                 className="w-full h-full object-cover  object-center rounded-md shadow-md "
@@ -70,7 +70,7 @@ const Electronics = () => {
             </div>
             <p className='absolute top-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2  text-2xl font-bold text-gray-800'>Trending products</p>
           </div>
-          <div className="col-span-2 bg-gray-400  md:h-1/2 rounded-md shadow-md relative">
+          <div className="col-span-2 bg-gray-400  md:h-1/2 rounded-md shadow-md relative hover:scale-105 transition duration-700 ease-in-out">
           <div className="  w-full h-full rounded-md shadow-md overflow-hidden ">
               <img
                 className="w-full h-full object-cover  object-center rounded-md shadow-md "

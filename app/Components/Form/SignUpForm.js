@@ -64,7 +64,7 @@ const SignUpForm = () => {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="bg-white p-6 rounded-md  shadow-md w-full md:w-1/2 ">
+          <div className="bg-white p-6  w-full md:w-1/2 ">
           <form
             className="bg-white p-4  w-full "
             onSubmit={handleRegister}

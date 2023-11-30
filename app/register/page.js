@@ -3,7 +3,7 @@ import SignUpForm from '../Components/Form/SignUpForm';
 
 const RegisterPage = () => {
   return (
-<div>
+<div className='max-w-[1200px ] px-[8rem]'>
     <SignUpForm/>
 </div>
   );

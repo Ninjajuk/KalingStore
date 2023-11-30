@@ -169,6 +169,7 @@ const filterProductsData=['All','Electronics','Vegetables','Meats']
              <Bunks/>
              <ShopByCategory/>
              <Electronics/>
+             <div className="py-4"></div>
              <FruitsVegetables/>
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <div className="overflow-x-auto bg-gray-400">

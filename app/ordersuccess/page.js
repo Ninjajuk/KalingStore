@@ -47,7 +47,7 @@ const OrderSuccessPage = () => {
 ]
 
   return (
-    <div className="container mx-auto mt-8 p-4">
+    <div className="container mx-auto mt-8 md:px-[8rem]">
       <h2 className="lg:text-3xl font-bold mb-4 text-green-600 lg:text-center">
         Order Successful! Thank you for your order! </h2>
 
@@ -117,7 +117,7 @@ const OrderSuccessPage = () => {
       {/* Additional Information or Thank You Message */}
       {/* <p className="text-lg">Thank you for your order! Your items will be delivered soon.</p> */}
       <div className='border-b-2 border-gray-200'></div>
-      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+      <div className="my-6 flex justify-center text-center text-sm text-gray-500">
                         <p className='ml-auto'>
                           or
                           <button
