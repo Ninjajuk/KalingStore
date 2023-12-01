@@ -4,7 +4,7 @@ import { FaRegHeart } from 'react-icons/fa';
 
 const UpgradeToProCard = () => {
   return (
-    <div className='w-full h-full bg-green-700 rounded-md shadow-md px-4 py-4 hover:scale-105 hover:shadow-xl transition-transform duration-300'>
+    <div className='w-full h-full rounded-md shadow-md px-4 py-4 hover:scale-101 hover:shadow-md transition-transform duration-300'>
       <h3 className="text-lg text-white font-semibold mb-2">
         Upgrade to Pro
       </h3>

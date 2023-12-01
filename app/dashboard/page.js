@@ -32,8 +32,8 @@ const Dashboard = () => {
         </div>
 
         <div className="w-full lg:w-2/5 h-full flex flex-col px-4 py-4 gap-4">
-          <div className="w-full h-1/2"><UpgradeToProCard /></div>
-          <div className="w-full h-1/2"><UpgradeToProCard /></div>
+          <div className="w-full h-1/2 bg-red-700 rounded-md"><UpgradeToProCard /></div>
+          <div className="w-full h-1/2 bg-purple-700 rounded-md"><UpgradeToProCard /></div>
         </div>
       </div>
     </section>

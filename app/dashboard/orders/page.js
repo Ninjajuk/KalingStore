@@ -122,13 +122,9 @@ const OrdersPage = () => {
     <div className="w-full flex-flex-col h-full">
 
      {/* Product Headline */}
-        <div className="h-1/3 bg-white flex flex-col">
-          <h1 className="px-6 py-2 md:text-3xl font font-semibold text-center text-sky-600">
-            Order Management
-          </h1>
-          <p className="px-6">
-            Navigating Orders with Confidence
-          </p>
+        <div className="w-full md:h-1/3 bg-white flex flex-col">
+          <h1 className="px-6 py-2 md:text-3xl font font-semibold text-center text-sky-600">Order Management</h1>
+          <p className="px-6">Navigating Orders with Confidence</p>
           <div className="flex px-6 py-2">
             <button
               type="button"
@@ -137,7 +133,7 @@ const OrdersPage = () => {
               Add Orders
             </button>
           </div>
-          <div className="py-2 px-6 mx-auto flex items-center">
+          <div className="py-2 px-6 mx-auto flex flex-col md:flex-row items-center">
             <input
               type="text"
               placeholder="Search"

@@ -117,7 +117,7 @@ const OrdersTable = () => {
   };
   return (
     <>
-        <div className="max-h-full">
+        <div className="max-h-full overflow-x-auto">
           <table className="w-full border-collapse border border-gray-300">
             <thead className="sticky top-0 bg-black text-white z-10">
               <tr className="">
