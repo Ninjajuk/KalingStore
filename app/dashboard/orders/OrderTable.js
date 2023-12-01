@@ -117,9 +117,9 @@ const OrdersTable = () => {
   };
   return (
     <>
-        <div className="max-h-full overflow-x-auto">
+        <div className="max-h-full ">
           <table className="w-full border-collapse border border-gray-300">
-            <thead className="sticky top-0 bg-black text-white z-10">
+            <thead className=" bg-black text-white sticky top-0 z-10">
               <tr className="">
                 <th className="border border-gray-300 p-2 text-left">
                   <input type="checkbox" />
@@ -207,7 +207,7 @@ const OrdersTable = () => {
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="-z-10">
               {sortedOrders.map((order, index) => (
                 <tr
                   key={order.id}

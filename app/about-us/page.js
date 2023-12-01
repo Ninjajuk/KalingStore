@@ -18,7 +18,7 @@ const Card = ({ title, content,listItems }) => (
 
 const AboutUs = () => {
   return (
-    <section className='bg-gray-100'>
+    <section className=''>
           <div className="container mx-auto  p-8  rounded-md">
       <h1 className="text-4xl font-bold mb-8 text-center text-blue-800">About Us</h1>
 
