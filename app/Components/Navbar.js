@@ -64,7 +64,7 @@ const Navbar = ({ siebaropen }, open) => {
   }
   return (
     <>
-      <nav className="bg-purple-600  sticky top-0 z-10">
+      <nav className="bg-purple-600  sticky top-0 z-10 h-[4rem]">
         <div className=" flex justify-between items-center py-4">
           {/* Menu Toggle (visible in mobile view) */}
           <button

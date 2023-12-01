@@ -1,7 +1,9 @@
 
 'use client'
 
-import Sidebar1 from "../user/SidebarUser";
+import AdminSidebar from "./AdminSidebar";
+
+
 
 
 
@@ -10,17 +12,14 @@ function AdminDashboard({children,}) {
 
     return (
       <>
-        <section className="w-full   bg-gray-400">
-          <div className="w-full    mx-auto px-8 ">
-            <div className="flex flex-col md:flex-row gap-4 py-4 w-full  min-h-screen ">
-              <div className="md:w-1/5 bg-gray-200 rounded-md shadow-md px-4 py-4">
+        <section className="w-full   ">
+            <div className="flex flex-col md:flex-row  w-full h-full ">
+              <div className="md:w-1/5 bg-gray-200 rounded-md shadow-md py-4 h-full" style={{height:'calc(100vh - 4rem)',}}>
                 {/* <NavbarUser/> */}
-                <Sidebar1/>
+                <AdminSidebar/>
               </div>
-
-              <main className="md:w-4/5"> {children}</main>
+              <main className="md:w-4/5  rounded-md bg-yellow-600"style={{height:'calc(100vh - 4rem)',}}> {children}</main>
             </div>
-          </div>
         </section>
       </>
     );
