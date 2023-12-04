@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { increaseQuantity,decreaseQuantity,removeItem} from "../redux/cartSlice";
 import Link from 'next/link';
+import EmptyCart from './EmptyCart';
 const products = [
   {
     id: 1,
@@ -42,9 +43,10 @@ export default function ShoppingCart() {
     dispatch(removeItem(itemid));
   };
 
-  const isCartEmpty = cartItems.length === 0;
+  // const isCartEmpty = cartItems.length === 0;
 
   return (
+    <>   
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
@@ -60,6 +62,9 @@ export default function ShoppingCart() {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
+        {cartItems.length === 0 ? (
+      <EmptyCart/>
+    ) : (
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
               <Transition.Child
@@ -166,8 +171,11 @@ export default function ShoppingCart() {
               </Transition.Child>
             </div>
           </div>
+            )}
         </div>
       </Dialog>
     </Transition.Root>
+  </>
+
   )
 }
