@@ -7,6 +7,9 @@ import LoginModal from "./Modal/LoginModal";
 import SignUpModal from "./Modal/SignUpModal";
 import ShoppingCart from "../cart/page";
 import { useRouter } from 'next/navigation'
+import { useSelector,  } from "react-redux";
+import ShopHover from "./ShopbyCategoryHover";
+
 
 const Navbar = ({ siebaropen }, open) => {
   const loginrouter = useRouter()
@@ -109,7 +112,7 @@ const Navbar = ({ siebaropen }, open) => {
                 >
                   {link.name}
                 </a>
-                {link.name === "Shop" && isShopHovered && <ShopHover />}
+                {link.name === "Shop" && isShopHovered && <ShopHover/>}
                 {/* {link.name === "Shop" && isShopHovered && (
                   <ShopHover/>
                 )} */}

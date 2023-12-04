@@ -17,11 +17,11 @@ const ReadMoreComponent = () => {
   return (
     <div>
       <p>{displayText}</p>
-      {text.split(' ').length > 3 && (
+      {/* {text.split(' ').length > 3 && (
         <button onClick={toggleReadMore}>
           {readMore ? 'Read Less' : '...Read More'}
         </button>
-      )}
+      )} */}
     </div>
   );
 };

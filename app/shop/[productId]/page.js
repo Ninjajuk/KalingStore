@@ -1,5 +1,6 @@
 
 'use client'
+import Skeleton from '@/app/Components/skeleton/SkeletonProductDetails';
 import React, { useState, useEffect } from 'react';
 
 const ProductDetails = ({ params }) => {
@@ -28,15 +29,15 @@ const ProductDetails = ({ params }) => {
 
   if (!product) {
     // Render loading state, or handle differently
-    return <div>Loading...</div>;
+    return <Skeleton/>;
   }
 
   return (
 
 
-    <div className=" flex flex-col lg:flex-row  ">
+    <div className=" flex flex-col lg:flex-row  px-[8rem] ">
       {/* Product info */}
-      <div className=" lg:w-1/2 flex flex-col bg-white px-[4rem] py-[4rem]">
+      <div className=" lg:w-2/3 flex flex-col bg-white px-[4rem] py-[4rem]">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl pb-2">{product.title}</h1>
           <div className="w-full h-full overflow-hidden rounded-lg shadow-lg mb-2">
           <img
@@ -45,12 +46,15 @@ const ProductDetails = ({ params }) => {
             className="w-full h-full object-cover"
           />
         </div>
-            <p className="text-sm text-gray-600">{product.description}</p>
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl pb-2">{product.title}</h1>
+            <p className="text-sm text-gray-600 pb-2">{product.description}</p>
+            <p className="text-sm text-gray-600 font-bold ">₹{product.price}<span className='text-green-500 px-4'>{product.discountPercentage} off</span></p>
+            {/* <p className="text-sm text-gray-600">{product.description}</p> */}
   
       </div>
 
-      <div className=" lg:w-1/2  px-[4rem] py-[4rem] bg-white">
-        <div className='w-[300px] h-[300px] flex flex-col   mx-auto  rounded-lg shadow-lg px-4 py-4 '>
+      <div className=" lg:w-1/3   py-[4rem] bg-white">
+        <div className='w-[300px] h-[300px] flex flex-col  rounded-lg shadow-lg px-4 py-4 '>
         <div className="overflow-hidden  rounded-lg">
           <img
             src={product.thumbnail}
@@ -61,7 +65,7 @@ const ProductDetails = ({ params }) => {
         {/* <p className="text-xl line-through tracking-tight text-gray-900"> ${product.price}</p> */}
         {/* <p className="text-xl line-through tracking-tight text-gray-900"> ${product.discountPrice}</p> */}
 
-        <p className="text-3xl tracking-tight text-gray-900 py-4">${product.price}</p>
+        <p className="text-3xl tracking-tight text-gray-900 py-4">₹{product.price}</p>
         <div className="w-full ">
           <button className="w-full px-4 py-2 bg-sky-600 rounded-md">
             Add to Cart

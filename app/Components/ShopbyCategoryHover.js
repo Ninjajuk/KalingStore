@@ -14,7 +14,7 @@ const ShopHover = () => {
       <p className="text-gray-800 font-semibold mb-2">Categories</p>
       <ul>
         {categories.map((category) => (
-          <li key={category} className="text-gray-600 hover:bg-gray-800 py-2 px-2 rounded-md cursor-pointer">
+          <li key={category} className="text-gray-600 hover:text-red-600 py-2 px-2 rounded-md cursor-pointer">
             {category.title}
           </li>
         ))}
