@@ -123,6 +123,8 @@ import Sidebar1 from "./SidebarUser";
             <div className="w-full py-4   bg-white rounded-md shadow-md p-4 ">
                 <PersonalInfoCard/>
             </div>
+
+            {/* {isdeleteModalOpen && <DeleteItemModal closeModal={closeModal} />}  */}
     </>
   );
 };

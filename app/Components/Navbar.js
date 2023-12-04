@@ -7,10 +7,12 @@ import LoginModal from "./Modal/LoginModal";
 import SignUpModal from "./Modal/SignUpModal";
 import ShoppingCart from "../cart/page";
 import { useRouter } from 'next/navigation'
+import ShopHover from "./ShopbyCategoryHover";
 
 const Navbar = ({ siebaropen }, open) => {
   const loginrouter = useRouter()
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isShopHovered, setIsShopHovered] = useState(false);
   const [activeLink, setActiveLink] = useState("/dashboard"); // Initialize with the default active link
   const handleLinkClick = (href) => {
     setActiveLink(href);
@@ -86,21 +88,30 @@ const Navbar = ({ siebaropen }, open) => {
 
           <div className="hidden md:flex  px-2">
             {navigationLeft.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => handleLinkClick(link.href)} // Add onClick event handler
-                className={classNames(
-                  link.href === activeLink // Check if link.href matches activeLink
-                    ? "bg-gray-900 text-white font-sans"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "rounded-md px-4 py-2 text-sm font-medium"
-                )}
+              <div key={link.name} className="relative"
+              onMouseEnter={() => link.name === "Shop" && setIsShopHovered(true)}
+              onMouseLeave={() => link.name === "Shop" && setIsShopHovered(false)}
               >
-                {link.name}
-              </a>
+                <a
+                  href={link.href}
+                  onClick={() => handleLinkClick(link.href)}
+                  className={classNames(
+                    link.href === activeLink
+                      ? "bg-gray-900 text-white font-sans"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "rounded-md px-4 py-2 text-sm font-medium"
+                  )}
+                >
+                  {link.name}
+                </a>
+                {link.name === "Shop" && isShopHovered && <ShopHover />}
+                {/* {link.name === "Shop" && isShopHovered && (
+                  <ShopHover/>
+                )} */}
+              </div>
             ))}
           </div>
+
 
           {/* Search Input */}
           <div className="flex-grow md:w-1/2 mx-4 md:mx-0">

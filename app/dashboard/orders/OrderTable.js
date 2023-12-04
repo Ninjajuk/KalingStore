@@ -1,9 +1,8 @@
 'use client'
 import React, { useState } from "react";
 
-
-
 import { orderData } from "./orderdata";
+import { DeleteModal } from "@/app/Components/Modal/DeleteModal";
 
 
 
@@ -63,11 +62,7 @@ const OrdersTable = () => {
     setSelectedOrderForEdit(null);
   };
 
-  // const handleDelete = (index) => {
-  //   const updatedOrders = [...orders];
-  //   updatedOrders.splice(indexOfFirstItem + index, 1); // Remove the order at the specified index
-  //   setOrders(updatedOrders);
-  // };
+
 
   const [hoveredRow, setHoveredRow] = useState(null);
 
@@ -85,6 +80,8 @@ const OrdersTable = () => {
       return { ...prevState, [index]: !prevState[index] };
     });
   };
+
+    // Function to handle DeleteModal Changes
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
 
@@ -285,12 +282,14 @@ const OrdersTable = () => {
           onSubmit={onSubmit} // Pass the onSubmit callback
         />
       )}
+      */}
+
       {isDeleteModalOpen && (
-        <DeleteCustomerModal
+        <DeleteModal
           closeModal={handleCancelDelete}
           onDelete={handleDeleteAndConfirm}
         />
-      )} */}
+      )} 
 
     </>
   );

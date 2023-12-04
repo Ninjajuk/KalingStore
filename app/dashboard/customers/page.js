@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import OrdersTable from '../orders/OrderTable';
+import CustomerTable from './CustomerTable';
 
 const products = [
   {
@@ -230,7 +231,8 @@ const CustomersPage = () => {
               ))}
             </tbody>
           </table> */}
-          <OrdersTable/>
+          {/* <OrdersTable/> */}
+          <CustomerTable/>
         </div>
       </div>
 

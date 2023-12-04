@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 const PersonalInfoCard = ({ onUpdate, onDelete }) => {
 //   const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
-//   const [isdeleteModalOpen, setisdeleteModalOpen] = useState(false); // State for modal visibility
+  const [isdeleteModalOpen, setisdeleteModalOpen] = useState(false); // State for modal visibility
 //   const openModal = () => {
 //     setIsModalOpen(true);
 //     setisdeleteModalOpen(true);
@@ -66,8 +66,8 @@ const PersonalInfoCard = ({ onUpdate, onDelete }) => {
           </div>
         </div>
       </div>
-      {/* {isModalOpen && <UserModal closeModal={closeModal} data={data} />}
-      {isdeleteModalOpen && <DeleteUserModal closeModal={closeModal} />} */}
+  {/* {isModalOpen && <UserModal closeModal={closeModal} data={data} />} */}
+ 
     </div>
   );
 };
