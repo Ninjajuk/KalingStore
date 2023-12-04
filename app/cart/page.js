@@ -2,7 +2,10 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import { useSelector, useDispatch } from "react-redux";
 
+import { increaseQuantity,decreaseQuantity,removeItem} from "../redux/cartSlice";
+import Link from 'next/link';
 const products = [
   {
     id: 1,
@@ -28,8 +31,18 @@ const products = [
   // More products...
 ]
 
-export default function ShoppingCart({isCartOpen,handlecartOpen}) {
+export default function ShoppingCart() {
+
   const [open, setOpen] = useState(true)
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const removeFromCArt = (itemid) => {
+
+    dispatch(removeItem(itemid));
+  };
+
+  const isCartEmpty = cartItems.length === 0;
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -79,12 +92,12 @@ export default function ShoppingCart({isCartOpen,handlecartOpen}) {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
+                            {cartItems.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
+                                    src={product.thumbnail}
+                                    alt={product.title}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -105,6 +118,7 @@ export default function ShoppingCart({isCartOpen,handlecartOpen}) {
                                     <div className="flex">
                                       <button
                                         type="button"
+                                        onClick={() => removeFromCArt(product.id)}
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >
                                         Remove
@@ -126,12 +140,12 @@ export default function ShoppingCart({isCartOpen,handlecartOpen}) {
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
-                        <a
+                        <Link
                           href="/checkout"
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout
-                        </a>
+                        </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>

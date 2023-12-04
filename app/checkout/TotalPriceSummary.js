@@ -1,7 +1,9 @@
 'use client'
 import React, { useState } from 'react';
-
+import { useSelector,  } from "react-redux";
 const TotalPriceSummary = () => {
+
+  const cartItems = useSelector((state) => state.cart);
 //   const calculateSubtotal = () => {
 //     return orderItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 //   };
@@ -16,9 +18,11 @@ const TotalPriceSummary = () => {
   return (
 
         <div className="border-t pt-4 mt-4">
+          {cartItems.map((item)=>
+          <>
           <div className="flex justify-between mb-2">
             <span>Subtotal</span>
-            <span>$1200</span>
+            <span>${item.price}</span>
             {/* <span>${calculateSubtotal().toFixed(2)}</span> */}
           </div>
           <div className="flex justify-between mb-2">
@@ -35,6 +39,8 @@ const TotalPriceSummary = () => {
             <span>$1100</span>
             {/* <span>${calculateTotal().toFixed(2)}</span> */}
           </div>
+          </>
+          )}
         </div>
 
   );

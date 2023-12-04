@@ -4,8 +4,15 @@ import React, { useState } from 'react';
 import TotalPriceSummary from './TotalPriceSummary';
 import { MdDelete } from "react-icons/md";
 import { useRouter } from 'next/navigation'
+import { useSelector,  } from "react-redux";
+import Link from 'next/link';
+
 const CheckoutPage = () => {
+
   const router = useRouter()
+  const cartItems = useSelector((state) => state.cart);
+
+  console.log('Cart Items:', cartItems);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -19,22 +26,22 @@ const CheckoutPage = () => {
     country: '',
   });
 
-  const [orderItems, setOrderItems] = useState([
-    {
-      id: 1,
-      title: 'Product 1',
-      price: 50,
-      quantity: 2,
-      imageUrl: 'https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg',
-    },
-    {
-      id: 2,
-      title: 'Product 2',
-      price: 75,
-      quantity: 1,
-      imageUrl: 'https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg',
-    },
-  ]);
+  // const [orderItems, setOrderItems] = useState([
+  //   {
+  //     id: 1,
+  //     title: 'Product 1',
+  //     price: 50,
+  //     quantity: 2,
+  //     imageUrl: 'https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg',
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'Product 2',
+  //     price: 75,
+  //     quantity: 1,
+  //     imageUrl: 'https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg',
+  //   },
+  // ]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -213,10 +220,10 @@ const CheckoutPage = () => {
 
         <div className="w-full md:w-1/3 p-4 rounded-md shadow-md">
           <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
-          {orderItems.map((item) => (
+          {cartItems.map((item) => (
             <div key={item.id} className="flex mb-4 px-4">
               <div className=" px-2">
-                <img src={item.imageUrl} alt={item.title} className=" " />
+                <img src={item.thumbnail} alt={item.title} className=" " />
               </div>
               <div className="w-3/4 px-2 flex flex-col justify-between">
                 <div>
@@ -246,13 +253,13 @@ const CheckoutPage = () => {
           ))}
           <TotalPriceSummary/>
           <div className='py-4'>    
-          <button
-            type="submit"
-            onClick={() => router.push('/ordersuccess')}
+          <Link
+            // onClick={() => router.push('/ordersuccess')}
+            href='/ordersuccess'
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 "
           >
             Confirm Order
-          </button></div>
+          </Link></div>
         </div>
       </div>
     </div>

@@ -1,9 +1,13 @@
 'use client'
 import React from 'react';
 import { useRouter } from 'next/navigation'
+import { useSelector,  } from "react-redux";
+
 const OrderSuccessPage = () => {
 
     const router = useRouter()
+    const cartItems = useSelector((state) => state.cart);
+    console.log(cartItems)
   // Example order details
   const order = {
     products: [
@@ -57,12 +61,12 @@ const OrderSuccessPage = () => {
         {/* Product List */}
         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
+                            {cartItems.map((product) => (
                               <li key={product.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
+                                    src={product.thumbnail}
+                                    alt={product.title}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -71,7 +75,7 @@ const OrderSuccessPage = () => {
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={product.href}>{product.name}</a>
+                                        <a href={product.href}>{product.title}</a>
                                       </h3>
                                       <p className="ml-4">{product.price}</p>
                                     </div>
