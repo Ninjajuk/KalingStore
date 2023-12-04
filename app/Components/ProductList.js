@@ -1,17 +1,4 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
+
 
 'use client'
 import { useEffect, useState } from "react";
@@ -19,10 +6,10 @@ import Bunks from "./Slider";
 import ShopByCategory from "../Product/ShopByCategory";
 import FruitsVegetables from "../Product/FriutsVegetables";
 import Electronics from "../Product/Electronics";
+import Link from 'next/link';
 
-
-// import { useDispatch, useSelector } from "react-redux";
-// import { addItem, removeItem } from "../Redux/cartSlicer";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem } from "../redux/cartSlice";
 
 const products = [
     {
@@ -103,33 +90,31 @@ const products = [
   export default function ProductList() {
 
     const [data, setData] = useState([]);
+    const cartItems = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
   const url = "https://dummyjson.com/products?limit=100";
 
 
-//   const cartItems = useSelector((state) => state.cart);
-//   const dispatch = useDispatch();
 
-//   function addtoCart(item) {
-//     if (isItemInCart(item.id)) {
-//       dispatch(removeItem(item.id));
-//     } else {
-//       dispatch(addItem(item));
-//     }
-//   }
-//   function isItemInCart(itemId) {
-//     return cartItems.some((item) => item.id === itemId);
-//   }
+// cart state is an array of items with unique IDs
+const isItemInCart = (itemId, cartItems) => {
+  return Array.isArray(cartItems) && cartItems.some(item => item.id === itemId);
+};
 
-//   const [page, setPage] = useState(1);
-//   const selectPageHandler = (selectedPage) => {
-//     if (
-//       selectedPage >= 1 &&
-//       selectedPage <= data.length / 10 &&
-//       selectedPage !== page
-//     ) {
-//       setPage(selectedPage);
-//     }
-//   };
+function addtoCart(product) {
+  const isAlreadyInCart = isItemInCart(product.id, cartItems);
+
+  if (isAlreadyInCart) {
+    dispatch(removeItem(product.id));
+  } else {
+    dispatch(addItem(product));
+  }
+}
+
+
+
+  
+
 
   async function getProducts() {
     const products = await fetch(url);
@@ -143,23 +128,6 @@ const products = [
   }, []);
 
 
-//   const discountPrice = (price, discountPercentage) => {
-//     return price - (price * discountPercentage) / 100;
-//   };
-//   const calculateDiscountPriceProducts = (data) => {
-//     return data.map((pro) => {
-//       const discoPrice = discountPrice(pro.price, pro.discountPercentage);
-//       const yousave = totalsave(pro.price, discoPrice);
-//       return {
-//         id: pro.id,
-//         title: pro.title,
-//         price: pro.price,
-//         discountprice: Math.round(discoPrice),
-//         yousave: Math.round(yousave)
-//       };
-//     });
-//   };
-//   const discountedPrice = calculateDiscountPriceProducts(data);
 
 const filterProductsData=['All','Electronics','Vegetables','Meats']
 
@@ -181,48 +149,47 @@ const filterProductsData=['All','Electronics','Vegetables','Meats']
           </div>
      
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
-          <div className="mt-6 grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
-            {data.slice(0,16).map((product) => (
-              <div key={product.id} className="group relative  px-2 py-2 shadow-md rounded-md">
-                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                  <img
-                    src={product.thumbnail}
-                    alt={product.title}
-                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                  />
-                </div>
-                <div className="mt-4 flex flex-col">
-                  {/* <div>
-                    <h3 className="text-sm text-gray-700">
-                      <a href={product.href}>
-                        <span aria-hidden="true" className="absolute inset-0" />
-                        {product.title}
-                      </a>
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">{product.color}</p>
-                  </div> */}
-                  <p className="text-sm font-medium text-gray-900">{product.title}</p>
-                  <p className="text-sm font-medium text-gray-900 flex items-center justify-between">
-                    <span className="font-semibold text-lg">₹{product.price}</span>
-                    {/* <span className="line-through">₹{product.price}</span> */}
-                    <span className="text-green-500">{product.discountPercentage}% off</span>
-                  </p>
-                </div>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  {data.slice(0, 16).map((product) => (
+    <div key={product.id} className="group relative px-2 py-2 shadow-md rounded-md">
+      <Link href={`/shop/${product.id}`}>
 
-                <div className="text-center py-3 mb-3 ">
-                <button
-                //   onClick={() => addtoCart(item)}
-                  className="w-full py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  <span className="inline-block w-18">
-                  Add to Cart
-                    {/* {isItemInCart(item.id) ? "Remove" : "Add to Cart"} */}
-                  </span>
-                </button>
-              </div>
-              </div>
-            ))}
+          <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img
+              src={product.thumbnail}
+              alt={product.title}
+              className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+            />
           </div>
+   
+      </Link>
+
+      <div className="mt-4 flex flex-col">
+        <Link href={`/shop/${product.id}`}>
+      
+            <p className="text-sm font-medium text-gray-900">{product.title}</p>
+    
+        </Link>
+        <p className="text-sm font-medium text-gray-900 flex items-center justify-between">
+          <span className="font-semibold text-lg">₹{product.price}</span>
+          <span className="text-green-500">{product.discountPercentage}% off</span>
+        </p>
+      </div>
+
+      <div className="text-center py-3 mb-3">
+        <button
+           onClick={() => addtoCart(product)}
+          className={`w-full text-white bg-blue-700  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
+        >
+          <span className={`inline-block w-18 `}>
+      
+            {isItemInCart(product.id,cartItems) ? "Remove" : "Add to Cart"}
+          </span>
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </div>
     )

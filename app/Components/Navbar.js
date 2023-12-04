@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FaCartPlus,FaUser } from "react-icons/fa";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -7,7 +7,6 @@ import LoginModal from "./Modal/LoginModal";
 import SignUpModal from "./Modal/SignUpModal";
 import ShoppingCart from "../cart/page";
 import { useRouter } from 'next/navigation'
-import ShopHover from "./ShopbyCategoryHover";
 
 const Navbar = ({ siebaropen }, open) => {
   const loginrouter = useRouter()
@@ -59,6 +58,12 @@ const Navbar = ({ siebaropen }, open) => {
   //   setIsModalOpen(false);
   // };
 
+
+
+
+  const cartItems = useSelector((state) => state.cart);
+  // const { cart, isAuthenticated, user } = useSelector((state) => state);
+  // useEffect(() => {}, [cart]);
 
   const[isCartOpen,setIsCartOpen]=useState(false)
   function handlecartOpen(){
@@ -137,7 +142,7 @@ const Navbar = ({ siebaropen }, open) => {
               
               <span className="absolute top-1 right-0  -mt-3 mr-3 bg-red-500 text-white rounded-full text-sm px-1 py-0.5">
                 {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
-                10
+                {cartItems.length}
               </span>
             </button>
           </div>
@@ -178,7 +183,7 @@ const Navbar = ({ siebaropen }, open) => {
         
             <span className="absolute top-0 right-5 mt-1  bg-red-500 text-white rounded-full text-xxs px-2 py-0.5">
               {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
-              10
+           {cartItems.length}
             </span>
   
           </div>

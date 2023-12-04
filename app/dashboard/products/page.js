@@ -14,6 +14,9 @@
   }
   ```
 */
+'use client'
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem } from '../../redux/cartSlice'
 const products = [
   {
     id: 1,
@@ -117,7 +120,19 @@ const products = [
   }
 ];
 
+
  function ProductList() {
+
+  const cartItems = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  function addtoCart(item) {
+    if (isItemInCart(item.id)) {
+      dispatch(removeItem(item.id));
+    } else {
+      dispatch(addItem(item));
+    }
+  }
   return (
     <section className="w-full   h-full ">
       <div className="w-full flex-flex-col h-full">
