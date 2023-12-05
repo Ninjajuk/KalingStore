@@ -241,8 +241,8 @@ const CheckoutPage = () => {
           <div className="w-full flex flex-col">
             {cartItems.map((item) => (
               <>
-                <div key={item.id} className="w-full flex mb-4 px-4">
-                  <div className="w-1/2  overflow-hidden rounded-lg px-2">
+                <div key={item.id} className="w-full flex mb-4 px-4 ">
+                  <div className="w-1/2   overflow-hidden rounded-lg px-2">
                     <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover object-center" />
                   </div>
 

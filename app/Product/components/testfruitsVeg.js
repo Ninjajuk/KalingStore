@@ -15,8 +15,8 @@ const CategoryCard = ({
   const weightOptions = [1, 2, 3, 5]; // You can modify the weight options as needed
 
   return (
-    <div className="group relative px-2 py-2 shadow-md rounded-md">
-      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80 ">
+    <div className="bg-white p-6 rounded-lg shadow-md  w-[320px] h-[550px] flex flex-col  ">
+      <div className="w-full max-h-1/2">
         <img
           src={thumbnail}
           alt={title}
@@ -24,9 +24,9 @@ const CategoryCard = ({
         />
       </div>
 
-      <div>
+      <div className="w-full max-h-1/2 flex flex-col">
         <p className="text-md text-slate-800 font-semibold ">Fresh</p>
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
+        <h2 className="text-xl font-semibold pb-2">{title}</h2>
         <div className="py-2">
           {/* <label htmlFor={`${title}-weight`} className="text-gray-700">
             Select Weight:
@@ -42,20 +42,30 @@ const CategoryCard = ({
             ))}
           </select>
         </div>
-        <p className="text-gray-700 flex items-center">
-          <span className="text-lg font-bold">₹{price}<sub className="text-xs text-gray-500">/kg</sub></span>
+        <p className="text-gray-700 flex items-center py-4">
+          <span className="text-lg font-bold">
+            ₹{price}
+            <sub className="text-xs text-gray-500">/kg</sub>
+          </span>
           <span className="ml-2 line-through">₹{TotalPrice}</span>
         </p>
-      </div>
-
-      <div className="w-full flex items-center justify-center ring-1 rounded-md ring-red-500 my-2 hover:bg-red-500 hover:text-white cursor-pointer">
-        <button onClick={()=>handleAddToCart({  title,
-  description,
-  thumbnail,
-  SellingPrice,
-  TotalPrice,})} type="button" className="px-4 py-2 ">
-          Add
-        </button>
+        <div className="w-full flex items-center mt-auto ring-1 rounded-md ring-red-500 my-2 hover:bg-red-500 hover:text-white cursor-pointer">
+          <button
+            onClick={() =>
+              handleAddToCart({
+                title,
+                description,
+                thumbnail,
+                SellingPrice,
+                TotalPrice,
+              })
+            }
+            type="button"
+            className="px-4 py-2 "
+          >
+            Add
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -63,7 +73,7 @@ const CategoryCard = ({
 
 
 
-const FruitsVegetables = () => {
+const TestFruitsVegetables = () => {
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -104,8 +114,8 @@ const FruitsVegetables = () => {
   const weightOptions = [1, 2, 3, 5];
 
   return (
-    <section className="w-full bg-gray-100">
-      <div className="mx-auto max-w-2xl px-4  sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <section className="w-full h-screen bg-gray-100">
+      <div className="w-full h-full mx-auto  lg:px-[4rem]  rounded-md">
 
         <div className="flex justify-between ">
           <h1 className="text-xl lg:text-2xl font-bold py-4   text-blue-800">
@@ -119,17 +129,14 @@ const FruitsVegetables = () => {
           </div>
         </div>
 
-        <div className=" w-full">
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 my-4">
           {categories.map((category, index) => (
             <CategoryCard key={index} {...category} />
           ))}
-          </div>
-     
         </div>
       </div>
     </section>
   );
 };
 
-export default FruitsVegetables;
+export default TestFruitsVegetables;
