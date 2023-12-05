@@ -1,46 +1,41 @@
 'use client'
 import React, { useState } from 'react';
 import { useSelector,  } from "react-redux";
+import { calculateSubtotal, calculateTotal } from "../utility/cartUtils"; 
+
+
 const TotalPriceSummary = () => {
-
   const cartItems = useSelector((state) => state.cart);
-//   const calculateSubtotal = () => {
-//     return orderItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-//   };
 
-//   const calculateTotal = () => {
-//     const subtotal = calculateSubtotal();
-//     const shipping = 15;
-//     const taxes = 0.08 * subtotal; // Assuming 8% tax rate
-//     return subtotal + shipping + taxes;
-//   };
+  const subtotal = calculateSubtotal(cartItems);
+  const total = calculateTotal(cartItems);
+
 
   return (
 
         <div className="border-t pt-4 mt-4">
-          {cartItems.map((item)=>
-          <>
+     
+   
           <div className="flex justify-between mb-2">
             <span>Subtotal</span>
-            <span>${item.price}</span>
-            {/* <span>${calculateSubtotal().toFixed(2)}</span> */}
+            {/* <span>₹{item.price}</span> */}
+            <span>₹{subtotal}</span>
           </div>
           <div className="flex justify-between mb-2">
             <span>Shipping</span>
-            <span>$50.00</span>
+            <span>₹50.00</span>
           </div>
+          
+          {/* taxes */}
           <div className="flex justify-between mb-2">
             <span>Taxes</span>
-            <span>$50</span>
-            {/* <span>${(0.08 * calculateSubtotal()).toFixed(2)}</span> */}
+             <span>₹{(0.08 * subtotal).toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-bold">
             <span>Total</span>
-            <span>$1100</span>
-            {/* <span>${calculateTotal().toFixed(2)}</span> */}
+            {/* <span>₹1100</span> */}
+            <span>₹{total}</span>
           </div>
-          </>
-          )}
         </div>
 
   );

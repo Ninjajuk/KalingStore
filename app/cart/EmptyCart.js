@@ -1,8 +1,10 @@
+import Navbar from "./NavbarTest";
 
 
 function EmptyCart() {
   return (
     <>
+    <Navbar/>
       <div className="absolute inset-0 overflow-hidden">
       <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl mx-auto">
       <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6 mx-auto">

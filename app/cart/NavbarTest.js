@@ -1,27 +1,26 @@
 'use client'
 import React, { useState,useEffect } from "react";
-import { FaCartPlus,FaUser,FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaCartPlus,FaUser, } from "react-icons/fa";
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import LoginModal from "./Modal/LoginModal";
-import SignUpModal from "./Modal/SignUpModal";
-import ShoppingCart from "../cart/page";
+
 import { useRouter } from 'next/navigation'
 import { useSelector,  } from "react-redux";
-import ShopHover from "./ShopbyCategoryHover";
+import ShopHover from "../Components/ShopbyCategoryHover";
 
 
 const Navbar = ({ siebaropen }, open) => {
   const loginrouter = useRouter()
-
+  const [menuOpen, setMenuOpen] = useState(false);
   const [isShopHovered, setIsShopHovered] = useState(false);
-  const[isCartOpen,setIsCartOpen]=useState(false)
   const [activeLink, setActiveLink] = useState("/dashboard"); // Initialize with the default active link
   const handleLinkClick = (href) => {
     setActiveLink(href);
   };
 
-
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   const navigationLeft = [
     { name: "Home", href: "/", current: false },
@@ -29,6 +28,11 @@ const Navbar = ({ siebaropen }, open) => {
     { name: "About us", href: "/about-us", current: false },
 
   ];
+  const navigationLinks = [
+    { name: "Login", href: "/login", current: false,icon:<FaUser/>  },
+    { name: "Cart", href: "/cart", current: true,icon:<FaCartPlus/> },
+  ];
+
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -36,19 +40,20 @@ const Navbar = ({ siebaropen }, open) => {
 
 
 
+
+
   const cartItems = useSelector((state) => state.cart);
   // const { cart, isAuthenticated, user } = useSelector((state) => state);
   // useEffect(() => {}, [cart]);
 
- 
-
-  const handlecartOpen = () => {
-    setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
-  };
+  const[isCartOpen,setIsCartOpen]=useState(false)
+  function handlecartOpen(){
+    setIsCartOpen(!isCartOpen)
+  }
   return (
     <>
-      <nav className="bg-purple-600  sticky top-0 z-10 h-[4rem]">
-        <div className=" flex justify-between items-center py-4">
+      <nav className="bg-purple-600  sticky top-0 z-10 h-[4rem] w-full">
+        <div className="w-full flex justify-between items-center py-4">
           {/* Menu Toggle (visible in mobile view) */}
           <button
             className="sm:block md:hidden md text-white ml-2 "
@@ -61,11 +66,13 @@ const Navbar = ({ siebaropen }, open) => {
             )}
           </button>
           {/* Logo (visible in desktop view) */}
-          <div className="hidden md:block">
-            <p href="/" className="px-2 text-white font-semibold text-lg font-sans">
+
+          <div className="hidden lg:flex items-center">
+           <div className="">
+             <p href="/" className="px-2 text-white font-semibold text-lg font-sans">
               Yingkiong Store
-            </p>
-          </div>
+              </p>
+           </div>
 
           <div className="hidden lg:flex  px-2">
             {navigationLeft.map((link) => (
@@ -83,7 +90,7 @@ const Navbar = ({ siebaropen }, open) => {
                     "rounded-md px-4 py-2 text-sm font-medium flex items-center"
                   )}
                 >
-                  {link.name} {link.name === "Shop" && <FaAngleDown className="w-6 h-6"/>}
+                  {link.name} {link.name === "Shop" && <FaAngleDown/>}
                 </a>
                 {link.name === "Shop" && isShopHovered && <ShopHover/>}
                 {/* {link.name === "Shop" && isShopHovered && (
@@ -92,10 +99,12 @@ const Navbar = ({ siebaropen }, open) => {
               </div>
             ))}
           </div>
+          </div>
+ 
 
 
           {/* Search Input */}
-          <div className="flex-grow md:w-1/2 mx-4 md:mx-0">
+          <div className="flex-grow lg:w-1/2 mx-4 md:mx-0">
             <input
               type="text"
               className="w-full rounded-full px-4 py-2 bg-gray-700 text-white focus:outline-none"
@@ -125,17 +134,31 @@ const Navbar = ({ siebaropen }, open) => {
           {/* User PRofile */}
 
           {/* Navigation Links (visible in desktop view) */}
-          <div className="hidden lg:flex space-x-4 px-4 ">
+          <div className="hidden md:flex space-x-4 px-4 ">
+            {/* {navigationLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => handleLinkClick(link.href)} // Add onClick event handler
+                className="text-white flex items-center text-md px-4 relative"
+              >
+                <span className="px-1">{link.name}</span>
+                <span className="px-1">{link.icon}</span>
+              </a>
+            ))}
+            <span className="absolute top-0 right-5 mt-1  bg-red-500 text-white rounded-full text-xxs px-2 py-0.5">
+              {cart && Array.isArray(cart) ? cart.length : 0}
+              10
+            </span> */}
               <button
                 className="text-white flex items-center text-md px-4 relative"
-                type="button"
+                // onClick={openLoginModal}
                 onClick={()=>loginrouter.push('/login')}
               >
                 <span className="px-1">Login</span>
                 <span className="px-1"><FaUser/></span>
               </button>
               <button
-                type="button"
                 className="text-white flex items-center text-md px-4 relative"
                 onClick={handlecartOpen}
               >
@@ -169,7 +192,7 @@ const Navbar = ({ siebaropen }, open) => {
       
           />
         ):null} */}
-    {isCartOpen ?<ShoppingCart isCartOpen={isCartOpen} handlecartOpen={handlecartOpen}/>:null}
+    {/* {isCartOpen ?<ShoppingCart isCartOpen={isCartOpen} handlecartOpen={handlecartOpen}/>:null} */}
     </>
   );
 };

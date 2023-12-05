@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useSelector, useDispatch } from "react-redux";
-
+import {calculateSubtotal} from '../utility/cartUtils'
 import { increaseQuantity,decreaseQuantity,removeItem} from "../redux/cartSlice";
 import Link from 'next/link';
 import EmptyCart from './EmptyCart';
@@ -36,6 +36,7 @@ export default function ShoppingCart() {
 
   const [open, setOpen] = useState(true)
   const cartItems = useSelector((state) => state.cart);
+  const subtotal = calculateSubtotal(cartItems);
   const dispatch = useDispatch();
 
   const removeFromCArt = (itemid) => {
@@ -111,7 +112,7 @@ export default function ShoppingCart() {
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={product.href}>{product.name}</a>
+                                        <a href={product.href}>{product.title}</a>
                                       </h3>
                                       <p className="ml-4">{product.price}</p>
                                     </div>
@@ -141,7 +142,7 @@ export default function ShoppingCart() {
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>${subtotal}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">

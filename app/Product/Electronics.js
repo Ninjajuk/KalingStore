@@ -48,7 +48,7 @@ const Electronics = () => {
         </div>
       </div> */}
 
-      <div className="flex flex-col md:flex-row gap-8 w-full md:h-[500px] ">
+      <div className="flex flex-col md:flex-row gap-8 w-full lg:h-[24rem] ">
         <div className="md:w-1/2 h-full flex flex-col items-center justify-center relative">
           <div className="  w-full h-full rounded-md shadow-md overflow-hidden hover:scale-105 transition duration-700 ease-in-out">
             <img

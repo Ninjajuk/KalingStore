@@ -1,13 +1,22 @@
 'use client'
-import React from 'react';
+import React,{useEffect} from 'react';
+import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation'
 import { useSelector,  } from "react-redux";
+import { calculateSubtotal, calculateTotal } from "../utility/cartUtils"; 
+import TotalPriceSummary from '../checkout/TotalPriceSummary';
+
+import { resetCart } from '../redux/cartSlice'
+
 
 const OrderSuccessPage = () => {
-
+  const dispatch = useDispatch();
     const router = useRouter()
     const cartItems = useSelector((state) => state.cart);
-    console.log(cartItems)
+
+    const subtotal = calculateSubtotal(cartItems);
+    const total = calculateTotal(cartItems);
+
   // Example order details
   const order = {
     products: [
@@ -50,6 +59,11 @@ const OrderSuccessPage = () => {
   // More products...
 ]
 
+// //for resetting the cart)
+// useEffect(() => {
+//   dispatch(resetCart());
+// }, [dispatch]);
+
   return (
     <div className="container mx-auto mt-8 md:px-[8rem]">
       <h2 className="lg:text-3xl font-bold mb-4 text-green-600 lg:text-center">
@@ -77,21 +91,12 @@ const OrderSuccessPage = () => {
                                       <h3>
                                         <a href={product.href}>{product.title}</a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">₹{product.price}</p>
                                     </div>
                                     <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
                                     <p className="text-gray-500">Qty {product.quantity}</p>
-
-                                    <div className="flex">
-                                      <button
-                                        type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
-                                      >
-                                        Remove
-                                      </button>
-                                    </div>
                                   </div>
                                 </div>
                               </li>
@@ -100,11 +105,8 @@ const OrderSuccessPage = () => {
                         </div>
       </div>
       {/* Total Price */}
-      <div className="flex justify-between font-bold my-4">
-        <span>Total</span>
-        <span>${order.total.toFixed(2)}</span>
-      </div>
 
+<TotalPriceSummary/>
       {/* Delivery Address */}
       <div className="max-w-md mb-4 rounded-md shadow-md bg-white px-4 py-4">
         <h4 className="text-xl font-bold mb-2">Delivery Address</h4>

@@ -1,6 +1,6 @@
 import Footer from "./Components/Footer";
 import Navbar4 from "./Components/Navbar";
-import ProductList from "./Components/ProductList";
+import ProductList from "./Product/ProductList";
 
 
 export default function Home() {

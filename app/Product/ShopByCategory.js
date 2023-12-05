@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CategoryCard = ({ title, description, image }) => (
-  <div className="bg-white p-6 rounded-lg shadow-md mb-6 min-w-[300px] max-h-[300px] hover:scale-105 transition duration-700 ease-in-out">
+  <div className="bg-white p-6 rounded-lg shadow-md mb-6 min-w-[14rem] max-h-[300px] hover:scale-105 transition duration-700 ease-in-out">
     <div className='w-full h-2/3'>
           <img src={image} alt={title} className="mb-4 rounded-md w-full h-full object-cover" />
     </div>
@@ -39,10 +39,10 @@ const ShopByCategory = () => {
   ];
 
   return (
-    <div className="container mx-auto  p-8 bg-gray-100 rounded-md">
-      <h1 className="text-2xl md:text-4xl font-bold mb-8 md:text-center  text-blue-800">Shop by Category</h1>
+    <div className="w-full  bg-gray-100 rounded-md px-4">
+      <h1 className="text-2xl md:text-4xl font-bold py-4 md:text-center  text-blue-800">Shop by Category</h1>
 
-      <div className=" flex  overflow-x-auto lg:overflow-hidden overflow-hidden gap-4">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
         {categories.map((category, index) => (
           <CategoryCard key={index} {...category} />
         ))}

@@ -35,9 +35,9 @@ const ProductDetails = ({ params }) => {
   return (
 
 
-    <div className=" flex flex-col lg:flex-row  px-[8rem] ">
+    <div className=" w-full h-full flex flex-col lg:flex-row  px-[8rem] ">
       {/* Product info */}
-      <div className=" lg:w-2/3 flex flex-col bg-white px-[4rem] py-[4rem]">
+      <div className=" lg:w-2/3 h-full flex flex-col bg-white px-[4rem] py-[4rem]">
           <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl pb-2">{product.title}</h1>
           <div className="w-full h-full overflow-hidden rounded-lg shadow-lg mb-2">
           <img
@@ -46,14 +46,14 @@ const ProductDetails = ({ params }) => {
             className="w-full h-full object-cover"
           />
         </div>
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl pb-2">{product.title}</h1>
+        <h1 className="text-md font-bold tracking-tight text-slate-600  py-2">{product.title}</h1>
             <p className="text-sm text-gray-600 pb-2">{product.description}</p>
             <p className="text-sm text-gray-600 font-bold ">₹{product.price}<span className='text-green-500 px-4'>{product.discountPercentage} off</span></p>
             {/* <p className="text-sm text-gray-600">{product.description}</p> */}
   
       </div>
 
-      <div className=" lg:w-1/3   py-[4rem] bg-white">
+      <div className=" lg:w-1/3  h-full py-[4rem] bg-white">
         <div className='w-[300px] h-[300px] flex flex-col  rounded-lg shadow-lg px-4 py-4 '>
         <div className="overflow-hidden  rounded-lg">
           <img

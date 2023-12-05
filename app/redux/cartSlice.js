@@ -52,7 +52,12 @@ const cartSlice = createSlice({
       if (item && item.quantity > 1) {
         item.quantity -= 1;
       }
-    }
+    },
+
+// // Code for resetting the cart)
+//     resetCart: (state) => {
+//       return initialState
+//     },
   }
 });
 
@@ -60,6 +65,7 @@ export const {
   addItem,
   removeItem,
   increaseQuantity,
-  decreaseQuantity
+  decreaseQuantity,
+  // resetCart
 } = cartSlice.actions;
 export default cartSlice.reducer;
