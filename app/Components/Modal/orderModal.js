@@ -18,12 +18,9 @@ export const OrderModal = ({ order, onSubmit, closeModal }) => {
         <div className="relative z-10 bg-white p-4 max-w-md rounded-lg">
         {isOrderFormVisible ? (
             <OrderForm
-              initialOrder={order}
-              onSubmit={handleFormSubmit}
-              closeModal={() => {
-                setIsOrderFormVisible(false);
-                closeModal();
-              }}
+            closeModal={closeModal}
+            initialOrder={order}
+            onSubmit={onSubmit}
             />
           ) : null}
 

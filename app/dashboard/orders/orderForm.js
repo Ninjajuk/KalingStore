@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from "react";
 
-const OrderForm = ({ closeModal, initialOrder, onSubmit }) => {
+const OrderForm = ({ closeModal, initialOrder, onSubmit  }) => {
   const [orderData, setOrderData] = useState(initialOrder || {});
 
   const handleChange = (e) => {
@@ -17,7 +17,7 @@ const OrderForm = ({ closeModal, initialOrder, onSubmit }) => {
     console.log(orderData);
     closeModal();
     onSubmit(orderData);
-    // setOrderData(orderData);
+  
   };
 
   return (
