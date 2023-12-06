@@ -8,6 +8,7 @@ import { useSelector,useDispatch  } from "react-redux";
 import Link from 'next/link';
 import {increaseQuantity,decreaseQuantity,removeItem} from "../redux/cartSlice";
 
+
 const CheckoutPage = () => {
 
   const cartItems = useSelector((state) => state.cart);
@@ -22,9 +23,8 @@ const CheckoutPage = () => {
     console.log("Increase quantity for item:", itemId);
     dispatch(increaseQuantity(itemId));
   };
-  const removeFromCArt = (itemid) => {
-    dispatch(removeItem(itemid));
-  };
+
+
 
 
   const [formData, setFormData] = useState({
@@ -89,7 +89,7 @@ const CheckoutPage = () => {
 
       <div className="flex flex-col lg:flex-row gap-4 my-4 px-4">
 
-        <div className="w-full lg:w-3/5 p-4 bg-gray-100 rounded-md shadow-md">
+        <div className="w-full lg:w-3/5 p-4 bg-gray-100 rounded-md shadow-md h-full overflow-y-auto">
           <h2 className="text-2xl font-bold mb-4">Contact information</h2>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -235,7 +235,7 @@ const CheckoutPage = () => {
             </div>
           </form>
         </div>
-
+{cartItems.length>0 &&
         <div className="w-full lg:w-2/5 p-4 rounded-md shadow-md flex flex-col">
           <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
           <div className="w-full flex flex-col">
@@ -249,7 +249,7 @@ const CheckoutPage = () => {
                   <div className="w-1/2 px-2 flex flex-col ">
                     <div>
                       <p className="font-bold whitespace-nowrap">{item.title}</p>
-                      <p className="text-gray-600">${item.price} each</p>
+                      <p className="text-gray-600">₹{item.price} each</p>
                     </div>
 
                     {/* Quantity increase and decrease */}
@@ -277,7 +277,7 @@ const CheckoutPage = () => {
                       <div className="flex items-center ml-auto pt-2">
                         <button
                           type="button"
-                          onClick={() => handleDeleteItem(item.id)}
+                          onClick={() => dispatch(removeItem(item.id))}
                           className="text-red-500 hover:text-red-700 "
                         >
                           <MdDelete />
@@ -290,8 +290,6 @@ const CheckoutPage = () => {
             ))}
           </div>
           <div className='w-full'><TotalPriceSummary cartItems={cartItems} /></div>
-      
-
           <div className=" w-full py-4">
             <Link
               // onClick={() => router.push('/ordersuccess')}
@@ -302,6 +300,7 @@ const CheckoutPage = () => {
             </Link>
           </div>
         </div>
+      }
       </div>
     </div>
   );

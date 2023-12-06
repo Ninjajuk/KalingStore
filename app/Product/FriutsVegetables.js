@@ -1,75 +1,72 @@
 import { FaAngleLeft,FaAngleRight } from "react-icons/fa";
 import React from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { addOrRemoveFromCart, isItemInCart } from '../utility/cartUtils'
+import CategoryCard from "./components/CardFruitsVeg";
 
 
-const CategoryCard = ({
-  title,
-  description,
-  thumbnail,
-  price,
-  TotalPrice,
-  handleAddToCart
-}) => {
-  const weightOptions = [1, 2, 3, 5]; // You can modify the weight options as needed
+// const CategoryCard = ({
+//   title,
+//   description,
+//   thumbnail,
+//   price,
+//   TotalPrice,
+//   handleAddToCart
+// }) => {
+//   const weightOptions = [1, 2, 3, 5]; // You can modify the weight options as needed
 
-  return (
-    <div className="bg-white p-6 rounded-lg shadow-md mb-4 min-w-[14rem] flex flex-col ">
-      <div className="w-full h-2/3">
-        <img
-          src={thumbnail}
-          alt={title}
-          className=" rounded-md w-full h-full object-cover"
-        />
-      </div>
+//   return (
+//     <div className="bg-white p-6 rounded-lg shadow-md mb-4 min-w-[14rem] flex flex-col ">
+//       <div className="w-full h-2/3">
+//         <img
+//           src={thumbnail}
+//           alt={title}
+//           className=" rounded-md w-full h-full object-cover"
+//         />
+//       </div>
 
-      <div>
-        <p className="text-md text-slate-800 font-semibold ">Fresh</p>
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
-        <div className="py-2">
-          {/* <label htmlFor={`${title}-weight`} className="text-gray-700">
-            Select Weight:
-          </label> */}
-          <select
-            id={`${title}-weight`}
-            className="block w-full p-2 border border-gray-300 rounded-md mt-1"
-          >
-            {weightOptions.map((weight, index) => (
-              <option key={index} value={weight}>
-                {weight} kg
-              </option>
-            ))}
-          </select>
-        </div>
-        <p className="text-gray-700 flex items-center">
-          <span className="text-lg font-bold">₹{price}<sub>/kg</sub></span>
-          <span className="ml-2 line-through">₹{TotalPrice}</span>
-        </p>
-      </div>
+//       <div>
+//         <p className="text-md text-slate-800 font-semibold ">Fresh</p>
+//         <h2 className="text-xl font-semibold mb-2">{title}</h2>
+//         <div className="py-2">
+//           {/* <label htmlFor={`${title}-weight`} className="text-gray-700">
+//             Select Weight:
+//           </label> */}
+//           <select
+//             id={`${title}-weight`}
+//             className="block w-full p-2 border border-gray-300 rounded-md mt-1"
+//           >
+//             {weightOptions.map((weight, index) => (
+//               <option key={index} value={weight}>
+//                 {weight} kg
+//               </option>
+//             ))}
+//           </select>
+//         </div>
+//         <p className="text-gray-700 flex items-center">
+//           <span className="text-lg font-bold">₹{price}<sub>/kg</sub></span>
+//           <span className="ml-2 line-through">₹{TotalPrice}</span>
+//         </p>
+//       </div>
 
-      <div className="w-full flex items-center justify-center ring-1 rounded-md ring-red-500 my-2 hover:bg-red-500 hover:text-white cursor-pointer">
-        <button onClick={()=>handleAddToCart({  title,
-  description,
-  thumbnail,
-  SellingPrice,
-  TotalPrice,})} type="button" className="px-4 py-2 ">
-          Add
-        </button>
-      </div>
-    </div>
-  );
-};
+//       <div className="w-full flex items-center justify-center ring-1 rounded-md ring-red-500 my-2 hover:bg-red-500 hover:text-white cursor-pointer">
+//         <button onClick={()=>handleAddToCart({  title,
+//   description,
+//   thumbnail,
+//   SellingPrice,
+//   TotalPrice,})} type="button" className="px-4 py-2 ">
+//           Add
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
 
 
 
 const FruitsVegetables = () => {
-  const cartItems = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
 
-  const handleAddToCart = (product) => {
-    addOrRemoveFromCart(dispatch, product, cartItems);
-  };
+
+
+
   const categories = [
     {
       title: 'Carrots',
@@ -119,10 +116,11 @@ const FruitsVegetables = () => {
           </div>
         </div>
 
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
-          {categories.map((category, index) => (
+        <div>
+          {/* {categories.map((category, index) => (
             <CategoryCard key={index} {...category} />
-          ))}
+          ))} */}
+          <CategoryCard/>
         </div>
       </div>
     </section>

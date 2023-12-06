@@ -27,7 +27,7 @@ export const calculateSubtotal = (cartItems) => {
   
   export const calculateTotal = (cartItems) => {
     const subtotal = calculateSubtotal(cartItems);
-    const shipping = 50;
+    const shipping = subtotal>1000?0:50;
     const taxes = 0.08 * subtotal;
     return subtotal + shipping + taxes;
   };

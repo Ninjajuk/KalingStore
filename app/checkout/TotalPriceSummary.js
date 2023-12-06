@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { useSelector,  } from "react-redux";
-import { calculateSubtotal, calculateTotal } from "../utility/cartUtils"; 
+import { calculateSubtotal, calculateTotal, } from "../utility/cartUtils"; 
 
 
 const TotalPriceSummary = () => {
@@ -23,7 +23,7 @@ const TotalPriceSummary = () => {
           </div>
           <div className="flex justify-between mb-2">
             <span>Shipping</span>
-            <span>₹50.00</span>
+            <span className={`${subtotal>1000?'text-green-600 font-semibold text-lg':''}`}>{subtotal>1000?'Free':'₹50.00'}</span>
           </div>
           
           {/* taxes */}
