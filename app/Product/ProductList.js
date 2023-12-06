@@ -9,6 +9,7 @@ import Electronics from "./Electronics";
 import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 import { addOrRemoveFromCart, isItemInCart } from '../utility/cartUtils'
+import FeaturedProduct from "./FeaturedProduct";
 
   
   export default function ProductList() {
@@ -56,6 +57,7 @@ const filterProductsData=['All','Electronics','Vegetables','Meats']
     return (
       <div className="bg-gray-200">
              <Bunks/>
+             <FeaturedProduct/>
              <ShopByCategory/>
              <Electronics/>
              <div className="py-4"></div>

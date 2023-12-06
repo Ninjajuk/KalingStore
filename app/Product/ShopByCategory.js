@@ -19,22 +19,26 @@ const ShopByCategory = () => {
       title: 'New Arrival',
       description: 'Explore the latest additions to our collection.',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
+      text:''
     },
     {
       title: 'Electronics',
-      description: 'Boost your productivity with these essentials.',
+      description: 'Boost your productivity Cutting-Edge Electronics for Modern Living',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg',
+      text:'Explore our range of cutting-edge electronics designed to enhance your everyday life. From smart home devices to the latest gadgets, we have the technology you need to stay connected and entertained.'
     },
     {
       title: 'Grocery',
-      description: 'Create your ideal workspace with our curated selection.',
+      description: 'Convenient and Essential Grocery Items',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
+      text:'Find all your essential grocery items in one place. From pantry staples to household necessities, we have a wide selection of products to make your shopping experience convenient and hassle-free.'
     },
     {
       title: 'Meat',
-      description: 'Fresho Chicken',
+      description: 'High-Quality Meat for Every Occasion',
       image: 'https://www.bigbasket.com/media/uploads/p/l/40048898_5-fresho-chicken-curry-cut-without-skin-antibiotic-residue-free.jpg?tr=w-640,q=80',
     //   image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
+    text:'Choose from our selection of high-quality meat for all your cooking needs. From tender steaks to succulent roasts, our meat is sourced from trusted suppliers to ensure the best taste and quality.'
     },
   ];
 

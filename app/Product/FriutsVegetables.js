@@ -109,8 +109,9 @@ const FruitsVegetables = () => {
 
         <div className="flex justify-between ">
           <h1 className="text-xl lg:text-2xl font-bold py-4   text-blue-800">
-            Fruits and Vegetables
+           Vegetables
           </h1>
+         
           <div className='flex items-center space-x-4'>
             <a href='' className="hover:underline text-slate-900 font-semibold text-lg">View All</a>
             <a href='' className="hover:rounded-full hover:bg-gray-400"><FaAngleLeft className="w-6 h-6"/></a>
@@ -118,6 +119,7 @@ const FruitsVegetables = () => {
 
           </div>
         </div>
+        <p>Find fresh and organic vegetables for your meals.</p>
 
         <div className=" w-full">
           <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
