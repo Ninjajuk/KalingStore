@@ -7,6 +7,7 @@ export const orderData = [
       paymentStatus: "Paid",
       fulfilmentStatus: "Shipped",
       deliveryType: "Standard",
+      deliveryAddress:'',
       date: "2023-09-05"
     },
     {

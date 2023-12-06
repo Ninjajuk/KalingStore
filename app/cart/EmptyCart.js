@@ -2,6 +2,8 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
+
 
 function EmptyCart() {
   const [open, setOpen] = useState(true)
@@ -46,15 +48,22 @@ function EmptyCart() {
                             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                           </button>
                         </div>
-                      <div className="flex flex-col  items-center justify-center ">
-                        <span className="text-lg mb-2">
-                          Your cart is empty!
-                        </span>
-                        <p className="text-xs mb-4">Add items to it now.</p>
-                        <a
-                          href="/"
-                          className="bg-green-500 text-sm text-green px-12 py-2 rounded-sm shadow mt-3"
+                        <div className="flex  flex-col items-center justify-center space-y-1">
+                        <div
+                          aria-hidden="true"
+                          className="relative mb-4 h-60 w-60 text-muted-foreground"
                         >
+                          <Image
+                            src="/hippo-empty-cart.png"
+                            fill
+                            alt="empty shopping cart hippo"
+                          />
+                        </div>
+                        <div className="text-xl font-semibold">
+                          Your cart is empty
+                        </div>
+
+                        <a href="/"className=' bg-sky-400 py-2 px-4 rounded-md shadow-md my-2'>
                           Shop Now
                         </a>
                       </div>

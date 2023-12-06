@@ -122,18 +122,10 @@ const OrdersPage = () => {
     <div className="w-full flex-flex-col h-full">
 
      {/* Product Headline */}
-        <div className="w-full md:h-1/3 bg-white flex flex-col">
-          <h1 className="px-6 py-2 md:text-3xl font font-semibold text-center text-sky-600">Order Management</h1>
-          <p className="px-6">Navigating Orders with Confidence</p>
-          <div className="flex px-6 py-2">
-            <button
-              type="button"
-              className="px-4 py-2 bg-gray-400 hover:bg-gray-600 rounded-md cursor-pointer"
-            >
-              Add Orders
-            </button>
-          </div>
-          <div className="py-2 px-6 mx-auto flex flex-col md:flex-row items-center">
+        <div className="w-full h-1/5 bg-white flex flex-col">
+          <h1 className="px-6 py-1 md:text-3xl font font-semibold  text-sky-600">Order Management</h1>
+          {/* <p className="px-6">Navigating Orders with Confidence</p> */}
+          <div className="py-1 px-6 mx-auto flex flex-col md:flex-row items-center">
             <input
               type="text"
               placeholder="Search"
@@ -159,7 +151,7 @@ const OrdersPage = () => {
         {/* Product Headline */}
 
 
-      <div className="h-2/3 overflow-y-auto flex-grow">
+      <div className="h-4/5 flex-grow overflow-y-auto ">
         <div  className="max-h-full">
           {/* <table className="min-w-full ">
             <thead className="sticky top-0">

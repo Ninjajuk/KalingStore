@@ -3,13 +3,19 @@ import React, { useState } from "react";
 
 import { orderData } from "./orderdata";
 import { DeleteModal } from "@/app/Components/Modal/DeleteModal";
-
-
-
+import { OrderModal } from "@/app/Components/Modal/orderModal";
 
 const OrdersTable = () => {
 
   const [orders, setOrders] = useState(orderData);
+  const [isEditModalOpen, setisEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [selectedOrderForEdit, setSelectedOrderForEdit] = useState(null);
+
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [hoveredRow, setHoveredRow] = useState(null);
+  const [checkboxStates, setCheckboxStates] = useState({});
 
   // Sorting state
   const [sortField, setSortField] = useState(null);
@@ -32,48 +38,41 @@ const OrdersTable = () => {
     }
   });
 
-
   // Function to handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [selectedOrderForEdit, setSelectedOrderForEdit] = useState(null);
+ 
 
   const handleEditClick = (order) => {
+    setisEditModalOpen(true);
     setSelectedOrderForEdit(order);
-    setIsModalOpen(true);
+  
   };
 
   const handleModalClose = () => {
     setSelectedOrder(null);
-    setIsModalOpen(false);
+    setisEditModalOpen(false);
   };
   const onSubmit = (editedOrder) => {
-    // Update the order data (replace with your actual update logic)
-    const updatedOrders = orders.map((order) =>
-      order.id === editedOrder.id ? { ...order, ...editedOrder } : order
-    );
-    setOrders(updatedOrders);
+    // Your logic for submitting changes
+    console.log("Changes submitted:", editedOrder);
 
-    setIsModalOpen(false);
+    // Close the modal
+    setisEditModalOpen(false);
     setSelectedOrderForEdit(null);
   };
 
 
 
-  const [hoveredRow, setHoveredRow] = useState(null);
-
   const handleMouseEnter = (index) => {
     setHoveredRow(index);
   };
-
   const handleMouseLeave = () => {
     setHoveredRow(null);
   };
-  const [checkboxStates, setCheckboxStates] = useState({});
+
 
   const handleCheckboxChange = (index) => {
     setCheckboxStates((prevState) => {
@@ -82,13 +81,15 @@ const OrdersTable = () => {
   };
 
     // Function to handle DeleteModal Changes
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isModalOpened, setIsModalOpened] = useState(false);
-
   const handleDelete = (index) => {
     setIsModalOpened(true); // Indicate that modal is about to open
     setIsDeleteModalOpen(true);
   };
+
+
+  const currentPage = 1; // Replace with your actual currentPage state
+const itemsPerPage = 10; // Replace with your actual itemsPerPage value
+const indexOfFirstItem = (currentPage - 1) * itemsPerPage;
 
   const handleConfirmDelete = (index) => {
     // Check if the modal is fully opened before proceeding
@@ -270,20 +271,14 @@ const OrdersTable = () => {
         </div>
 
 
- 
-
-      {/* {isModalOpen && (
+        {isEditModalOpen && (
         <OrderModal
-          closeModal={() => {
-            setIsModalOpen(false);
-            setSelectedOrderForEdit(null);
-          }}
-          order={selectedOrderForEdit}
-          onSubmit={onSubmit} // Pass the onSubmit callback
+        order={selectedOrderForEdit}
+        onSubmit={onSubmit}
+        closeModal={() => setisEditModalOpen(false)}
         />
       )}
-      */}
-
+     
       {isDeleteModalOpen && (
         <DeleteModal
           closeModal={handleCancelDelete}
