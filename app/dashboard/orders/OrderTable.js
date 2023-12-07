@@ -293,6 +293,7 @@ const OrdersTable = ({searchTerm,sortBy,}) => {
             currentPage={currentPage}
             totalPages={Math.ceil(orderData.length / itemsPerPage)}
             handlePageChange={handlePageChange}
+            totalnumber={orderData.length }
             
           />
         </div>

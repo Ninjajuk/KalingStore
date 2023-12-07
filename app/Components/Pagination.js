@@ -4,7 +4,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 
-const Pagination = ({  totalPages, handlePageChange,currentPage }) => {
+const Pagination = ({  totalPages, handlePageChange,currentPage,totalnumber }) => {
     // const [currentPage, setCurrentPage] = useState(1);
     // const handlePageChange = (pageNumber) => {
     //     setCurrentPage(pageNumber);
@@ -34,7 +34,7 @@ const Pagination = ({  totalPages, handlePageChange,currentPage }) => {
           <p className="text-sm text-gray-700">
             Showing <span className="font-medium">{currentPage}</span> to{' '}
             <span className="font-medium">{currentPage + 9}</span> of{' '}
-            <span className="font-medium">{totalPages}</span> results
+            <span className="font-medium">{totalnumber}</span> results
           </p>
         </div>
         <div>
