@@ -109,9 +109,9 @@ const products = [
 const OrdersPage = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState(''); // 'name', 'price', etc.
+  const [sortBy, setSortBy] = useState('');
 
-  const filterOptions = ['name', 'price']; // Add more filter options as needed
+  const filterOptions = ['name', 'price']; 
 
   const handleFilter = (e) => {
     setSearchTerm(e.target.value);
