@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {customerData} from './customerdata'
 
-const CustomerForm = ({ closeModal, customerTable, updateCustomerTable, editCustomer, isEditing, editingIndex, editCustomerHandler}) => {
+const CustomerForm = ({ closeModal, customerTable, updateCustomerTable,editCcustomer }) => {
 
   const [customer, setCustomer] = useState({
     name: "",
@@ -10,7 +10,6 @@ const CustomerForm = ({ closeModal, customerTable, updateCustomerTable, editCust
     totalSpent: "",
     city: "",
   });
-  const editedCustomerData = isEditing ? customerTable[editingIndex] : null;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,16 +18,10 @@ const CustomerForm = ({ closeModal, customerTable, updateCustomerTable, editCust
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // Handle form submission (e.g., send data to backend)
     console.log("Form submitted:", customer);
-    if (isEditing) {
-      // If editing, call the editCustomerHandler with the edited data and index
-      editCustomerHandler(editedCustomerData, editingIndex);
-    } else {
-      // If not editing, add the new customer
-      updateCustomerTable([customer,...customerTable])
-    }
-   
+
     closeModal();
   };
 

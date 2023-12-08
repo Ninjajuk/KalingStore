@@ -6,7 +6,7 @@ import CustomerForm from './CustomerForm';
 import {customerData} from './customerdata'
 
 const CustomersPage = () => {
-  const initialState = customerData; // Initialize with your initial data
+
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -14,9 +14,8 @@ const CustomersPage = () => {
   const filterOptions = ['name', 'price']; // Add more filter options as needed
 
   const[customerTable,setCustomerTable]=useState(customerData)
-  const [editCustomer, setEditCustomer] = useState(null);
+  const [editedCustomer, setEditedCustomer] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-const [editingIndex, setEditingIndex] = useState(null);
 
 
   const updateCustomerTable = (newCustomerTable) => {
@@ -30,18 +29,7 @@ const [editingIndex, setEditingIndex] = useState(null);
   setCustomerTable(updatedCustomerTable);
 };
 
-const editCustomerHandler = (editedCustomer, index) => {
-      openModal()
 
-  // Create a copy of the current customerTable
-  const updatedCustomerTable = [...customerTable];
-
-  // Update the specific customer at the given index
-  updatedCustomerTable[index] = editedCustomer;
-  // Set the updated customerTable in state
-  setCustomerTable(updatedCustomerTable);
-  closeModal(); // Close the modal or perform any other necessary actions
-};
 
 
   const handleFilter = (e) => {
@@ -57,11 +45,11 @@ const editCustomerHandler = (editedCustomer, index) => {
   const closeModal = () => {
     setModalOpen(false);
   };
-    // Function to receive state from CustomerTable
-    const receiveStateFromTable = (stateFromTable) => {
-      // Do something with the received state
-      // console.log("State received from CustomerTable:", stateFromTable);
-      setModalOpen(!isModalOpen)
+
+    // Function to edit 
+    const editCcustomer = (stateFromTable,state) => {
+      setModalOpen(state)
+      setIsEditing(stateFromTable)
     };
 
   return (
@@ -105,16 +93,15 @@ const editCustomerHandler = (editedCustomer, index) => {
             </select>
           </div>
         </div>
+
         {/* Product Headline */}
         <div className="h-2/3 overflow-y-auto flex-grow">
           <div className="max-h-full">
             <CustomerTable
-              // openModal={openModal}
               customerTable={customerTable}
               deleteCustomer={deleteCustomer}
-              editCustomerHandler={editCustomerHandler}
-              receiveStateFromTable={receiveStateFromTable}
-              
+              isModalOpen={isModalOpen}
+              editCcustomer={editCcustomer}
             />
           </div>
         </div>
@@ -123,10 +110,6 @@ const editCustomerHandler = (editedCustomer, index) => {
             closeModal={closeModal}
             customerTable={customerTable}
             updateCustomerTable={updateCustomerTable}
-            editCustomer={editCustomer}
-            isEditing={isEditing}
-            editingIndex={editingIndex}
-            editCustomerHandler={editCustomerHandler}
           />
         )}
       </div>
