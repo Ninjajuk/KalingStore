@@ -1,137 +1,82 @@
 'use client'
-import React, { useState } from 'react';
-import OrdersTable from '../orders/OrderTable';
+import React, { useState,useReducer } from 'react';
+
 import CustomerTable from './CustomerTable';
+import CustomerForm from './CustomerForm';
+import {customerData} from './customerdata'
 
-const products = [
-  {
-    id: 1,
-    name: "Earthen Bottle",
-    href: "#",
-    price: "$48",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
-    imageAlt:
-      "Tall slender porcelain bottle with natural clay textured body and cork stopper."
-  },
-  {
-    id: 2,
-    name: "Nomad Tumbler",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
-    imageAlt:
-      "Olive drab green insulated bottle with flared screw lid and flat top."
-  },
-  {
-    id: 3,
-    name: "Focus Paper Refill",
-    href: "#",
-    price: "$89",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-    imageAlt:
-      "Person using a pen to cross a task off a productivity paper card."
-  },
-  {
-    id: 4,
-    name: "Machined Mechanical Pencil",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-    imageAlt:
-      "Hand holding black machined steel mechanical pencil with brass tip and top."
-  },
-  {
-    id: 3,
-    name: "Focus Paper Refill",
-    href: "#",
-    price: "$89",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-    imageAlt:
-      "Person using a pen to cross a task off a productivity paper card."
-  },
-  {
-    id: 4,
-    name: "Machined Mechanical Pencil",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-    imageAlt:
-      "Hand holding black machined steel mechanical pencil with brass tip and top."
-  },
-  {
-    id: 3,
-    name: "Focus Paper Refill",
-    href: "#",
-    price: "$89",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-    imageAlt:
-      "Person using a pen to cross a task off a productivity paper card."
-  },
-  {
-    id: 4,
-    name: "Machined Mechanical Pencil",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-    imageAlt:
-      "Hand holding black machined steel mechanical pencil with brass tip and top."
-  },
-  {
-    id: 3,
-    name: "Focus Paper Refill",
-    href: "#",
-    price: "$89",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-    imageAlt:
-      "Person using a pen to cross a task off a productivity paper card."
-  },
-  {
-    id: 4,
-    name: "Machined Mechanical Pencil",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-    imageAlt:
-      "Hand holding black machined steel mechanical pencil with brass tip and top."
-  }
-];
 const CustomersPage = () => {
+  const initialState = customerData; // Initialize with your initial data
 
+  const [isModalOpen, setModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState(''); // 'name', 'price', etc.
   const filterOptions = ['name', 'price']; // Add more filter options as needed
+
+  const[customerTable,setCustomerTable]=useState(customerData)
+  const [editCustomer, setEditCustomer] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+const [editingIndex, setEditingIndex] = useState(null);
+
+
+  const updateCustomerTable = (newCustomerTable) => {
+    setCustomerTable(newCustomerTable);
+ };
+
+ const deleteCustomer = (index) => {
+  // Use the filter method to create a new array excluding the customer at the specified index
+  const updatedCustomerTable = customerTable.filter((_, i) => i !== index);
+  // Update the state with the modified customerTable
+  setCustomerTable(updatedCustomerTable);
+};
+
+const editCustomerHandler = (editedCustomer, index) => {
+      openModal()
+
+  // Create a copy of the current customerTable
+  const updatedCustomerTable = [...customerTable];
+
+  // Update the specific customer at the given index
+  updatedCustomerTable[index] = editedCustomer;
+  // Set the updated customerTable in state
+  setCustomerTable(updatedCustomerTable);
+  closeModal(); // Close the modal or perform any other necessary actions
+};
+
+
   const handleFilter = (e) => {
     setSearchTerm(e.target.value);
   };
   const handleFilterSelect = (e) => {
     setSortBy(e.target.value);
   };
+  const openModal = () => {
+    setModalOpen(!isModalOpen);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+    // Function to receive state from CustomerTable
+    const receiveStateFromTable = (stateFromTable) => {
+      // Do something with the received state
+      // console.log("State received from CustomerTable:", stateFromTable);
+      setModalOpen(!isModalOpen)
+    };
 
   return (
     <section className="w-full   h-full ">
-    <div className="w-full flex-flex-col h-full">
-
-     {/* Product Headline */}
+      <div className="w-full flex-flex-col h-full">
+        {/* Product Headline */}
         <div className="h-1/3 bg-white flex flex-col">
           <h1 className="px-6 py-2 md:text-3xl font font-semibold text-center text-sky-600">
-          Customers Management
+            Customers Management
           </h1>
-          <p className="px-6">
-          Elevate Customer Engagement
-          </p>
+          <p className="px-6">Elevate Customer Engagement</p>
           <div className="flex px-6 py-2">
             <button
               type="button"
+              onClick={openModal}
               className="px-4 py-2 bg-gray-400 hover:bg-gray-600 rounded-md cursor-pointer"
             >
               Add Customer
@@ -161,84 +106,31 @@ const CustomersPage = () => {
           </div>
         </div>
         {/* Product Headline */}
-
-
-      <div className="h-2/3 overflow-y-auto flex-grow">
-        <div  className="max-h-full">
-          {/* <table className="min-w-full ">
-            <thead className="sticky top-0">
-              <tr>
-                <th className="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                  Product
-                </th>
-                <th className="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                  Price
-                </th>
-                <th className="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                  Image
-                </th>
-                <th className="px-6 py-3 bg-gray-200 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {products.map((product) => (
-                <tr key={product.id}>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10">
-                        <img
-                          className="h-10 w-10 rounded-full"
-                          src={product.imageSrc}
-                          alt={product.imageAlt}
-                        />
-                      </div>
-                      <div className="ml-4">
-                        <div className="text-sm leading-5 font-medium text-gray-900">
-                          {product.name}
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    <div className="text-sm leading-5 text-gray-900">
-                      {product.price}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    <img
-                      className="h-16 w-16"
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
-                    />
-                  </td>
-                  <td className="px-6 py-4 whitespace-no-wrap">
-                    <button
-                      className="text-indigo-600 hover:text-indigo-900 focus:outline-none"
-                      // onClick={() => handleEditProduct(product.id)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="ml-4 text-red-600 hover:text-red-900 focus:outline-none"
-                      // onClick={() => handleDeleteProduct(product.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table> */}
-          {/* <OrdersTable/> */}
-          <CustomerTable/>
+        <div className="h-2/3 overflow-y-auto flex-grow">
+          <div className="max-h-full">
+            <CustomerTable
+              // openModal={openModal}
+              customerTable={customerTable}
+              deleteCustomer={deleteCustomer}
+              editCustomerHandler={editCustomerHandler}
+              receiveStateFromTable={receiveStateFromTable}
+              
+            />
+          </div>
         </div>
+        {isModalOpen && (
+          <CustomerForm
+            closeModal={closeModal}
+            customerTable={customerTable}
+            updateCustomerTable={updateCustomerTable}
+            editCustomer={editCustomer}
+            isEditing={isEditing}
+            editingIndex={editingIndex}
+            editCustomerHandler={editCustomerHandler}
+          />
+        )}
       </div>
-
-
-    </div>
-  </section>
+    </section>
   );
 };
 
