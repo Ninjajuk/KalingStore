@@ -6,7 +6,7 @@ import { MdDelete } from "react-icons/md";
 import { useRouter } from 'next/navigation'
 import { useSelector,useDispatch  } from "react-redux";
 import Link from 'next/link';
-import {increaseQuantity,decreaseQuantity,removeItem} from "../redux/cartSlice";
+import {increaseQuantity,decreaseQuantity,removeItem,clearCart,saveOrderItems} from "../redux/cartSlice";
 
 
 const CheckoutPage = () => {
@@ -81,8 +81,29 @@ const CheckoutPage = () => {
     console.log('Form submitted:', formData);
     console.log('Order items:', cartItems);
 
+
+    //  // Generate a unique order ID (you might handle this on the backend)
+    //  const orderId = generateUniqueId();
+
+      // Prepare order data to submit
+      // const orderData = {
+      //   orderId,
+      //   cartItems,
+      //   quantity: calculateTotalQuantity(cartItems),
+      //   address: formData,
+      // };
+
+    //       // Submit the order
+    // await dispatch(submitOrder(orderData));
+
+     // Clear the cart and remove it from local storage
+    //  dispatch(clearCart());
+
+
     // Redirect to the ordersuccess page
     router.push('/ordersuccess');
+
+  
   };
 
   return (

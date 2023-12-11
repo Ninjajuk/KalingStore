@@ -64,6 +64,8 @@ const OrderSuccessPage = () => {
 //   dispatch(resetCart());
 // }, [dispatch]);
 
+
+
   return (
     <div className="container mx-auto mt-8 md:px-[8rem]">
       <h2 className="lg:text-3xl font-bold mb-4 text-green-600 lg:text-center">

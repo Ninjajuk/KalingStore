@@ -1,83 +1,38 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createOrder, fetchAllOrders,updateOrder } from './orderAPI';
+// orderSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+export const submitOrder = (orderData) => async (dispatch) => {
+  try {
+    // Make a request to your backend API to submit the order
+    const response = await api.post('/orders', orderData);
+
+    // Assuming the backend returns the order details, set it in the state
+    dispatch(setOrderDetails(response.data));
+
+    // Clear the cart and order details from the client-side
+    dispatch(clearCart());
+  } catch (error) {
+    // Handle errors appropriately (e.g., show an error message)
+    console.error('Error submitting order:', error);
+  }
+};
 
 const initialState = {
-  orders: [],
-  status: 'idle',
-  currentOrder: null,
-  totalOrders: 0
+  orderDetails: null,
 };
-//we may need more info of current order
 
-export const createOrderAsync = createAsyncThunk(
-  'order/createOrder',
-  async (order) => {
-    const response = await createOrder(order);
-    // The value we return becomes the `fulfilled` action payload
-    return response.data;
-  }
-);
-
-// export const updateOrderAsync = createAsyncThunk(
-//   'order/updateOrder',
-//   async (order) => {
-//     const response = await updateOrder(order);
-//     // The value we return becomes the `fulfilled` action payload
-//     return response.data;
-//   }
-// );
-
-// export const fetchAllOrdersAsync = createAsyncThunk(
-//   'order/fetchAllOrders',
-//   async ({sort, pagination}) => {
-//     const response = await fetchAllOrders(sort,pagination);
-//     // The value we return becomes the `fulfilled` action payload
-//     return response.data;
-//   }
-// );
-
-export const orderSlice = createSlice({
+const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    resetOrder: (state) => {
-      state.currentOrder = null;
+    setOrderDetails: (state, action) => {
+      state.orderDetails = action.payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(createOrderAsync.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(createOrderAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.orders.push(action.payload);
-        state.currentOrder = action.payload;
-      })
-      // .addCase(fetchAllOrdersAsync.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(fetchAllOrdersAsync.fulfilled, (state, action) => {
-      //   state.status = 'idle';
-      //   state.orders = action.payload.orders;
-      //   state.totalOrders = action.payload.totalOrders;
-      // })
-      // .addCase(updateOrderAsync.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(updateOrderAsync.fulfilled, (state, action) => {
-      //   state.status = 'idle';
-      //   const index =  state.orders.findIndex(order=>order.id===action.payload.id)
-      //   state.orders[index] = action.payload;
-      // })
+    clearOrderDetails: (state) => {
+      state.orderDetails = null;
+    },
   },
 });
 
-export const { resetOrder } = orderSlice.actions;
-
-export const selectCurrentOrder = (state) => state.order.currentOrder;
-export const selectOrders = (state) => state.order.orders;
-export const selectTotalOrders = (state) => state.order.totalOrders;
-export const selectStatus = (state) => state.order.status;
-
+export const { setOrderDetails, clearOrderDetails } = orderSlice.actions;
 export default orderSlice.reducer;
