@@ -3,77 +3,55 @@ import React, { useState } from "react";
 
 import { orderData } from "./orderdata";
 import { DeleteModal } from "@/app/Components/Modal/DeleteModal";
-
-
-
-
-const OrdersTable = () => {
-
+import { OrderModal } from "@/app/Components/Modal/orderModal";
+import { paginate, } from '../../utility/utilitypagination';
+import Pagination from "@/app/Components/Pagination";
+import { toggleSortDirection, sortItems, searchItems } from '../../utility/sortingFiltering';
+import {openEditModal,closeEditModal,submitEditChanges,handleMouseEnterRow,handleMouseLeaveRow,openDeleteModal,handleCheckboxChange} from '../../utility/modalutility';
+const OrdersTable = ({searchTerm,sortBy,}) => {
   const [orders, setOrders] = useState(orderData);
-
-  // Sorting state
-  const [sortField, setSortField] = useState(null);
-  const [sortDirection, setSortDirection] = useState("asc");
-
-  // Function to toggle sorting direction
-  const toggleSortDirection = () => {
-    setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-  };
-
-  // Sort orders based on the selected field and direction
-  const sortedOrders = [...orders].sort((a, b) => {
-    const fieldA = a[sortField];
-    const fieldB = b[sortField];
-
-    if (sortDirection === "asc") {
-      return fieldA < fieldB ? -1 : 1;
-    } else {
-      return fieldA > fieldB ? -1 : 1;
-    }
-  });
-
-
-  // Function to handle page change
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setisEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [selectedOrderForEdit, setSelectedOrderForEdit] = useState(null);
+  const itemsPerPage = 10;
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [hoveredRow, setHoveredRow] = useState(null);
+  const [checkboxStates, setCheckboxStates] = useState({});
+
+
+ 
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
+  const currentOrders = paginate(orders, currentPage, itemsPerPage);
+
 
   const handleEditClick = (order) => {
-    setSelectedOrderForEdit(order);
-    setIsModalOpen(true);
+    openEditModal(order, setisEditModalOpen, setSelectedOrderForEdit);
   };
-
+  
   const handleModalClose = () => {
-    setSelectedOrder(null);
-    setIsModalOpen(false);
+    closeEditModal(setisEditModalOpen, setSelectedOrderForEdit);
   };
+  
   const onSubmit = (editedOrder) => {
-    // Update the order data (replace with your actual update logic)
-    const updatedOrders = orders.map((order) =>
-      order.id === editedOrder.id ? { ...order, ...editedOrder } : order
-    );
-    setOrders(updatedOrders);
-
-    setIsModalOpen(false);
-    setSelectedOrderForEdit(null);
+    submitEditChanges(editedOrder, setisEditModalOpen, setSelectedOrderForEdit);
   };
-
-
-
-  const [hoveredRow, setHoveredRow] = useState(null);
-
+  
   const handleMouseEnter = (index) => {
-    setHoveredRow(index);
+    handleMouseEnterRow(index, setHoveredRow);
   };
-
+  
   const handleMouseLeave = () => {
-    setHoveredRow(null);
+    handleMouseLeaveRow(setHoveredRow);
   };
-  const [checkboxStates, setCheckboxStates] = useState({});
+  
+  const handleDelete = (index) => {
+    openDeleteModal(setIsModalOpened, setIsDeleteModalOpen, setHoveredRow);
+  };
 
   const handleCheckboxChange = (index) => {
     setCheckboxStates((prevState) => {
@@ -81,55 +59,52 @@ const OrdersTable = () => {
     });
   };
 
-    // Function to handle DeleteModal Changes
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const handleDelete = (index) => {
-    setIsModalOpened(true); // Indicate that modal is about to open
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleConfirmDelete = (index) => {
-    // Check if the modal is fully opened before proceeding
-    if (isModalOpened) {
-      setIsModalOpened(false); // Reset the modal opened flag
-
-      const itemIndexToDelete = indexOfFirstItem + index;
-      const updatedOrders = [...orders];
-      updatedOrders.splice(itemIndexToDelete, 1);
+  const handleConfirmDelete = () => {
+    if (isModalOpened && hoveredRow !== null) {
+      setIsModalOpened(false);
+  
+      // Use filter to create a new array excluding the element at hoveredRow
+      const updatedOrders = orders.filter((_, index) => index !== hoveredRow);
+      
       console.log("Updated orders after deletion:", updatedOrders);
       setOrders(updatedOrders);
       setIsDeleteModalOpen(false);
     }
   };
+  
 
-  const handleDeleteAndConfirm = async (index) => {
-    await handleDelete(index); // Wait for handleDelete to complete
-    handleConfirmDelete(index);
+  const handleDeleteAndConfirm = async () => {
+    if (hoveredRow !== null) {
+      await handleDelete(hoveredRow); // Wait for handleDelete to complete
+      handleConfirmDelete();
+    }
   };
+  
 
   const handleCancelDelete = (index) => {
     setIsDeleteModalOpen(false);
   };
   return (
     <>
-        <div className="max-h-full ">
+      <div className="flex flex-col w-full h-full">
+        <div className="flex-grow overflow-x-auto">
           <table className="w-full border-collapse border border-gray-300">
             <thead className=" bg-black text-white sticky top-0 z-10">
               <tr className="">
-                <th className="border border-gray-300 p-2 text-left">
-                  <input type="checkbox" />
+                <th className="border border-gray-300 p-2 text-left whitespace-nowrap">
+                  {/* <input type="checkbox" /> */}
+                  SL.No
                 </th>
                 <th
-                  className=" p-2 cursor-pointer text-left"
-                  onClick={() => {
-                    setSortField("orderNumber");
-                    toggleSortDirection();
-                  }}
+                  className=" p-2 cursor-pointer text-left whitespace-nowrap"
+                  // onClick={() => {
+                  //   setSortField("orderNumber");
+                  //   toggleSortDirection();
+                  // }}
                 >
                   ORDER
-                  {sortField === "orderNumber" && (
+                  {/* {sortField === "orderNumber" && (
                     <span
                       className={`ml-2 ${
                         sortDirection === "asc" ? "rotate-180" : ""
@@ -137,17 +112,17 @@ const OrdersTable = () => {
                     >
                       &#8593;
                     </span>
-                  )}
+                  )} */}
                 </th>
                 <th
-                  className="border border-gray-300 p-2 cursor-pointer text-left"
-                  onClick={() => {
-                    setSortField("total");
-                    toggleSortDirection();
-                  }}
+                  className="border border-gray-300 p-2 cursor-pointer text-left whitespace-nowrap"
+                  // onClick={() => {
+                  //   setSortField("total");
+                  //   toggleSortDirection();
+                  // }}
                 >
                   TOTAL
-                  {sortField === "total" && (
+                  {/* {sortField === "total" && (
                     <span
                       className={`ml-2 ${
                         sortDirection === "asc" ? "rotate-180" : ""
@@ -155,17 +130,17 @@ const OrdersTable = () => {
                     >
                       &#8593;
                     </span>
-                  )}
+                  )} */}
                 </th>
                 <th
-                  className="border border-gray-300 p-2 cursor-pointer text-left"
-                  onClick={() => {
-                    setSortField("customer");
-                    toggleSortDirection();
-                  }}
+                  className="border border-gray-300 p-2 cursor-pointer text-left whitespace-nowrap"
+                  // onClick={() => {
+                  //   setSortField("customer");
+                  //   toggleSortDirection();
+                  // }}
                 >
                   CUSTOMER
-                  {sortField === "customer" && (
+                  {/* {sortField === "customer" && (
                     <span
                       className={`ml-2 ${
                         sortDirection === "asc" ? "rotate-180" : ""
@@ -173,26 +148,26 @@ const OrdersTable = () => {
                     >
                       &#8593;
                     </span>
-                  )}
+                  )} */}
                 </th>
-                <th className="border border-gray-300 p-2 text-left">
+                <th className="border border-gray-300 p-2 text-left whitespace-nowrap">
                   PAYMENT STATUS
                 </th>
-                <th className="border border-gray-300 p-2 text-left">
+                <th className="border border-gray-300 p-2 text-left whitespace-nowrap">
                   FULFILMENT STATUS
                 </th>
-                <th className="border border-gray-300 p-2 text-left">
+                <th className="border border-gray-300 p-2 text-left whitespace-nowrap">
                   DELIVERY TYPE
                 </th>
                 <th
                   className="border border-gray-300 p-2 cursor-pointer text-left"
-                  onClick={() => {
-                    setSortField("date");
-                    toggleSortDirection();
-                  }}
+                  // onClick={() => {
+                  //   setSortField("date");
+                  //   toggleSortDirection();
+                  // }}
                 >
                   DATE
-                  {sortField === "date" && (
+                  {/* {sortField === "date" && (
                     <span
                       className={`ml-2 ${
                         sortDirection === "asc" ? "rotate-180" : ""
@@ -200,12 +175,12 @@ const OrdersTable = () => {
                     >
                       &#8593;
                     </span>
-                  )}
+                  )} */}
                 </th>
               </tr>
             </thead>
             <tbody className="-z-10">
-              {sortedOrders.map((order, index) => (
+              {currentOrders.map((order, index) => (
                 <tr
                   key={order.id}
                   className={
@@ -213,7 +188,7 @@ const OrdersTable = () => {
                       ? "bg-green-200 hover:bg-green-400 shadow-lg"
                       : index % 2 === 0
                       ? "bg-gray-100 hover:bg-gray-400 shadow-lg"
-                      : "bg-purple-200 hover:bg-purple-400 shadow-lg"
+                      : "bg-sky-100 hover:bg-gray-400 shadow-lg"
                   }
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
@@ -222,29 +197,30 @@ const OrdersTable = () => {
                   <td
                     className={`border border-gray-300 p-2 'bg-green-500 text-white' : ''}`}
                   >
-                    <input
+                    {/* <input
                       type="checkbox"
                       checked={checkboxStates[index]}
                       onChange={() => handleCheckboxChange(index)}
-                    />
+                    /> */}
+                    {order.id}
                   </td>
-                  <td className="border border-gray-300 p-2">
+                  <td className="border border-gray-300 p-2 whitespace-nowrap">
                     {order.orderNumber}
                   </td>
-                  <td className="border border-gray-300 p-2">${order.total}</td>
-                  <td className="border border-gray-300 p-2">
+                  <td className="border border-gray-300 p-2 whitespace-nowrap">₹{order.total}</td>
+                  <td className="border border-gray-300 p-2 whitespace-nowrap">
                     {order.customer}
                   </td>
-                  <td className="border border-gray-300 p-2">
+                  <td className="border border-gray-300 p-2 whitespace-nowrap">
                     {order.paymentStatus}
                   </td>
-                  <td className="border border-gray-300 p-2">
+                  <td className="border border-gray-300 p-2 whitespace-nowrap">
                     {order.fulfilmentStatus}
                   </td>
-                  <td className="border border-gray-300 p-2">
+                  <td className="border border-gray-300 p-2 whitespace-nowrap">
                     {order.deliveryType}
                   </td>
-                  <td className="border border-gray-300 p-2">{order.date}</td>
+                  <td className="border border-gray-300 p-2 whitespace-nowrap">{order.date}</td>
                   <td
                     className={` p-2 absolute right-0 top-0 ${
                       hoveredRow === index ? "block" : "hidden"
@@ -257,7 +233,8 @@ const OrdersTable = () => {
                       Edit
                     </button>
                     <button
-                      onClick={() => handleDeleteAndConfirm(index)}
+                      type="button"
+                      onClick={() => handleDelete(index)}
                       className="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-2 rounded"
                     >
                       Delete
@@ -268,29 +245,34 @@ const OrdersTable = () => {
             </tbody>
           </table>
         </div>
+        <div className="w-full h-1/6">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={Math.ceil(orderData.length / itemsPerPage)}
+            handlePageChange={handlePageChange}
+            totalnumber={orderData.length }
+            
+          />
+        </div>
+      </div>
 
-
- 
-
-      {/* {isModalOpen && (
+      {isEditModalOpen && (
         <OrderModal
+          order={selectedOrderForEdit}
+          onSubmit={onSubmit}
           closeModal={() => {
-            setIsModalOpen(false);
+            setisEditModalOpen(false);
             setSelectedOrderForEdit(null);
           }}
-          order={selectedOrderForEdit}
-          onSubmit={onSubmit} // Pass the onSubmit callback
         />
       )}
-      */}
 
       {isDeleteModalOpen && (
         <DeleteModal
           closeModal={handleCancelDelete}
           onDelete={handleDeleteAndConfirm}
         />
-      )} 
-
+      )}
     </>
   );
 };

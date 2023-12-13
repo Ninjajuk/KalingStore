@@ -1,13 +1,13 @@
 
 import React from 'react';
 
-const Card = ({ title, content,listItems }) => (
-  <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+const Card = ({ title, content,listItems,bgcolor }) => (
+  <div className={` ${bgcolor} p-6 rounded-lg shadow-md mb-6`}>
     <h2 className="text-2xl font-semibold mb-4 text-blue-600">{title}</h2>
     {listItems ? (
       <ul className="list-disc ml-8 text-gray-700">
         {listItems.map((item, index) => (
-          <li key={index}>{item}</li>
+          <li key={index} >{item}</li>
         ))}
       </ul>
     ) : (
@@ -26,10 +26,12 @@ const AboutUs = () => {
         <Card
           title="Our Story"
           content="Founded in 2024, Yingkiong Store was born out of a love for our product and a commitment to what makes our brand unique. What started as a small idea has now grown into a  thriving community of our customer base who share our passion."
+          bgcolor='bg-yellow-400'
         />
 
         <Card
           title="Our Mission"
+          bgcolor='bg-green-400'
           content="At Yingkiong Store, our mission is to our product better. We believe in  core beliefs, and every product we offer is a reflection of that commitment. We strive to excel in every aspect of our business."
         />
 

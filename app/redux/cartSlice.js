@@ -1,23 +1,24 @@
 
 
+
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+// const initialState = [];
+// Load cart from local storage or use an empty array as the initial state
+const initialState = JSON.parse(localStorage.getItem("cart")) || [];
+
+const saveCartToLocalStorage = (cart) => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-
     addItem(state, action) {
-      const {
-        id,
-        title,
-        price,
-        thumbnail,
-        discountPercentage,
-        brand
-      } = action.payload;
+      const { id, title, price, thumbnail, discountPercentage, brand } =
+        action.payload;
+        const newState = [...state];
 
       // Check if the item already exists in the cart
       const existingItem = state.find((item) => item.id === id);
@@ -34,31 +35,39 @@ const cartSlice = createSlice({
           thumbnail,
           discountPercentage,
           brand,
-          quantity: 1
+          quantity: 1,
         });
       }
+      saveCartToLocalStorage(state);
     },
     removeItem(state, action) {
-      return state.filter((item) => item.id !== action.payload);
+      // return state.filter((item) => item.id !== action.payload);
+      const newState = state.filter((item) => item.id !== action.payload);
+      saveCartToLocalStorage(newState);
+      return newState;
     },
     increaseQuantity(state, action) {
       const item = state.find((item) => item.id === action.payload);
       if (item) {
         item.quantity += 1;
+        saveCartToLocalStorage(state);
       }
     },
     decreaseQuantity(state, action) {
       const item = state.find((item) => item.id === action.payload);
       if (item && item.quantity > 1) {
         item.quantity -= 1;
+        saveCartToLocalStorage(state);
       }
     },
 
-// // Code for resetting the cart)
-//     resetCart: (state) => {
-//       return initialState
-//     },
-  }
+    // // Code for resetting the cart)
+    clearCart: (state) => {
+      const newState = [];
+      localStorage.removeItem("cart");
+      return newState;
+    },
+  },
 });
 
 export const {
@@ -66,6 +75,6 @@ export const {
   removeItem,
   increaseQuantity,
   decreaseQuantity,
-  // resetCart
+  clearCart
 } = cartSlice.actions;
 export default cartSlice.reducer;

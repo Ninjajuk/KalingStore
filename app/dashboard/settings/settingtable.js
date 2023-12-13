@@ -2,16 +2,14 @@
 import React, { useState } from "react";
 
 
-const CustomerTable = ({customerTable,deleteCustomer,editCcustomer}) => {
+const SettingTable = ({customerData,}) => {
   
   const handleDelete = (index) => {
     // Call the deleteCustomer function with the index of the customer to be deleted
-    deleteCustomer(index);
   };
-
   const handleEdit = (item,index) => {
      console.log(item);
-     editCcustomer(item,true)
+  
   };
   
   return (
@@ -49,7 +47,7 @@ const CustomerTable = ({customerTable,deleteCustomer,editCcustomer}) => {
                             </tr>
                         </thead>
                         <tbody className="text-sm divide-y divide-gray-100">
-                          {customerTable.map((item,index)=>
+                          {customerData.map((item,index)=>
                             <tr key={index}>
                                 <td className="p-2 whitespace-nowrap">
                                     <div className="flex items-center">
@@ -94,4 +92,4 @@ const CustomerTable = ({customerTable,deleteCustomer,editCcustomer}) => {
   );
 };
 
-export default CustomerTable;
+export default SettingTable;

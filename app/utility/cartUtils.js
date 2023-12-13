@@ -7,12 +7,13 @@ export const isItemInCart = (itemId, cartItems) => {
 
 export const addOrRemoveFromCart = (dispatch, product, cartItems) => {
   const isAlreadyInCart = isItemInCart(product.id, cartItems);
-
-  if (isAlreadyInCart) {
-    dispatch(removeItem(product.id));
-  } else {
-    dispatch(addItem(product));
-  }
+  
+  isAlreadyInCart?dispatch(removeItem(product.id)):dispatch(addItem(product))
+  // if (isAlreadyInCart) {
+  //   dispatch(removeItem(product.id));
+  // } else {
+  //   dispatch(addItem(product));
+  // }
 };
 
 
@@ -27,7 +28,7 @@ export const calculateSubtotal = (cartItems) => {
   
   export const calculateTotal = (cartItems) => {
     const subtotal = calculateSubtotal(cartItems);
-    const shipping = 50;
+    const shipping = subtotal>1000?0:50;
     const taxes = 0.08 * subtotal;
     return subtotal + shipping + taxes;
   };

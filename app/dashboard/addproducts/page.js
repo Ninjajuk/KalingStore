@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import NewProduct from './newproduct';
+import ProductForm from '@/app/Components/Form/ProductForm';
 
 
 const AddProductsPage = () => {
@@ -11,6 +12,7 @@ const AddProductsPage = () => {
       <h1 className="px-6 py-2 md:text-3xl font font-semibold text-center text-sky-600">Add Your Trending Products </h1>
       <p className="px-6">Start by stocking your store with products your customers will love</p>
       <NewProduct />
+      {/* <ProductForm/> */}
       </div>
   
     </div>

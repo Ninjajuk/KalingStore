@@ -40,7 +40,6 @@ export default function ShoppingCart() {
   const dispatch = useDispatch();
 
   const removeFromCArt = (itemid) => {
-
     dispatch(removeItem(itemid));
   };
 
@@ -48,6 +47,9 @@ export default function ShoppingCart() {
 
   return (
     <>   
+           {cartItems.length === 0 ? (
+      <EmptyCart/>
+    ) : (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
         <Transition.Child
@@ -63,9 +65,7 @@ export default function ShoppingCart() {
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-hidden">
-        {cartItems.length === 0 ? (
-      <EmptyCart/>
-    ) : (
+ 
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
               <Transition.Child
@@ -114,7 +114,7 @@ export default function ShoppingCart() {
                                       <h3>
                                         <a href={product.href}>{product.title}</a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">₹{product.price}</p>
                                     </div>
                                     <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                                   </div>
@@ -142,12 +142,13 @@ export default function ShoppingCart() {
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>${subtotal}</p>
+                        <p>₹{subtotal}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">
                         <Link
                           href="/checkout"
+                          onClick={() => setOpen(false)}
                           className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout
@@ -172,10 +173,11 @@ export default function ShoppingCart() {
               </Transition.Child>
             </div>
           </div>
-            )}
+          
         </div>
       </Dialog>
     </Transition.Root>
+      )} 
   </>
 
   )

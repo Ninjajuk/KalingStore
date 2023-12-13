@@ -13,6 +13,8 @@ import ShopHover from "./ShopbyCategoryHover";
 
 const Navbar = ({ siebaropen }, open) => {
   const loginrouter = useRouter()
+const isAuthenticated=useSelector((state)=>state.auth.isAuthenticated)
+const user=useSelector((state)=>state.auth.user)
 
   const [isShopHovered, setIsShopHovered] = useState(false);
   const[isCartOpen,setIsCartOpen]=useState(false)
@@ -62,16 +64,25 @@ const Navbar = ({ siebaropen }, open) => {
           </button>
           {/* Logo (visible in desktop view) */}
           <div className="hidden md:block">
-            <p href="/" className="px-2 text-white font-semibold text-lg font-sans">
+            <p
+              href="/"
+              className="px-2 text-white font-semibold text-lg font-sans"
+            >
               Yingkiong Store
             </p>
           </div>
 
           <div className="hidden lg:flex  px-2">
             {navigationLeft.map((link) => (
-              <div key={link.name} className="relative"
-              onMouseEnter={() => link.name === "Shop" && setIsShopHovered(true)}
-              onMouseLeave={() => link.name === "Shop" && setIsShopHovered(false)}
+              <div
+                key={link.name}
+                className="relative"
+                onMouseEnter={() =>
+                  link.name === "Shop" && setIsShopHovered(true)
+                }
+                onMouseLeave={() =>
+                  link.name === "Shop" && setIsShopHovered(false)
+                }
               >
                 <a
                   href={link.href}
@@ -83,16 +94,16 @@ const Navbar = ({ siebaropen }, open) => {
                     "rounded-md px-4 py-2 text-sm font-medium flex items-center"
                   )}
                 >
-                  {link.name} {link.name === "Shop" && <FaAngleDown className="w-6 h-6"/>}
+                  {link.name}{" "}
+                  {link.name === "Shop" && <FaAngleDown className="w-6 h-6" />}
                 </a>
-                {link.name === "Shop" && isShopHovered && <ShopHover/>}
+                {link.name === "Shop" && isShopHovered && <ShopHover />}
                 {/* {link.name === "Shop" && isShopHovered && (
                   <ShopHover/>
                 )} */}
               </div>
             ))}
           </div>
-
 
           {/* Search Input */}
           <div className="flex-grow md:w-1/2 mx-4 md:mx-0">
@@ -113,9 +124,14 @@ const Navbar = ({ siebaropen }, open) => {
             />
           </div> */}
           <div className="lg:hidden px-4 relative">
-            <button  onClick={setIsCartOpen} className="w-8 h-8 text-white text-lg ">
-              <span><FaCartPlus /></span>
-              
+            <button
+              onClick={setIsCartOpen}
+              className="w-8 h-8 text-white text-lg "
+            >
+              <span>
+                <FaCartPlus />
+              </span>
+
               <span className="absolute top-1 right-0  -mt-3 mr-3 bg-red-500 text-white rounded-full text-sm px-1 py-0.5">
                 {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
                 {cartItems.length}
@@ -126,28 +142,35 @@ const Navbar = ({ siebaropen }, open) => {
 
           {/* Navigation Links (visible in desktop view) */}
           <div className="hidden lg:flex space-x-4 px-4 ">
+            {isAuthenticated ? (
+              <h1>{user.email.slice(0,6)}</h1>
+            ) : (
               <button
                 className="text-white flex items-center text-md px-4 relative"
                 type="button"
-                onClick={()=>loginrouter.push('/login')}
+                onClick={() => loginrouter.push("/login")}
               >
                 <span className="px-1">Login</span>
-                <span className="px-1"><FaUser/></span>
+                <span className="px-1">
+                  <FaUser />
+                </span>
               </button>
-              <button
-                type="button"
-                className="text-white flex items-center text-md px-4 relative"
-                onClick={handlecartOpen}
-              >
-                <span className="px-1">Cart</span>
-                <span className="px-1"><FaCartPlus/></span>
-              </button>
-        
+            )}
+            <button
+              type="button"
+              className="text-white flex items-center text-md px-4 relative"
+              onClick={handlecartOpen}
+            >
+              <span className="px-1">Cart</span>
+              <span className="px-1">
+                <FaCartPlus />
+              </span>
+            </button>
+
             <span className="absolute top-0 right-5 mt-1  bg-red-500 text-white rounded-full text-xxs px-2 py-0.5">
               {/* {cart && Array.isArray(cart) ? cart.length : 0} */}
-           {cartItems.length}
+              {cartItems.length}
             </span>
-  
           </div>
         </div>
       </nav>
@@ -169,7 +192,9 @@ const Navbar = ({ siebaropen }, open) => {
       
           />
         ):null} */}
-    {isCartOpen ?<ShoppingCart isCartOpen={isCartOpen} handlecartOpen={handlecartOpen}/>:null}
+      {isCartOpen ? (
+        <ShoppingCart isCartOpen={isCartOpen} handlecartOpen={handlecartOpen} />
+      ) : null}
     </>
   );
 };

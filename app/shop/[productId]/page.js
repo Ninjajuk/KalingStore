@@ -2,9 +2,18 @@
 'use client'
 import Skeleton from '@/app/Components/skeleton/SkeletonProductDetails';
 import React, { useState, useEffect } from 'react';
+import { useSelector,useDispatch  } from "react-redux";
+import { addOrRemoveFromCart, isItemInCart } from '../../utility/cartUtils'
 
 const ProductDetails = ({ params }) => {
   const [product, setProduct] = useState(null);
+
+  const cartItems=useSelector((state)=>state.cart)
+  const dispatch=useDispatch()
+
+  const handleAddToCart = (item) => {
+    addOrRemoveFromCart(dispatch, item, cartItems);
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -67,8 +76,8 @@ const ProductDetails = ({ params }) => {
 
         <p className="text-3xl tracking-tight text-gray-900 py-4">₹{product.price}</p>
         <div className="w-full ">
-          <button className="w-full px-4 py-2 bg-sky-600 rounded-md">
-            Add to Cart
+          <button onClick={() => handleAddToCart(product)} className="w-full px-4 py-2 bg-sky-600 rounded-md">
+            {isItemInCart(product.id, cartItems) ? 'Remove' : 'Add to Cart'}
           </button>
         </div>
         </div>

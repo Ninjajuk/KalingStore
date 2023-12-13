@@ -6,10 +6,11 @@ import { MdDelete } from "react-icons/md";
 import { useRouter } from 'next/navigation'
 import { useSelector,useDispatch  } from "react-redux";
 import Link from 'next/link';
-import {increaseQuantity,decreaseQuantity,removeItem} from "../redux/cartSlice";
+import {increaseQuantity,decreaseQuantity,removeItem,clearCart,saveOrderItems} from "../redux/cartSlice";
+
 
 const CheckoutPage = () => {
-
+  const router = useRouter();
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -22,9 +23,8 @@ const CheckoutPage = () => {
     console.log("Increase quantity for item:", itemId);
     dispatch(increaseQuantity(itemId));
   };
-  const removeFromCArt = (itemid) => {
-    dispatch(removeItem(itemid));
-  };
+
+
 
 
   const [formData, setFormData] = useState({
@@ -62,23 +62,48 @@ const CheckoutPage = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleQuantityChange = (itemId, newQuantity) => {
-    setOrderItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
+  // const handleQuantityChange = (itemId, newQuantity) => {
+  //   setOrderItems((prevItems) =>
+  //     prevItems.map((item) =>
+  //       item.id === itemId ? { ...item, quantity: newQuantity } : item
+  //     )
+  //   );
+  // };
 
-  const handleDeleteItem = (itemId) => {
-    setOrderItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
-  };
+  // const handleDeleteItem = (itemId) => {
+  //   setOrderItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can handle the form submission logic here
+
+    // Log form data and order items
     console.log('Form submitted:', formData);
-    console.log('Order items:', orderItems);
+    console.log('Order items:', cartItems);
+
+
+    //  // Generate a unique order ID (you might handle this on the backend)
+    //  const orderId = generateUniqueId();
+
+      // Prepare order data to submit
+      // const orderData = {
+      //   orderId,
+      //   cartItems,
+      //   quantity: calculateTotalQuantity(cartItems),
+      //   address: formData,
+      // };
+
+    //       // Submit the order
+    // await dispatch(submitOrder(orderData));
+
+     // Clear the cart and remove it from local storage
+    //  dispatch(clearCart());
+
+
+    // Redirect to the ordersuccess page
+    router.push('/ordersuccess');
+
+  
   };
 
   return (
@@ -89,9 +114,9 @@ const CheckoutPage = () => {
 
       <div className="flex flex-col lg:flex-row gap-4 my-4 px-4">
 
-        <div className="w-full lg:w-3/5 p-4 bg-gray-100 rounded-md shadow-md">
+        <div className="w-full lg:w-3/5 p-4 bg-gray-100 rounded-md shadow-md h-full overflow-y-auto">
           <h2 className="text-2xl font-bold mb-4">Contact information</h2>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-600">
@@ -235,7 +260,7 @@ const CheckoutPage = () => {
             </div>
           </form>
         </div>
-
+{cartItems.length>0 &&
         <div className="w-full lg:w-2/5 p-4 rounded-md shadow-md flex flex-col">
           <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
           <div className="w-full flex flex-col">
@@ -249,7 +274,7 @@ const CheckoutPage = () => {
                   <div className="w-1/2 px-2 flex flex-col ">
                     <div>
                       <p className="font-bold whitespace-nowrap">{item.title}</p>
-                      <p className="text-gray-600">${item.price} each</p>
+                      <p className="text-gray-600">₹{item.price} each</p>
                     </div>
 
                     {/* Quantity increase and decrease */}
@@ -277,7 +302,7 @@ const CheckoutPage = () => {
                       <div className="flex items-center ml-auto pt-2">
                         <button
                           type="button"
-                          onClick={() => handleDeleteItem(item.id)}
+                          onClick={() => dispatch(removeItem(item.id))}
                           className="text-red-500 hover:text-red-700 "
                         >
                           <MdDelete />
@@ -290,18 +315,17 @@ const CheckoutPage = () => {
             ))}
           </div>
           <div className='w-full'><TotalPriceSummary cartItems={cartItems} /></div>
-      
-
           <div className=" w-full py-4">
-            <Link
-              // onClick={() => router.push('/ordersuccess')}
-              href="/ordersuccess"
+            <button
+              type="submit"
+              onClick={handleSubmit}
               className=" bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 "
             >
               Confirm Order
-            </Link>
+            </button>
           </div>
         </div>
+      }
       </div>
     </div>
   );
