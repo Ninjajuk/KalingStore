@@ -61,9 +61,9 @@ const Electronics = () => {
         </div>
         <div className="flex flex-col md:w-1/2 h-full gap-4 ">
           <div className="col-span-2 bg-yellow-400  md:h-1/2 rounded-md shadow-md relative hover:scale-105 transition duration-700 ease-in-out">
-            <div className="  w-full h-full rounded-md shadow-md overflow-hidden ">
+            <div className="  w-full h-full  rounded-md shadow-md overflow-hidden ">
               <img
-                className="w-full h-full object-cover  object-center rounded-md shadow-md "
+                className="w-full h-full  object-cover  object-center rounded-md shadow-md "
                 src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg"
                 alt=""
               />
@@ -71,7 +71,7 @@ const Electronics = () => {
             <p className='absolute top-1/2 right-1/2 transform translate-x-1/2 translate-y-1/2  text-2xl font-bold text-gray-800'>Trending products</p>
           </div>
           <div className="col-span-2 bg-gray-400  md:h-1/2 rounded-md shadow-md relative hover:scale-105 transition duration-700 ease-in-out">
-          <div className="  w-full h-full rounded-md shadow-md overflow-hidden ">
+          <div className="  w-full h-full  rounded-md shadow-md overflow-hidden ">
               <img
                 className="w-full h-full object-cover  object-center rounded-md shadow-md "
                 src="https://tailwindui.com/img/ecommerce-images/category-page-01-image-card-04.jpg"
