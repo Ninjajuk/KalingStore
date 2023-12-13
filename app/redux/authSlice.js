@@ -4,9 +4,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isAuthenticated: false,
   user: null, // Set the initial authentication state
-  accessToken: null,
-  refreshToken: null,
-  error: null,
+  // accessToken: null,
+  // refreshToken: null,
+  // error: null,
 };
 
 const authSlice = createSlice({
@@ -20,9 +20,9 @@ const authSlice = createSlice({
     logout(state) {
       state.isAuthenticated = false;
       state.user = null;
-      state.accessToken = null;
-      state.refreshToken = null;
-      state.error = null;
+      // state.accessToken = null;
+      // state.refreshToken = null;
+      // state.error = null;
     }
   }
 });

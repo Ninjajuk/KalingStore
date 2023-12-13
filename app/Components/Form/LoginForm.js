@@ -5,9 +5,11 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import { useRouter } from 'next/navigation'
-
+import { useDispatch } from "react-redux";
+import {login} from '../../redux/authSlice'
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -27,9 +29,11 @@ const LoginForm = () => {
 
     // Check if the email is equal to "biosamsuddin@gmail.com"
     if (email === "biosamsuddin@gmail.com") {
+      dispatch(login({ email, }));
       // Redirect to the dashboard
       router.push("/dashboard");
     } else {
+      dispatch(login({ email, }));
       // Redirect to the UserPage
       router.push("/user");
     }
