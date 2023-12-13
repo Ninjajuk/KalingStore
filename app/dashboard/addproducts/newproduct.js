@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 import ImageIcon from "@mui/icons-material/Image";
 
-
+const categories=['Electronics,Grocery,Meat,Fruits and vegetables']
 const NewProduct = () => {
 //   const dispatch = useDispatch();
 //   const { enqueueSnackbar } = useSnackbar();
@@ -28,7 +28,7 @@ const NewProduct = () => {
   const [cuttedPrice, setCuttedPrice] = useState(0);
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState(0);
-  const [warranty, setWarranty] = useState(0);
+  // const [warranty, setWarranty] = useState(0);
   const [brand, setBrand] = useState("");
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -199,19 +199,12 @@ const NewProduct = () => {
               <div className="flex justify-between gap-4">
                 <TextField
                   label="Category"
-                  select
-                  fullWidth
-                  variant="outlined"
                   size="small"
                   required
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
+                  variant="outlined"
                 >
-                  {/* {categories.map((el, i) => (
-                                <MenuItem value={el} key={i}>
-                                    {el}
-                                </MenuItem>
-                            ))} */}
                 </TextField>
                 <TextField
                   label="Stock"
@@ -227,7 +220,7 @@ const NewProduct = () => {
                   value={stock}
                   onChange={(e) => setStock(e.target.value)}
                 />
-                <TextField
+                {/* <TextField
                   label="Warranty"
                   type="number"
                   variant="outlined"
@@ -240,7 +233,7 @@ const NewProduct = () => {
                   required
                   value={warranty}
                   onChange={(e) => setWarranty(e.target.value)}
-                />
+                /> */}
               </div>
 
               <div className="flex flex-col gap-2">
