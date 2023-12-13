@@ -23,19 +23,19 @@ const CategoryCard = ({ title, description, image, text,colorClass }) => {
 const FeaturedProduct = () => {
   const categories = [
     {
-      title: 'Vegetables',
-      description: 'Find fresh and organic vegetables for your meals.',
+      title: 'Fruits & Vegetables',
+      description: 'Find fresh and organic vegetables for your meals. And aslo Discover a wide variety of juicy and delicious fruits.',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
       colorClass: 'bg-[#4CAF50]',
       text:'Explore our wide selection of fresh and nutritious vegetables. From leafy greens to root vegetables, we have everything you need to create healthy and delicious meals.'
     },
-    {
-        title: 'Fruits',
-        description: 'Discover a wide variety of juicy and delicious fruits.',
-        image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
-        colorClass: 'bg-[#FFC107] ',
-        text:'Discover our juicy and flavorful fruits that are bursting with vitamins and antioxidants. Whether you are looking for a refreshing snack or a sweet addition to your recipes, we have a variety of fruits to satisfy your cravings.'
-      },
+    // {
+    //     title: 'Fruits',
+    //     description: 'Discover a wide variety of juicy and delicious fruits.',
+    //     image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
+    //     colorClass: 'bg-[#FFC107] ',
+    //     text:'Discover our juicy and flavorful fruits that are bursting with vitamins and antioxidants. Whether you are looking for a refreshing snack or a sweet addition to your recipes, we have a variety of fruits to satisfy your cravings.'
+    //   },
     {
       title: 'Electronics',
       description: 'Boost your productivity with Cutting-Edge Electronics for Modern Living',
