@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {customerData} from './customerdata'
 
-const CustomerForm = ({ closeModal, customerTable, updateCustomerTable,editCcustomer }) => {
+const CustomerForm = ({ closeModal, customerTable, updateCustomerTable,editCcustomer ,addCustomer}) => {
 
   const [customer, setCustomer] = useState({
     name: "",
@@ -21,7 +21,7 @@ const CustomerForm = ({ closeModal, customerTable, updateCustomerTable,editCcust
 
     // Handle form submission (e.g., send data to backend)
     console.log("Form submitted:", customer);
-
+    addCustomer(customer)
     closeModal();
   };
 

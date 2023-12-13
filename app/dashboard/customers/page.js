@@ -18,6 +18,15 @@ const CustomersPage = () => {
   const [isEditing, setIsEditing] = useState(false);
 
 
+
+  const addCustomer = (newCustomer) => {
+    // Use the spread operator to create a new array with the existing customers and the new customer
+    const updatedCustomerTable = [newCustomer,...customerTable];
+    // Update the state with the modified customerTable
+    setCustomerTable(updatedCustomerTable);
+    closeModal(); // Close the modal after adding a customer
+  };
+  
   const updateCustomerTable = (newCustomerTable) => {
     setCustomerTable(newCustomerTable);
  };
@@ -110,6 +119,7 @@ const CustomersPage = () => {
             closeModal={closeModal}
             customerTable={customerTable}
             updateCustomerTable={updateCustomerTable}
+            addCustomer={addCustomer}  // Pass the addCustomer function to the CustomerForm
           />
         )}
       </div>
