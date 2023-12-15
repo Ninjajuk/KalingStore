@@ -2,8 +2,9 @@
 
 import { FaAngleLeft,FaAngleRight } from "react-icons/fa";
 import React, { useEffect, useState } from 'react';
-import CategoryCard from "./components/CardFruitsVeg";
+
 import {fetchDataFromAPI} from '../../apiFunction'
+import CategoryCard from "../Product/components/CardFruitsVeg";
 
 //  const categories = [
 //   {
@@ -89,7 +90,7 @@ import {fetchDataFromAPI} from '../../apiFunction'
 // ];
 
 
-const FruitsVegetables = () => {
+const FruitsVegetablespage = () => {
 
   const [currentindex,setCurrentindex]=useState(0)
   const [data,setData]=useState([])
@@ -160,4 +161,4 @@ const handlePrev = () => {
   );
 };
 
-export default FruitsVegetables;
+export default FruitsVegetablespage;

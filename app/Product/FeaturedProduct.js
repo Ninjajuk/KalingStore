@@ -1,20 +1,24 @@
+'use client'
 import React from 'react';
+import Link from 'next/link';
 
-const CategoryCard = ({ title, description, image, text,colorClass }) => {
+const CategoryCard = ({ title, description, image, text,colorClass,href }) => {
+
     // Array of background colors for each card
     const cardColors = ['bg-blue-300', 'bg-green-300', 'bg-yellow-300', 'bg-pink-300', 'bg-purple-300'];
   
-    // Randomly select a background color for each card
-    // const randomColor = cardColors[Math.floor(Math.random() * cardColors.length)];
+
 
   
     return (
-      <div className={`rounded-lg shadow-md mb-6 min-w-[14rem] h-[300px] hover:scale-105 transition duration-700 ease-in-out hover:ring-2 flex flex-col items-center justify-center ${colorClass}`}>
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
+      <Link href={href} className={`rounded-lg shadow-md mb-6 min-w-[14rem] h-[300px] hover:scale-105 transition duration-700 ease-in-out hover:ring-2 flex flex-col items-center justify-center ${colorClass} ${href}`}>
+   
+       <h2 className="text-xl font-semibold mb-2">{title}</h2>
         <p className="text-gray-700 px-4">{description}</p>
         {/* Additional content */}
         {/* <p className="text-gray-700">{text}</p> */}
-      </div>
+       </Link>
+
     );
   };
 
@@ -27,20 +31,15 @@ const FeaturedProduct = () => {
       description: 'Find fresh and organic vegetables for your meals. And aslo Discover a wide variety of juicy and delicious fruits.',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
       colorClass: 'bg-[#4CAF50]',
-      text:'Explore our wide selection of fresh and nutritious vegetables. From leafy greens to root vegetables, we have everything you need to create healthy and delicious meals.'
+      text:'Explore our wide selection of fresh and nutritious vegetables. From leafy greens to root vegetables, we have everything you need to create healthy and delicious meals.',
+      href:'/fruit-vegetables'
     },
-    // {
-    //     title: 'Fruits',
-    //     description: 'Discover a wide variety of juicy and delicious fruits.',
-    //     image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
-    //     colorClass: 'bg-[#FFC107] ',
-    //     text:'Discover our juicy and flavorful fruits that are bursting with vitamins and antioxidants. Whether you are looking for a refreshing snack or a sweet addition to your recipes, we have a variety of fruits to satisfy your cravings.'
-    //   },
     {
       title: 'Electronics',
       description: 'Boost your productivity with Cutting-Edge Electronics for Modern Living',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg',
       colorClass: 'bg-[#03A9F4]',
+      href:'/electronics',
       text:'Explore our range of cutting-edge electronics designed to enhance your everyday life. From smart home devices to the latest gadgets, we have the technology you need to stay connected and entertained.'
     },
     {
@@ -48,6 +47,7 @@ const FeaturedProduct = () => {
       description: 'Convenient and Essential Grocery Items',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
       colorClass: 'bg-[#9E9E9E]',
+      href:'/grocery',
       text:'Find all your essential grocery items in one place. From pantry staples to household necessities, we have a wide selection of products to make your shopping experience convenient and hassle-free.'
     },
     {
@@ -56,6 +56,7 @@ const FeaturedProduct = () => {
       image: 'https://www.bigbasket.com/media/uploads/p/l/40048898_5-fresho-chicken-curry-cut-without-skin-antibiotic-residue-free.jpg?tr=w-640,q=80',
     //   image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg',
     colorClass: 'bg-red-500',
+    href:'/meat',
     text:'Choose from our selection of high-quality meat for all your cooking needs. From tender steaks to succulent roasts, our meat is sourced from trusted suppliers to ensure the best taste and quality.'
     },
   ];

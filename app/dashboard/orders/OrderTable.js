@@ -23,6 +23,7 @@ const OrdersTable = ({searchTerm,sortBy,}) => {
  
 
   const [currentPage, setCurrentPage] = useState(1);
+  
   const handlePageChange = (pageNumber) => {
       setCurrentPage(pageNumber);
     };

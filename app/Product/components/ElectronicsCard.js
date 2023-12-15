@@ -1,11 +1,8 @@
-'use client'
-
-import { FaAngleLeft,FaAngleRight } from "react-icons/fa";
-import React, { useEffect, useState } from 'react';
-import CategoryCard from "./components/CardFruitsVeg";
-import {fetchDataFromAPI} from '../../apiFunction'
-
-//  const categories = [
+import { useDispatch, useSelector } from "react-redux";
+import { addOrRemoveFromCart, isItemInCart } from '../../utility/cartUtils'
+import { useState } from "react";
+import Link from 'next/link';
+// const categories = [
 //   {
 //     id: 101,
 //     title: "Carrots",
@@ -88,76 +85,69 @@ import {fetchDataFromAPI} from '../../apiFunction'
 //   }
 // ];
 
+const weightOptions = [1, 2, 3, 5]; // You can modify the weight options as needed
 
-const FruitsVegetables = () => {
-
-  const [currentindex,setCurrentindex]=useState(0)
-  const [data,setData]=useState([])
-
-  const itemsPerpage=4
+function ElectronicsCard({visibleCards}) {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart);
 
 
-  useEffect(()=>{
-    async function getData() {
-      try {
-        const vegData = await fetchDataFromAPI('vegetables');
-        setData(vegData);
-      } catch (error) {
-        console.log('Error in fetching data:', error);
-     
-      }
-    }
-
-    getData();
-  },[data])
-
-  const weightOptions = [1, 2, 3, 5];
-
- // Change from 'data.length' to 'categories.length'
-const handleNext = () => {
-  const newIndex = currentindex + itemsPerpage;
-  if (newIndex < data.length) {
-    setCurrentindex(newIndex);
-  }
-};
-
-const handlePrev = () => {
-  const newIndex = currentindex - itemsPerpage;
-  if (newIndex >= 0) {
-    setCurrentindex(newIndex);
-  }
-};
-
-  const visibleCards = data.slice(currentindex, currentindex + itemsPerpage);
-
-
-
+  const handleAddToCart = (item) => {
+    addOrRemoveFromCart(dispatch, item, cartItems);
+  };
+  
   return (
-    <section className="w-full bg-gray-100">
-      <div className="mx-auto max-w-2xl px-4  sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-
-        <div className="flex justify-between ">
-          <h1 className="text-xl lg:text-2xl font-bold py-4   text-blue-800">
-           Vegetables
-          </h1>
-         
-          <div className='flex items-center space-x-4'>
-            <a href='' className="hover:underline text-slate-900 font-semibold text-lg">View All</a>
-            <button disabled={currentindex === 0} onClick={handlePrev} className={` hover:rounded-full  ${currentindex===0?'opacity-25 pointer-events-none':'opacity-1 hover:bg-gray-400 cursor-pointer'}`}><FaAngleLeft className="w-6 h-6"/></button>
-            <button onClick={handleNext} disabled={currentindex + itemsPerpage >= data.length} className={`cursor-pointer hover:rounded-full ${currentindex + itemsPerpage >= data.length?'opacity-25 pointer-events-none':'opacity-1 hover:bg-gray-400 cursor-pointer'} `}><FaAngleRight className="w-6 h-6"/></button>
-
+    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    {visibleCards.slice(0, 16).map((product) => (
+      <div
+        key={product.id}
+        className="group relative px-2 py-2 shadow-md rounded-md"
+      >
+        <Link href={`/shop/${product.id}`}>
+          <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <img
+              src={product.thumbnail}
+              alt={product.title}
+              className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+            />
           </div>
+        </Link>
+
+        <div className="mt-4 flex flex-col">
+          <Link href={`/shop/${product.id}`}>
+            <p className="text-sm font-medium text-gray-900">
+              {product.title}
+            </p>
+          </Link>
+          <p className="text-sm font-medium text-gray-900 flex items-center justify-between">
+            <span className="font-semibold text-lg">
+              ₹{product.price}
+            </span>
+            <span className="text-green-500">
+              {product.discountPercentage}% off
+            </span>
+          </p>
         </div>
-        <p>Find fresh and organic vegetables for your meals.</p>
 
-
-        <div>
-          <CategoryCard visibleCards={visibleCards}/>
-
+        <div className="text-center py-3 mb-3">
+          <button
+            onClick={() => handleAddToCart(product)}
+            className={`w-full text-white bg-blue-700  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
+          >
+            <span className={`inline-block w-18 `}>
+              {isItemInCart(product.id, cartItems)
+                ? "Remove"
+                : "Add to Cart"}
+              {/* {isItemInCart(product.id,cartItems) ? "Remove" : "Add to Cart"} */}
+            </span>
+          </button>
         </div>
       </div>
-    </section>
+    ))}
+  </div>
   );
-};
+}
 
-export default FruitsVegetables;
+export default ElectronicsCard;
+
+
