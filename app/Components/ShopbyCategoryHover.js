@@ -12,7 +12,7 @@ const ShopHover = () => {
   return (
     <div className="min-w-[24rem] absolute left-0 top-full mt-1 bg-white p-2 rounded-md shadow-md flex gap-2">
       <div className="w-1/2 overflow-hidden rounded-lg">
-        <img src='https://www.wrightresearch.in/static/img/top-header/tool-drop.webp' alt='hi' className="w-full h-full object-cover"/>
+        <img src='https://www.bigbasket.com/media/uploads/p/m/10000263_12-fresho-strawberry.jpg?tr=w-1200,q=80' alt='hi' className="w-full h-full object-cover"/>
 
       </div>
       <div className="w-1/2">

@@ -5,7 +5,7 @@ import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import StoreProvider from './StoreProvider'
 import { useState } from 'react'
-
+import style from './module.style.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
