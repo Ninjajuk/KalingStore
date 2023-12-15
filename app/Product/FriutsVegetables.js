@@ -120,8 +120,8 @@ const handlePrev = () => {
           </h1>
           <div className='flex items-center space-x-4'>
             <a href='' className="hover:underline text-slate-900 font-semibold text-lg">View All</a>
-            <button onClick={handlePrev} className="cursor-pointer hover:rounded-full hover:bg-gray-400" disabled={currentindex === 0}><FaAngleLeft className="w-6 h-6"/></button>
-            <button onClick={handleNext} className="cursor-pointer hover:rounded-full hover:bg-gray-400"disabled={currentindex + itemsPerpage >= categories.length}><FaAngleRight className="w-6 h-6"/></button>
+            <button disabled={currentindex === 0} onClick={handlePrev} className={` hover:rounded-full  ${currentindex===0?'opacity-25':'opacity-1 hover:bg-gray-400 cursor-pointer'}`}><FaAngleLeft className="w-6 h-6"/></button>
+            <button onClick={handleNext} disabled={currentindex + itemsPerpage >= categories.length} className={`cursor-pointer hover:rounded-full hover:bg-gray-400`}><FaAngleRight className="w-6 h-6"/></button>
 
           </div>
         </div>
