@@ -1,7 +1,7 @@
 'use client'
 import React, { useState,  } from 'react';
 import OrdersTable from './OrderTable';
-import Pagination from '@/app/Components/Pagination';
+
 const products = [
   {
     id: 1,
@@ -125,7 +125,7 @@ const OrdersPage = () => {
 
 
   return (
-    <section className="w-full   h-full ">
+    <section className="w-full   h-full bg-white">
       <div className="w-full flex-flex-col h-full">
         {/* Product Headline */}
         <div className="w-full lg:h-1/6 bg-white flex flex-col">

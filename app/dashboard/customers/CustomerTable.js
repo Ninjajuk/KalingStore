@@ -16,7 +16,7 @@ const CustomerTable = ({customerTable,deleteCustomer,editCcustomer}) => {
   
   return (
     <>
-<section className="antialiased bg-gray-100 text-gray-600  px-4">
+<section className="antialiased bg-gray-100 text-gray-600  ">
     <div className="flex flex-col justify-center h-full">
         {/* <!-- Table --> */}
         <div className="w-full max-w-2xl lg:max-w-7xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">

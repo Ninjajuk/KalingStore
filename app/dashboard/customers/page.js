@@ -62,7 +62,7 @@ const CustomersPage = () => {
     };
 
   return (
-    <section className="w-full   h-full ">
+    <section className="w-full   h-full bg-white ">
       <div className="w-full flex-flex-col h-full">
         {/* Product Headline */}
         <div className="h-1/3 bg-white flex flex-col">

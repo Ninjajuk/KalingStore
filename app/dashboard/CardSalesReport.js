@@ -2,9 +2,9 @@
 import React from 'react';
 
 const cardSales = [
-    { title: 'Total Earnings', price: '₹124500', path: '',color:'bg-green-600' },
-    { title: 'Total Sales', price: '₹147', path: '',color:'bg-blue-600' },
-    { title: 'Total Orders', price: '85', path: '',color:'bg-gray-600' },
+    { title: 'Total Earnings', price: '₹124500', path: '',color:'bg-green-700' },
+    { title: 'Total Sales', price: '₹147', path: '',color:'bg-yellow-700' },
+    { title: 'Total Orders', price: '85', path: '',color:'bg-sky-700' },
   ];
   
 

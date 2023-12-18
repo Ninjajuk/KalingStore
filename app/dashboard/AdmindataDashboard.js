@@ -22,7 +22,7 @@ import {
     FaBitbucket 
   } from "react-icons/fa";
 
-  import { MdDashboard, MdOutlineSms, MdAnalytics,MdLogout } from "react-icons/md";
+  import { MdDashboard, MdOutlineSms, MdAnalytics,MdLogout,MdShoppingCart } from "react-icons/md";
   
   export const data = [
     {
@@ -40,7 +40,7 @@ import {
     },
     {
       menu: "Add Products",
-      icon: <FaBitbucket  />,
+      icon: <MdShoppingCart  />,
       path: "/dashboard/addproducts",
       active: false
     },

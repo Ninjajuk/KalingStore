@@ -1,4 +1,4 @@
-import {footerdata} from '../Components/data'
+import {footerdata,footerdata1} from '../Components/data'
 import Link from 'next/link'
 import { FaWhatsapp,FaInstagram } from "react-icons/fa";
 const Footer = () => {
@@ -17,12 +17,12 @@ const Footer = () => {
             </div>
 
             <div className="md:w-3/5  px-2 py-4">
-              <h1 className='pl-4 text-2xl font-semibold'>Shop</h1>
+              <h1 className=' text-2xl font-semibold'>Shop</h1>
               <div className="w-full flex flex-col md:flex-row pl-4 pr-1">
                 <div className="md:w-1/5 flex flex-col flex-wrap pb-8">
                   <div className="flex flex-wrap">
                     {footerdata.map((item) => (
-                      <Link href={item.href} className="py-2 w-1/2 md:w-full">
+                      <Link href={item.href} className="py-2 w-1/2 md:w-full hover:underline">
                         {item.title}
                       </Link>
                     ))}
@@ -30,8 +30,8 @@ const Footer = () => {
                 </div>
                 <div className="md:w-2/5 pb-8 pl-8">
                   <div className="flex flex-wrap">
-                  {footerdata.map((item) => (
-                      <Link href={item.href} className="py-2 w-1/2 md:w-full">
+                  {footerdata1.map((item) => (
+                      <Link href={item.href} className="py-2 w-1/2 md:w-full hover:underline">
                         {item.title}
                       </Link>
                     ))}
@@ -58,7 +58,7 @@ const Footer = () => {
                           Subscribe
                         </button>
                       </form>
-                      <h5 className="mb-4 font-medium text-lg">
+                      <h5 className="my-2 font-bold text-lg">
                         Visit our store
                       </h5>
                       <ul>
@@ -129,7 +129,7 @@ const Footer = () => {
                     <li className='px-2 hover:text-blue-400'><a href=''>Shipping & Payment Policy</a></li>
                 </ul>
             </div>
-            <div className='flex items-center justify-center pt-4'><h1 className=" text-[#ba9d5a] font-medium py-2"> @ Copyright 2023 kalingStore. All right reserved</h1></div>
+            <div className='flex items-center justify-center pt-4'><h1 className=" text-[#ba9d5a] font-medium py-2"> @ Copyright 2023 Yingkiong Store. All right reserved</h1></div>
         </div>
       </footer>
     );

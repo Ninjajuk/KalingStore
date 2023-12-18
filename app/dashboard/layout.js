@@ -18,7 +18,7 @@ function AdminDashboard({children,}) {
                 {/* <NavbarUser/> */}
                 <AdminSidebar/>
               </div>
-              <main className="md:w-4/5  rounded-md bg-yellow-600"style={{height:'calc(100vh - 4rem)',}}> {children}</main>
+              <main className="md:w-4/5  rounded-md bg-white"style={{height:'calc(100vh - 4rem)',}}> {children}</main>
             </div>
         </section>
       </>

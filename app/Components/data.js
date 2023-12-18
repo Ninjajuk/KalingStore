@@ -12,15 +12,26 @@
 // ]
 
 export const footerdata=[
-    {title:'Latest Update',href:'/',isActive:false,},
-    {title:'About us',href:'about-us',isActive:false,submenu:[{name:'About Us',href:'about-us',current: false,},{name:'Director desk',href:'director-desk',current: false,},{name:'Advisory Panel',href:'advisory-panel',current: false,},{name:'Faculty Panel',href:'faculty-panel',current: false,}]},
-    {title:'Courses',href:'courses',isActive:false,},
-    {title:'Mentorship',href:'mentorship',isActive:false,},
-    {title:'Test Series',href:'',isActive:false,},
-    {title:'Current Affairs',href:'',isActive:false,},
-    {title:'Student Portal',href:'',isActive:false,},
-    {title:'Centers',href:'',isActive:false,},
+    {title:'Fruits-vegetables',href:'/',isActive:false,},
+    {title:'Electronics',href:'/electronics',isActive:false,submenu:[{name:'About Us',href:'about-us',current: false,},{name:'Director desk',href:'director-desk',current: false,},{name:'Advisory Panel',href:'advisory-panel',current: false,},{name:'Faculty Panel',href:'faculty-panel',current: false,}]},
+    {title:'Grocery',href:'/grocery',isActive:false,},
+    {title:'Meat',href:'/meat',isActive:false,},
+    {title:'Local Items',href:'/local-tems',isActive:false,},
+    {title:'Clothes',href:'/clothes',isActive:false,},
+    {title:'Stationary',href:'/stationary',isActive:false,},
+    // {title:'Clothes',href:'',isActive:false,},
     ]
+
+    export const footerdata1=[
+      {title:'Potato',href:'/',isActive:false,},
+      {title:'Onion',href:'/electronics',isActive:false,submenu:[{name:'About Us',href:'about-us',current: false,},{name:'Director desk',href:'director-desk',current: false,},{name:'Advisory Panel',href:'advisory-panel',current: false,},{name:'Faculty Panel',href:'faculty-panel',current: false,}]},
+      {title:'Mobiles',href:'/grocery',isActive:false,},
+      {title:'Laptop',href:'/meat',isActive:false,},
+      {title:'Earphone',href:'/local-tems',isActive:false,},
+      {title:'Carrot',href:'/clothes',isActive:false,},
+      {title:'Meat',href:'/stationary',isActive:false,},
+      // {title:'Clothes',href:'',isActive:false,},
+      ]
 
 
     // export const data = [
