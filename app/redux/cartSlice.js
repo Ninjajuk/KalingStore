@@ -1,15 +1,16 @@
 
-
-
 import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState = [];
+const initialState = [];
 // Load cart from local storage or use an empty array as the initial state
-const initialState = JSON.parse(localStorage.getItem("cart")) || [];
+// let initialState;
+// if (typeof window !== 'undefined') {
+//   initialState = JSON.parse(localStorage.getItem("cart")) || [];
+// }
 
-const saveCartToLocalStorage = (cart) => {
-  localStorage.setItem("cart", JSON.stringify(cart));
-};
+// const saveCartToLocalStorage = (cart) => {
+//   localStorage.setItem("cart", JSON.stringify(cart) || []);
+// };
 
 const cartSlice = createSlice({
   name: "cart",
@@ -38,33 +39,33 @@ const cartSlice = createSlice({
           quantity: 1,
         });
       }
-      saveCartToLocalStorage(state);
+      // saveCartToLocalStorage(state);
     },
     removeItem(state, action) {
       // return state.filter((item) => item.id !== action.payload);
       const newState = state.filter((item) => item.id !== action.payload);
-      saveCartToLocalStorage(newState);
+      // saveCartToLocalStorage(newState);
       return newState;
     },
     increaseQuantity(state, action) {
       const item = state.find((item) => item.id === action.payload);
       if (item) {
         item.quantity += 1;
-        saveCartToLocalStorage(state);
+        // saveCartToLocalStorage(state);
       }
     },
     decreaseQuantity(state, action) {
       const item = state.find((item) => item.id === action.payload);
       if (item && item.quantity > 1) {
         item.quantity -= 1;
-        saveCartToLocalStorage(state);
+        // saveCartToLocalStorage(state);
       }
     },
 
     // // Code for resetting the cart)
     clearCart: (state) => {
       const newState = [];
-      localStorage.removeItem("cart");
+      // localStorage.removeItem("cart");
       return newState;
     },
   },

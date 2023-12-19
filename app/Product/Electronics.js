@@ -31,7 +31,9 @@ const Electronics = () => {
   ];
 
   return (
-    <div className="container mx-auto md:px-[8rem] bg-gray-100 rounded-md py-4">
+    <section className="w-full bg-gray-100">
+    <div className="mx-auto max-w-2xl px-4  sm:px-6  lg:max-w-7xl lg:px-8">
+
       <h1 className="text-2xl md:text-4xl font-bold mb-8 text-blue-800">
         Electronics
       </h1>
@@ -83,6 +85,8 @@ const Electronics = () => {
         </div>
       </div>
     </div>
+
+    </section>
   );
 };
 

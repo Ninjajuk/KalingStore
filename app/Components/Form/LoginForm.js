@@ -35,7 +35,7 @@ const LoginForm = () => {
     } else {
       dispatch(login({ email, }));
       // Redirect to the UserPage
-      router.push("/user");
+      router.push("/checkout");
     }
 
   };
@@ -173,7 +173,7 @@ const LoginForm = () => {
               {/* or continue with */}
             </form>
             <div className="flex justify-between mt-4">
-              <p>Don't have an account</p>
+              <p>Don t have an account</p>
               <a href="/register" className="text-blue-500 hover:underline">
                 Register
               </a>

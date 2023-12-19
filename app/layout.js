@@ -1,11 +1,12 @@
 'use client'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Navbar from './Components/Navbar'
+
 import Footer from './Components/Footer'
 import StoreProvider from './StoreProvider'
 import { useState } from 'react'
 import style from './module.style.css'
+import Navbar1 from './Components/Navbar/Navbar3Dark'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <StoreProvider>
-        {isLoggedIn && <Navbar/>}
+        {isLoggedIn && <Navbar1/>}
         {/* <Navbar/> */}
         {children}
         <Footer/>

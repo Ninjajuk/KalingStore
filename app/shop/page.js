@@ -1,18 +1,17 @@
 
 
 import React from 'react';
+import ProductList from '../Product/ProductList';
 
 
-const ProductList = () => {
+const ProductList1 = () => {
   return (
-    <div>
-      <h1>Product 1 </h1>
-      <h1>Product 2 </h1>
-      <h1>Product 3 </h1>
-    </div>
+    <main>
+  <ProductList/>
+    </main>
   );
 };
 
 
 
-export default ProductList;
+export default ProductList1;

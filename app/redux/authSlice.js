@@ -1,12 +1,17 @@
-// Redux/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
+// Check local storage for initial authentication state
+let storedIsAuthenticated;
+let storedUser;
+
+if (typeof window !== 'undefined') {
+  storedIsAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  storedUser = JSON.parse(localStorage.getItem("user")) || null;
+}
+
 const initialState = {
-  isAuthenticated: false,
-  user: null, // Set the initial authentication state
-  // accessToken: null,
-  // refreshToken: null,
-  // error: null,
+  isAuthenticated: storedIsAuthenticated,
+  user: storedUser,
 };
 
 const authSlice = createSlice({
@@ -16,15 +21,20 @@ const authSlice = createSlice({
     login: (state, action) => {
       state.isAuthenticated = true;
       state.user = action.payload;
+
+      // Save user information in local storage
+      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("isAuthenticated", "true");
     },
     logout(state) {
       state.isAuthenticated = false;
       state.user = null;
-      // state.accessToken = null;
-      // state.refreshToken = null;
-      // state.error = null;
-    }
-  }
+
+      // Clear user information from local storage
+      localStorage.removeItem("user");
+      localStorage.setItem("isAuthenticated", "false");
+    },
+  },
 });
 
 export const { login, logout } = authSlice.actions;

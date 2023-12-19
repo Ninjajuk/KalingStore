@@ -18,7 +18,9 @@ const user=useSelector((state)=>state.auth.user)
 
   const [isShopHovered, setIsShopHovered] = useState(false);
   const[isCartOpen,setIsCartOpen]=useState(false)
-  const [activeLink, setActiveLink] = useState("/dashboard"); // Initialize with the default active link
+  const [activeLink, setActiveLink] = useState("/dashboard"); 
+
+  
   const handleLinkClick = (href) => {
     setActiveLink(href);
   };

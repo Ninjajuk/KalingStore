@@ -59,14 +59,14 @@ const filterProductsData=['All','Electronics','Vegetables','Meats']
         <Bunks />
         <FeaturedProduct />
         <ShopByCategory />
-        <Electronics />
-        <div className="py-4"></div>
+        {/* <Electronics /> */}
+    
         <FruitsVegetables />
-        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <div className="overflow-x-auto bg-gray-400">
             <ul className="flex items-center justify-center">
-              {filterProductsData.map((item) => (
-                <li className=" px-4 py-2  hover:bg-gray-600 cursor-pointer rounded-md shadow-md">
+              {filterProductsData.map((item,index) => (
+                <li key={index} className=" px-4 py-2  hover:bg-gray-600 cursor-pointer rounded-md shadow-md">
                   {item}
                 </li>
               ))}

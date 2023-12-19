@@ -18,7 +18,7 @@ export const submitOrder = (orderData) => async (dispatch) => {
 };
 
 const initialState = {
-  orderDetails: null,
+  // orderDetails: null,
 };
 
 const orderSlice = createSlice({

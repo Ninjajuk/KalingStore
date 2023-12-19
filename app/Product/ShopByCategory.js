@@ -22,14 +22,14 @@ const ShopByCategory = () => {
       text:''
     },
     {
-      title: 'Electronics',
-      description: 'Boost your productivity Cutting-Edge Electronics for Modern Living',
+      title: 'Cosmetic',
+      description: 'Boost your confidence with Cosmetic for Modern Living',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg',
       text:'Explore our range of cutting-edge electronics designed to enhance your everyday life. From smart home devices to the latest gadgets, we have the technology you need to stay connected and entertained.'
     },
     {
-      title: 'Grocery',
-      description: 'Convenient and Essential Grocery Items',
+      title: 'Stationery',
+      description: 'Convenient and Essential Stationery Items',
       image: 'https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg',
       text:'Find all your essential grocery items in one place. From pantry staples to household necessities, we have a wide selection of products to make your shopping experience convenient and hassle-free.'
     },
@@ -43,15 +43,21 @@ const ShopByCategory = () => {
   ];
 
   return (
-    <div className="w-full  bg-gray-100 rounded-md px-4">
-      <h1 className="text-2xl md:text-4xl font-bold py-4 md:text-center  text-blue-800">Shop by Category</h1>
+    <section className="w-full bg-gray-100">
+      <div className="mx-auto max-w-2xl px-4  sm:px-6  lg:max-w-7xl lg:px-8">
+        <div className="w-full  bg-gray-100 rounded-md px-4">
+          <h1 className="text-2xl md:text-4xl font-bold py-4  text-blue-800">
+            Shop by Category
+          </h1>
 
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
-        {categories.map((category, index) => (
-          <CategoryCard key={index} {...category} />
-        ))}
+          <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
+            {categories.map((category, index) => (
+              <CategoryCard key={index} {...category} />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

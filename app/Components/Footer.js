@@ -21,8 +21,8 @@ const Footer = () => {
               <div className="w-full flex flex-col md:flex-row pl-4 pr-1">
                 <div className="md:w-1/5 flex flex-col flex-wrap pb-8">
                   <div className="flex flex-wrap">
-                    {footerdata.map((item) => (
-                      <Link href={item.href} className="py-2 w-1/2 md:w-full hover:underline">
+                    {footerdata.map((item,index) => (
+                      <Link href={item.href} key={index} className="py-2 w-1/2 md:w-full hover:underline">
                         {item.title}
                       </Link>
                     ))}
@@ -30,8 +30,8 @@ const Footer = () => {
                 </div>
                 <div className="md:w-2/5 pb-8 pl-8">
                   <div className="flex flex-wrap">
-                  {footerdata1.map((item) => (
-                      <Link href={item.href} className="py-2 w-1/2 md:w-full hover:underline">
+                  {footerdata1.map((item,index) => (
+                      <Link key={index} href={item.href} className="py-2 w-1/2 md:w-full hover:underline">
                         {item.title}
                       </Link>
                     ))}
