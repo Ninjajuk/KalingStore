@@ -103,14 +103,14 @@ const FruitsVegetablespage = () => {
       try {
         const vegData = await fetchDataFromAPI('vegetables');
         setData(vegData);
+        console.log(vegData)
       } catch (error) {
         console.log('Error in fetching data:', error);
-     
       }
     }
 
     getData();
-  },[data])
+  },[])
 
   const weightOptions = [1, 2, 3, 5];
 

@@ -191,7 +191,7 @@ const products = [
           </div>
         </div> */}
               <div className="w-full lg:h-1/6 bg-white flex flex-col">
-          <h1 className="px-6 py-1 md:text-3xl font font-semibold  text-sky-600">
+          <h1 className="px-6 py-1 md:text-xl font font-semibold  text-sky-600">
           Add your products
           </h1>
           {/* <p className="px-6">Navigating Orders with Confidence</p> */}

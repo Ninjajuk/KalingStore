@@ -10,7 +10,6 @@ import CategoryCard from "../Product/components/CardFruitsVeg";
 
 
 const Grocery = () => {
-
   const [data,setData]=useState([])
 
   useEffect(()=>{

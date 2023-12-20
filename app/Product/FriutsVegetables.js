@@ -96,7 +96,6 @@ const FruitsVegetables = () => {
 
   const itemsPerpage=4
 
-
   useEffect(()=>{
     async function getData() {
       try {
@@ -109,7 +108,7 @@ const FruitsVegetables = () => {
     }
 
     getData();
-  },[data])
+  },[])
 
   const weightOptions = [1, 2, 3, 5];
 
@@ -134,7 +133,7 @@ const handlePrev = () => {
 
   return (
     <section className="w-full bg-gray-100">
-      <div className="mx-auto max-w-2xl px-4  sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-4  sm:px-6  lg:max-w-7xl lg:px-8">
 
         <div className="flex justify-between ">
           <h1 className="text-xl lg:text-2xl font-bold py-4   text-blue-800">
@@ -150,10 +149,8 @@ const handlePrev = () => {
         </div>
         <p>Find fresh and organic vegetables for your meals.</p>
 
-
         <div>
           <CategoryCard visibleCards={visibleCards}/>
-
         </div>
       </div>
     </section>

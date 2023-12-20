@@ -6,7 +6,7 @@ import { useSelector,  } from "react-redux";
 import { calculateSubtotal, calculateTotal } from "../utility/cartUtils"; 
 import TotalPriceSummary from '../checkout/TotalPriceSummary';
 
-import { resetCart } from '../redux/cartSlice'
+import { clearCart } from '../redux/cartSlice'
 
 
 const OrderSuccessPage = () => {
@@ -59,9 +59,9 @@ const OrderSuccessPage = () => {
   // More products...
 ]
 
-// //for resetting the cart)
+// for resetting the cart)
 // useEffect(() => {
-//   dispatch(resetCart());
+//   dispatch(clearCart());
 // }, [dispatch]);
 
   return (
@@ -129,7 +129,10 @@ const OrderSuccessPage = () => {
                           <button
                             type="button"
                             className="font-medium text-indigo-600 hover:text-indigo-500 "
-                            onClick={() => router.push('/')}
+                            onClick={() => {
+                              dispatch(clearCart()); // Dispatch the clearCart action here
+                              router.push('/');
+                            }}
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>

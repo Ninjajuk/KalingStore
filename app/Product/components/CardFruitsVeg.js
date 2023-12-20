@@ -94,12 +94,13 @@ function CategoryCard({visibleCards}) {
 
   const handleAddToCart = (item) => {
     addOrRemoveFromCart(dispatch, item, cartItems);
+    console.log(item)
   };
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-4">
-      {visibleCards.map((item, index) => (
-        <div key={index} className="bg-white p-6 rounded-lg shadow-md flex flex-col">
+      {visibleCards.map((item,) => (
+        <div key={item._id} className="bg-white p-6 rounded-lg shadow-md flex flex-col">
           <div className="mb-4 aspect-w-1 aspect-h-1">
             <img
               src={item.thumbnail}
@@ -132,7 +133,7 @@ function CategoryCard({visibleCards}) {
           <div className="flex items-center justify-center mt-auto ring-1 rounded-md ring-red-500 hover:bg-red-500 hover:text-white cursor-pointer">
             <button onClick={() => handleAddToCart(item)} type="button" className="px-4 py-2">
               {/* Add */}
-              {isItemInCart(item.id, cartItems) ? 'Remove' : 'Add to Cart'}
+              {isItemInCart(item._id, cartItems) ? 'Remove' : 'Add to Cart'}
             </button>
           </div>
         </div>

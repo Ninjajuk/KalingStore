@@ -1,19 +1,3 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 'use client'
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
@@ -32,13 +16,13 @@ import { usePathname } from 'next/navigation'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-const navigationLeft = [
-  { name: "Home", href: "/", current: false },
-  { name: "Shop", href: "/shop", current: false },
-  { name: "About us", href: "/about-us", current: false },
-  { name: "Contact Us", href: "/contact-us", current: false },
+// const navigationLeft = [
+//   { name: "Home", href: "/", current: false },
+//   { name: "Shop", href: "/shop", current: false },
+//   { name: "About us", href: "/about-us", current: false },
+//   { name: "Contact Us", href: "/contact-us", current: false },
 
-];
+// ];
 
 export default function Navbar1() {
   const pathname = usePathname()
@@ -50,12 +34,6 @@ const cartItems = useSelector((state) => state.cart);
   const [isShopHovered, setIsShopHovered] = useState(false);
   const[isCartOpen,setIsCartOpen]=useState(false)
 
-  // const [activeLink, setActiveLink] = useState("/dashboard"); 
-
-  
-  // // const handleLinkClick = (href) => {
-  // //   setActiveLink(href);
-  // // };
 
   const handlecartOpen = () => {
     setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
@@ -68,21 +46,11 @@ const cartItems = useSelector((state) => state.cart);
             <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
               <div className="relative flex h-16 items-center justify-between">
                 <div className="flex items-center px-2 lg:px-0">
-                  <div className="flex-shrink-0">
-                    {/* <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
-                  <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  /> */}
+                  {/* <div className="flex-shrink-0"> */}
                     <h1 className="hidden lg:flex rounded-md px-3 py-2 text-lg font-bold text-gray-300 hover:bg-gray-700 hover:text-white">
                       YinKiong Store
                     </h1>
-                  </div>
+                  {/* </div> */}
                   <div className="hidden lg:ml-6 lg:block">
                     <div className="flex space-x-4">
                       {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
@@ -334,21 +302,21 @@ const cartItems = useSelector((state) => state.cart);
                 <div className="mt-3 space-y-1 px-2">
                   <Disclosure.Button
                     as="a"
-                    href="#"
+                    href="/profile"
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                   >
                     Your Profile
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="a"
-                    href="#"
+                    href="/"
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                   >
                     Settings
                   </Disclosure.Button>
                   <Disclosure.Button
                     as="a"
-                    href="#"
+                    href="/"
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                   >
                     Sign out

@@ -15,6 +15,7 @@ const SignUpForm = () => {
   const [user, setUser] = useState(initailUserState);
 //   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
+
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };

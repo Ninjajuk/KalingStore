@@ -34,32 +34,7 @@ const AboutUs = () => {
           bgcolor='bg-green-400'
           content="At Yingkiong Store, our mission is to our product better. We believe in  core beliefs, and every product we offer is a reflection of that commitment. We strive to excel in every aspect of our business."
         />
-
-        {/* Add additional cards for other sections as needed */}
       </div>
-
-      {/* <div className=" grid grid-cols-1 md:grid-cols-3 gap-4">
-      <Card
-          title="Why Choose [Your Brand Name]?"
-          listItems={[
-            "<strong>Quality Products:</strong> We source only the finest [your product category] to ensure that you receive products that are not only stylish but durable.",
-            "<strong>Exceptional Service:</strong> Your satisfaction is our priority. Our dedicated customer support team is here to assist you at every step.",
-            "<strong>Community-Focused:</strong> [Your Brand Name] is more than just a brand; it's a community. Join us on [social media platforms] to connect with like-minded individuals.",
-          ]}
-        />
-
-        <Card
-          title="Sustainability"
-          content="We are committed to [your sustainability initiatives]. By choosing [Your Brand Name], you're not just buying a product; you're supporting a [adjective, e.g., eco-friendly] movement towards a better, more sustainable future."
-        />
-
-        <Card
-          title="Join Us on this Journey"
-          content="Whether you're a returning customer or just discovering us for the first time, we invite you to join us on this exciting journey. Thank you for being a part of the [Your Brand Name] family."
-        />
-      </div> */}
-
-      {/* Add Contact Information and Social Media Links as needed */}
     </div>
     </section>
 

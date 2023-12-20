@@ -21,15 +21,15 @@ export default function RootLayout({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   
 
-  const handleLogin = () => {
-    // Implement your login logic here
-    setIsLoggedIn(true);
-  };
+  // const handleLogin = () => {
+  //   // Implement your login logic here
+  //   setIsLoggedIn(true);
+  // };
 
-  const handleLogout = () => {
-    // Implement your logout logic here
-    setIsLoggedIn(false);
-  };
+  // const handleLogout = () => {
+  //   // Implement your logout logic here
+  //   setIsLoggedIn(false);
+  // };
 
   return (
     <html lang="en">
