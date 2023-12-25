@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const app=express()
 const port=3030
-const databaseUrl = process.env.DATABASE_URL;
+// const databaseUrl = process.env.DATABASE_URL;
 
 
 

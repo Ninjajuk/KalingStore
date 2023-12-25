@@ -67,6 +67,7 @@ exports.removeproduct=async(req,res)=>{
         const delproduct=await Product.findByIdAndDelete(productId)
        
         if (delproduct) {
+            console.log('Product deleted successfully')
             res.status(200).json({ message: 'Product deleted successfully.' });
         } else {
             res.status(404).json({ error: 'Product not found.' });
