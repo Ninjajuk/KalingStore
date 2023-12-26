@@ -70,13 +70,7 @@ import {
       path: "/dashboard/settings",
       active: false
     }
-    // ,
-    // {
-    //   menu: "Logout",
-    //   icon: <FaPowerOff/>,
-    //   path: "/dashboard/logout",
-    //   active: false
-    // }
+
   ];
 
 

@@ -1,14 +1,19 @@
 
 'use client'
 
+// import { useSelector } from "react-redux";
 import AdminSidebar from "./AdminSidebar";
-
+// import {redirect} from 'next/navigation'
 
 
 
 
 
 function AdminDashboard({children,}) {
+  // const isAuthenticated=useSelector(item=>item.auth)
+  // if(!isAuthenticated){
+  //   redirect('/')
+  // }
 
     return (
       <>
@@ -18,7 +23,7 @@ function AdminDashboard({children,}) {
                 {/* <NavbarUser/> */}
                 <AdminSidebar/>
               </div>
-              <main className="md:w-4/5  rounded-md bg-white"style={{height:'calc(100vh - 4rem)',}}> {children}</main>
+              <div className="md:w-4/5  rounded-md bg-white"style={{height:'calc(100vh - 4rem)',}}> {children}</div>
             </div>
         </section>
       </>

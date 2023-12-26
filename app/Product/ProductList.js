@@ -12,6 +12,7 @@ import { addOrRemoveFromCart, isItemInCart } from '../utility/cartUtils'
 import FeaturedProduct from "./FeaturedProduct";
 import {getallProducts, } from '../../apiFunction'
 import FruitsVegetablespage from "../fruit-vegetables/page";
+import TrendingProducts from "./components/TrendingProducts";
   
   export default function ProductList() {
 
@@ -52,6 +53,7 @@ const filterProductsData=['All','Electronics','Vegetables','Meats']
         <FeaturedProduct />
         <ShopByCategory />
         {/* <Electronics /> */}
+        <TrendingProducts/>
         <FruitsVegetablespage />
         <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6  lg:max-w-7xl lg:px-8">
           <div className="overflow-x-auto bg-gray-400">
