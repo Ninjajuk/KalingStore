@@ -69,8 +69,8 @@ const products = [
   
           <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
             {products.map((product) => (
-              <div key={product.id} className="group relative">
-                <div className="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80">
+              <div key={product.id} className="group relative flex flex-col justify-between">
+                <div className="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80 ">
                   <img
                     src={product.imageSrc}
                     alt={product.imageAlt}
@@ -85,7 +85,7 @@ const products = [
                 </h3>
                 <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                 <p className="mt-1 text-sm font-medium text-gray-900">₹{product.price}</p>
-                <div className="mt-2 mb-3 w-full bg-purple-700 text-center rounded-md"><button className="px-2 py-2 ">Add</button></div>
+                <div className="mt-2 mb-3 w-full ring-2 hover:shadow-2xl  ring-purple-800 text-center rounded-md "><button className="px-2 py-2 ">Add</button></div>
               </div>
             ))}
           </div>
