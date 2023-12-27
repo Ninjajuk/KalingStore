@@ -1,10 +1,13 @@
 import React from 'react';
-import SignUpForm from '../Form/SignUpForm';
+// import SignUpForm from '../Form/SignUpForm';
+
+import Register from '../Form/Register';
 
 const RegisterPage = () => {
   return (
 <div>
-    <SignUpForm/>
+    {/* <SignUpForm/> */}
+    <Register/>
 </div>
   );
 };
