@@ -136,7 +136,7 @@ const cartItems = useSelector((state) => state.cart);
                   </div>
                 </div>
                 <div className="hidden lg:block">
-                  {isAuthenticated ? (
+                  {isAuthenticated  &&user? (
                     <h1>{user.email.slice(0, 6)}</h1>
                   ) : (
                     <button
@@ -281,7 +281,7 @@ const cartItems = useSelector((state) => state.cart);
                 </div> */}
                   <div className="ml-3">
                     <div className="text-base font-medium text-white">
-                      {isAuthenticated ? (
+                      {isAuthenticated &&user ? (
                         <h1> {user.email}</h1>
                       ) : (
                         <h1>Hi User</h1>
