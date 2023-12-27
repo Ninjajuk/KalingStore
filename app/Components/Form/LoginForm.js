@@ -17,34 +17,27 @@ const LoginForm = () => {
   const router = useRouter()
 
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // console.log("Logging in with email:", email, "and password:", password);
-    // console.log("Remember Me:", rememberMe);
-    console.log(email,password);
-    setEmail('')
-    setPassword('')
-
-
-    // Check if the email is equal to "biosamsuddin@gmail.com"
-    if (email === "biosamsuddin@gmail.com") {
-      dispatch(login({ email, }));
-      // Redirect to the dashboard
-      router.push("/dashboard");
-    } else {
-      dispatch(login({ email, }));
-      // Redirect to the UserPage
-      router.push("/checkout");
-    }
-
+    console.log(email, password);
+    setEmail("");
+    setPassword("");
+    try {
+      // Check if the email is equal to "biosamsuddin@gmail.com"
+      if (email === "biosamsuddin@gmail.com") {
+        dispatch(login({ email }));
+        // Redirect to the dashboard
+        router.push("/dashboard");
+      } else {
+        dispatch(login({ email }));
+        // Redirect to the UserPage
+        router.push("/checkout");
+      }
+    } catch (error) {}
   };
 
-  const handleRegister = () => {
-    // Add your registration logic here
-    console.log("Redirecting to the registration page...");
-    // navigate("/register");
-  };
+
 
   const toggleRememberMe = () => {
     setRememberMe(!rememberMe);
